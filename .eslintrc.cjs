@@ -42,6 +42,7 @@ module.exports = {
         'newlines-between': 'always',
       },
     ],
+
     'prefer-const': 2,
     'no-else-return': 2,
     'no-return-await': 2,
