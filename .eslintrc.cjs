@@ -3,24 +3,16 @@ require('@rushstack/eslint-patch/modern-module-resolution')
 
 module.exports = {
   root: true,
-  plugins: ['prettier', 'import'],
+  plugins: ['import'],
   extends: [
     'plugin:vue/vue3-essential',
     'eslint:recommended',
     '@vue/eslint-config-typescript',
     '@vue/eslint-config-prettier',
-    'prettier',
     'plugin:import/errors',
-    'plugin:vue/vue3-recommended',
-    '@vue/typescript/recommended',
   ],
   parserOptions: {
-    ecmaVersion: 2021,
-  },
-  env: {
-    browser: true,
-    node: true,
-    es2021: true,
+    ecmaVersion: 'latest',
   },
   settings: {
     'import/resolver': {
@@ -28,7 +20,6 @@ module.exports = {
     },
   },
   rules: {
-    'prettier/prettier': 2,
     'import/first': 2,
     'import/newline-after-import': 2,
     'import/order': [
@@ -51,6 +42,7 @@ module.exports = {
         'newlines-between': 'always',
       },
     ],
+    'prefer-const': 2,
     'no-else-return': 2,
     'no-return-await': 2,
     'camelcase': 2,
