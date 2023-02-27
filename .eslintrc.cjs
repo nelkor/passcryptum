@@ -16,7 +16,9 @@ module.exports = {
   },
   settings: {
     'import/resolver': {
-      typescript: {},
+      typescript: {
+        project: 'tsconfig.app.json',
+      },
     },
   },
   rules: {
