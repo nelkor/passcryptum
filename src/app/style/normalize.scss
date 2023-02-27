@@ -3,11 +3,13 @@
 *::before {
   box-sizing: border-box;
 }
+
 body,
 html {
-  margin: 0;
   padding: 0;
+  margin: 0;
 }
+
 h1,
 h2,
 h3,
@@ -22,14 +24,17 @@ nav,
 section {
   margin: 0;
 }
+
 a {
   text-decoration: none;
   font-family: inherit;
 }
+
 ol,
 ul {
   list-style: none;
 }
+
 button {
   cursor: pointer;
   font-family: inherit;
