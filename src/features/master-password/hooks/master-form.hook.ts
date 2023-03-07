@@ -4,10 +4,18 @@ import { setMasterPassword } from '@/entities/master-password'
 
 export const useMasterForm = () => {
   const masterPassword = ref('')
-  const isSubmitDisabled = computed(() => Boolean(!masterPassword.value))
+  const hashesAreCalculated = ref(false)
+
+  const isSubmitDisabled = computed(() =>
+    Boolean(!masterPassword.value || hashesAreCalculated.value)
+  )
 
   const onSubmit = () => {
-    setMasterPassword(masterPassword.value)
+    hashesAreCalculated.value = true
+
+    setMasterPassword(masterPassword.value).then(() => {
+      hashesAreCalculated.value = false
+    })
   }
 
   return {
