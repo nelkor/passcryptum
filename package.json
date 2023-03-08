@@ -6,8 +6,9 @@
     "test:unit": "vitest --environment jsdom --root src/",
     "build-only": "vite build",
     "type-check": "vue-tsc --noEmit -p tsconfig.vitest.json --composite false",
-    "lint": "eslint . --ext .vue,.js,.cjs,.ts --fix --ignore-path .gitignore",
-    "format": "prettier . --write && stylelint **/*.scss --fix",
+    "lint": "eslint . --ext .vue,.js,.cjs,.ts --ignore-path .gitignore && stylelint **/*.scss",
+    "fix": "eslint . --ext .vue,.js,.cjs,.ts --fix --ignore-path .gitignore && stylelint **/*.scss --fix",
+    "format": "prettier . --write",
     "prepare": "husky install"
   },
   "dependencies": {
