@@ -83,12 +83,6 @@ module.exports = {
     'prefer-template': 2,
     'prefer-arrow-callback': 2,
     'arrow-body-style': 2,
-    'max-len': [
-      2,
-      {
-        code: 80,
-      },
-    ],
     'padding-line-between-statements': [
       'error',
       {
