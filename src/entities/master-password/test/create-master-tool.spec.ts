@@ -7,7 +7,7 @@ import { createMasterTool } from '../lib/create-master-tool'
 Object.defineProperty(global.self, 'crypto', { value: webcrypto })
 
 describe('Create Master tool', () => {
-  it('should be define', () => {
+  it('should be defined', () => {
     expect(createMasterTool).toBeDefined()
   })
 
