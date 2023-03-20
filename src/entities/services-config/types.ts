@@ -1,26 +1,26 @@
-type CompressedLogins = Record<string, number>
+export type CompressedLogins = Record<string, number>
 
 // CompressedServiceOptions cannot be the number 5
 // as this value is the default setting
-type CompressedServiceOptions = 0 | 1 | 2 | 3 | 4 | 6 | 7
+export type CompressedServiceOptions = 0 | 1 | 2 | 3 | 4 | 6 | 7
 
-type CompressedServiceData =
+export type CompressedServiceData =
   | [CompressedServiceOptions, CompressedLogins]
   | CompressedLogins
 
-type CompressedServices = Record<string, CompressedServiceData>
+export type CompressedServices = Record<string, CompressedServiceData>
 
 export type CompressedConfig = [CompressedServices, CompressedServices]
 
-interface Login {
+export interface Login {
   name: string
   version: number
 }
 
-interface ServiceData {
+export interface ServiceData {
   name: string
   useSpecialCharacters: boolean
-  passwordLength: number
+  passwordLengthIndex: number
   logins: Login[]
 }
 
