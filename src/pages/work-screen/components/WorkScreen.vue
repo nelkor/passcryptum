@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import { clearMasterPassword } from '@/entities/master-password'
+import { exit } from '@/features/entry'
 </script>
 
 <template>
   <h1>Work screen</h1>
-  <button @click="clearMasterPassword">Exit</button>
+  <button @click="exit">Exit</button>
 </template>

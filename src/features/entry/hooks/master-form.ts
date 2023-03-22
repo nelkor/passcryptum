@@ -1,6 +1,6 @@
 import { ref, computed } from 'vue'
 
-import { setMasterPassword } from '@/entities/master-password'
+import { enter } from '../actions/enter'
 
 export const useMasterForm = () => {
   const masterPassword = ref('')
@@ -13,7 +13,7 @@ export const useMasterForm = () => {
   const onSubmit = () => {
     hashesAreCalculated.value = true
 
-    setMasterPassword(masterPassword.value).then(() => {
+    enter(masterPassword.value).then(() => {
       hashesAreCalculated.value = false
     })
   }

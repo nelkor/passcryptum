@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { MasterForm } from '@/features/master-password'
+import { MasterForm } from '@/features/entry'
 </script>
 
 <template>
