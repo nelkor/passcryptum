@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useMasterForm } from '../hooks/master-form.hook'
+import { useMasterForm } from '../hooks/master-form'
 
 const { masterPassword, isSubmitDisabled, onSubmit } = useMasterForm()
 </script>
@@ -7,6 +7,6 @@ const { masterPassword, isSubmitDisabled, onSubmit } = useMasterForm()
 <template>
   <form @submit.prevent="onSubmit">
     <input v-model="masterPassword" type="password" />
-    <input type="submit" value="Enter" :disabled="isSubmitDisabled" />
+    <button type="submit" :disabled="isSubmitDisabled">Enter</button>
   </form>
 </template>
