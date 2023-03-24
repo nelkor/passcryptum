@@ -2,7 +2,8 @@ import {
   getBufferOfText,
   reverseText,
   sha512,
-  bufferToHexString,
+  stringifyBuffer,
+  createCryptoKey,
 } from '@/shared'
 
 import type { MasterTool } from '../types'
@@ -19,10 +20,10 @@ export const createMasterTool = async (
   ])
 
   // hex string from 64-byte buffer
-  const hash = bufferToHexString(mainHash)
+  const hash = stringifyBuffer(mainHash)
 
   // hex string from 16-byte buffer
-  const shortHash = bufferToHexString(extraBytes.slice(0, 16))
+  const shortHash = stringifyBuffer(extraBytes.slice(0, 16))
 
   // 32-byte buffer
   const keyData = extraBytes.slice(16, 48)
@@ -30,10 +31,7 @@ export const createMasterTool = async (
   // 16-byte buffer
   const iv = extraBytes.slice(48)
 
-  const key = await crypto.subtle.importKey('raw', keyData, 'AES-CBC', false, [
-    'encrypt',
-    'decrypt',
-  ])
+  const key = await createCryptoKey(keyData)
 
   return {
     hash,
