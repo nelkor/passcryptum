@@ -14,3 +14,11 @@ export const setMasterPassword = async (password: string) => {
 export const clearMasterPassword = () => {
   masterTool.value = null
 }
+
+export const getMasterTool = (): MasterTool => {
+  if (!masterTool.value) {
+    throw new Error('Trying to get an undefined MasterTool')
+  }
+
+  return masterTool.value
+}
