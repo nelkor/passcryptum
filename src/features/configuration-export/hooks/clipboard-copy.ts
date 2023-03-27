@@ -1,9 +1,6 @@
 import { computed, ref } from 'vue'
 
-import {
-  getCompressedConfigText,
-  isConfigEmpty,
-} from '@/entities/services-config'
+import { compressedConfigText, isConfigEmpty } from '@/entities/services-config'
 import { stringifyBuffer } from '@/shared'
 
 import { getEncryptedConfig } from '../lib/get-encrypted-config'
@@ -20,7 +17,7 @@ export const useClipboardCopy = (withoutEncryption = false) => {
 
     await navigator.clipboard.writeText(
       withoutEncryption
-        ? getCompressedConfigText()
+        ? compressedConfigText.value
         : stringifyBuffer(await getEncryptedConfig())
     )
 
