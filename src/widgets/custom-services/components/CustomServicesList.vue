@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import { AddCustomService } from '@/features/add-custom-service'
 import { customServices } from '@/entities/services-config'
-
-import CustomService from './CustomService.vue'
+import { CustomService } from '@/features/service-management'
 </script>
 
 <template>
@@ -15,7 +14,7 @@ import CustomService from './CustomService.vue'
     <CustomService
       v-for="service in customServices"
       :key="service.name"
-      :name="service.name"
+      :service="service"
     />
   </div>
 </template>

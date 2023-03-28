@@ -24,6 +24,8 @@ export interface ServiceData {
   logins: Login[]
 }
 
+export type ServicePreferences = Omit<ServiceData, 'logins'>
+
 export interface ServicesConfig {
   popular: ServiceData[]
   custom: ServiceData[]

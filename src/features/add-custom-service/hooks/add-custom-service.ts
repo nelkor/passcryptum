@@ -8,10 +8,9 @@ import {
 export const useAddCustomService = () => {
   const serviceName = ref('')
 
-  const isSubmitDisabled = computed(() =>
-    serviceName.value
-      ? Boolean(getCustomServiceByName(serviceName.value))
-      : true
+  const isSubmitDisabled = computed(
+    () =>
+      !serviceName.value || Boolean(getCustomServiceByName(serviceName.value))
   )
 
   const onSubmit = () => {

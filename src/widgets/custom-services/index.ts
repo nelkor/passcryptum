@@ -1,3 +1,3 @@
 import './index.scss'
 
-export { default as CustomServices } from './components/CustomServices.vue'
+export { default as CustomServicesList } from './components/CustomServicesList.vue'

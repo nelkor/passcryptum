@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ConfigurationPanel } from '@/widgets/configuration-panel'
-import { CustomServices } from '@/widgets/custom-services'
+import { CustomServicesList } from '@/widgets/custom-services'
 import { exit } from '@/features/entry'
 </script>
 
@@ -8,5 +8,5 @@ import { exit } from '@/features/entry'
   <h1>Work screen</h1>
   <button @click="exit">Exit</button>
   <ConfigurationPanel />
-  <CustomServices />
+  <CustomServicesList />
 </template>
