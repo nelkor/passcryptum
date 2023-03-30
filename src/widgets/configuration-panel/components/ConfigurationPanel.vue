@@ -9,11 +9,14 @@ import {
   ConfigEncryptedCopy,
   ConfigRawJsonCopy,
 } from '@/features/configuration-export'
+import { SaveCancelConfig } from '@/features/save-configuration'
 </script>
 
 <template>
   <div class="configuration-panel">
     <h3>Configuration panel</h3>
+    <hr />
+    <SaveCancelConfig />
     <hr />
     <DeleteConfig />
     <hr />

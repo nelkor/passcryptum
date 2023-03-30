@@ -1,0 +1,14 @@
+.custom-service {
+  padding: 8px;
+  margin: 8px;
+  border: solid 1px;
+}
+
+.custom-service-header {
+  display: flex;
+  align-items: center;
+
+  h4 {
+    margin-right: 8px;
+  }
+}
