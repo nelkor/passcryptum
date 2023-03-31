@@ -5,6 +5,8 @@ import { CopyButton } from '@/shared'
 
 import { useCustomService } from '../hooks/custom-service'
 import ServicePreferences from './ServicePreferences.vue'
+import AddLoginToCustomService from './AddLoginToCustomService.vue'
+import LoginsList from './LoginsList.vue'
 
 const props = defineProps<{ service: ServiceData }>()
 const getServiceName = () => props.service.name
@@ -29,5 +31,9 @@ const { rmService } = useCustomService(getServiceName)
       :service="service"
       @update-preferences="updateCustomServicePreferences"
     />
+
+    <hr />
+    <AddLoginToCustomService :service="service" />
+    <LoginsList :service="service" />
   </div>
 </template>

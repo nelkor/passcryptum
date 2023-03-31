@@ -1,8 +1,9 @@
 <script setup lang="ts">
+import { passwordLengthVariants } from '../../lib/password-length'
+
 defineProps<{ modelValue: number }>()
 
 const emit = defineEmits(['update:modelValue'])
-const passwordLengthVariants = [8, 12, 20, 32]
 </script>
 
 <template>

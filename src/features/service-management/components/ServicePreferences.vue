@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
-import { ServiceData } from '@/entities/services-config'
+import type { ServiceData } from '@/entities/services-config'
 import { PasswordLengthGroup } from '@/shared'
 
 import { useServicePreferences } from '../hooks/service-preferences'

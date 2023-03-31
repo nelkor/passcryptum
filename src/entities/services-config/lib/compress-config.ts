@@ -1,7 +1,7 @@
 import type {
   ServicesConfig,
   CompressedConfig,
-  Login,
+  LoginData,
   CompressedLogins,
   ServiceData,
   CompressedServiceData,
@@ -9,7 +9,7 @@ import type {
   CompressedServices,
 } from '../types'
 
-const compressLogins = (logins: Login[]): CompressedLogins =>
+const compressLogins = (logins: LoginData[]): CompressedLogins =>
   logins.reduce<CompressedLogins>((acc, { name, version }) => {
     acc[name] = version
 

@@ -12,7 +12,7 @@ export type CompressedServices = Record<string, CompressedServiceData>
 
 export type CompressedConfig = [CompressedServices, CompressedServices]
 
-export interface Login {
+export interface LoginData {
   name: string
   version: number
 }
@@ -21,7 +21,7 @@ export interface ServiceData {
   name: string
   useSpecialCharacters: boolean
   passwordLengthIndex: number
-  logins: Login[]
+  logins: LoginData[]
 }
 
 export type ServicePreferences = Omit<ServiceData, 'logins'>
