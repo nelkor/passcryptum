@@ -2,9 +2,7 @@ import { webcrypto } from 'crypto'
 
 import { describe, it, expect } from 'vitest'
 
-import { sha512, getBufferOfText } from '@/shared'
-
-import { generatePassword } from '../lib/generate-password'
+import { sha512, getBufferOfText, generatePassword, getCharset } from '@/shared'
 
 Object.defineProperty(global.self, 'crypto', { value: webcrypto })
 
@@ -13,12 +11,7 @@ const buffer2 = await sha512(getBufferOfText('rule'))
 const buffer3 = await sha512(getBufferOfText('the'))
 const buffer4 = await sha512(getBufferOfText('world'))
 
-const charset1 = [
-  '0123456789',
-  'ABCDEFGHIJKLMNOPQRSTUVWXYZ',
-  'abcdefghijklmnopqrstuvwxyz',
-  '`!@#$%^&*()-_=+{[]};:"|/.,<>',
-]
+const charset1 = getCharset(true)
 
 const charset2 = [
   'A',

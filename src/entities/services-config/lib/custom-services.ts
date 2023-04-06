@@ -2,7 +2,7 @@ import { computed } from 'vue'
 
 import { servicesConfig } from '../model/service-config'
 import type { ServicePreferences } from '../types'
-import { createService } from './creation-tools'
+import { createService, createLogin } from './creation-tools'
 
 export const customServices = computed(() => servicesConfig.value.custom)
 
@@ -40,4 +40,38 @@ export const deleteCustomServiceByName = (name: string) => {
   }
 
   servicesConfig.value.custom.splice(index, 1)
+}
+
+export const addLoginToCustomService = (serviceName: string, name: string) => {
+  const service = getCustomServiceByName(serviceName)
+
+  if (!service) {
+    throw new Error('Attempt to create login in non-existent custom service')
+  }
+
+  service.logins.unshift(createLogin(name))
+}
+
+export const setVersionOfLoginInCustomService = (
+  serviceName: string,
+  loginName: string,
+  version: number
+) => {
+  const service = getCustomServiceByName(serviceName)
+
+  if (!service) {
+    throw new Error(
+      'Attempt to set version of login in non-existent custom service'
+    )
+  }
+
+  const editableLogin = service.logins.find(login => login.name === loginName)
+
+  if (!editableLogin) {
+    throw new Error(
+      'Attempt to set version of non-existent login in custom service'
+    )
+  }
+
+  editableLogin.version = version
 }

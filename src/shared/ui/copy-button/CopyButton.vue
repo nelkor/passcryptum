@@ -2,15 +2,15 @@
 import { ref } from 'vue'
 
 const DELAY_TIME = 2000
-const props = defineProps<{ getContent(): string }>()
+const props = defineProps<{ getContent(): string | Promise<string> }>()
 const justCopied = ref(false)
 
-const copy = () => {
+const copy = async () => {
   if (justCopied.value) {
     return
   }
 
-  navigator.clipboard.writeText(props.getContent())
+  await navigator.clipboard.writeText(await props.getContent())
 
   justCopied.value = true
 
