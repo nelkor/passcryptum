@@ -8,9 +8,7 @@ export type CompressedServiceData =
   | [CompressedServiceOptions, CompressedLogins]
   | CompressedLogins
 
-export type CompressedServices = Record<string, CompressedServiceData>
-
-export type CompressedConfig = [CompressedServices, CompressedServices]
+export type CompressedConfig = Record<string, CompressedServiceData>
 
 export interface LoginData {
   name: string
@@ -26,7 +24,4 @@ export interface ServiceData {
 
 export type ServicePreferences = Omit<ServiceData, 'logins'>
 
-export interface ServicesConfig {
-  popular: ServiceData[]
-  custom: ServiceData[]
-}
+export type ServicesConfig = ServiceData[]

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ConfigurationPanel } from '@/widgets/configuration-panel'
-import { CustomServicesList } from '@/widgets/custom-services'
+import { ServicesList } from '@/widgets/services-list'
 import { ShortHash } from '@/widgets/short-hash'
 import { exit } from '@/features/entry'
 </script>
@@ -10,5 +10,5 @@ import { exit } from '@/features/entry'
   <ShortHash />
   <button @click="exit">Exit</button>
   <ConfigurationPanel />
-  <CustomServicesList />
+  <ServicesList />
 </template>

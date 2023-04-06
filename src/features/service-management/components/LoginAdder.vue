@@ -3,11 +3,11 @@ import { computed } from 'vue'
 
 import type { ServiceData } from '@/entities/services-config'
 
-import { useAddLoginToCustomService } from '../hooks/add-login-to-custom-service'
+import { useLoginAdder } from '../hooks/login-adder'
 
 const props = defineProps<{ service: ServiceData }>()
 
-const { newLogin, isSubmitDisabled, onSubmit } = useAddLoginToCustomService(
+const { newLogin, isSubmitDisabled, onSubmit } = useLoginAdder(
   computed(() => props.service)
 )
 </script>

@@ -5,7 +5,6 @@ import type {
   CompressedLogins,
   ServiceData,
   CompressedServiceData,
-  CompressedServices,
 } from '../types'
 
 const decompressLogins = (logins: CompressedLogins): LoginData[] =>
@@ -26,12 +25,7 @@ const decompressServiceData = (
   }
 }
 
-const decompressServices = (services: CompressedServices): ServiceData[] =>
-  Object.entries(services).map(([name, data]) =>
+export const decompressConfig = (config: CompressedConfig): ServicesConfig =>
+  Object.entries(config).map(([name, data]) =>
     decompressServiceData(name, data)
   )
-
-export const decompressConfig = (config: CompressedConfig): ServicesConfig => ({
-  popular: decompressServices(config[0]),
-  custom: decompressServices(config[1]),
-})

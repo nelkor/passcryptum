@@ -8,8 +8,11 @@ defineProps<{ service: ServiceData }>()
 
 <template>
   <ul>
-    <li v-for="login in service.logins" :key="login.name">
-      <LoginItem :service="service" :login="login" />
-    </li>
+    <LoginItem
+      v-for="login in service.logins"
+      :key="login.name"
+      :service="service"
+      :login="login"
+    />
   </ul>
 </template>

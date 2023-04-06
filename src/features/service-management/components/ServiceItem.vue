@@ -1,21 +1,21 @@
 <script setup lang="ts">
-import { updateCustomServicePreferences } from '@/entities/services-config'
+import { updateServicePreferences } from '@/entities/services-config'
 import type { ServiceData } from '@/entities/services-config'
 import { CopyButton } from '@/shared'
 
-import { useCustomService } from '../hooks/custom-service'
+import { useServiceDeleting } from '../hooks/service-deleting'
 import ServicePreferences from './ServicePreferences.vue'
-import AddLoginToCustomService from './AddLoginToCustomService.vue'
+import LoginAdder from './LoginAdder.vue'
 import LoginsList from './LoginsList.vue'
 
 const props = defineProps<{ service: ServiceData }>()
 const getServiceName = () => props.service.name
-const { rmService } = useCustomService(getServiceName)
+const { rmService } = useServiceDeleting(getServiceName)
 </script>
 
 <template>
-  <div class="custom-service">
-    <div class="custom-service-header">
+  <li class="service-item">
+    <div class="service-item-header">
       <h4>{{ service.name }}</h4>
 
       <div class="buttons">
@@ -29,11 +29,11 @@ const { rmService } = useCustomService(getServiceName)
 
     <ServicePreferences
       :service="service"
-      @update-preferences="updateCustomServicePreferences"
+      @update-preferences="updateServicePreferences"
     />
 
     <hr />
-    <AddLoginToCustomService :service="service" />
+    <LoginAdder :service="service" />
     <LoginsList :service="service" />
-  </div>
+  </li>
 </template>

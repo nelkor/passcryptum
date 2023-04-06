@@ -1,12 +1,10 @@
 import { computed, ref } from 'vue'
 import type { ComputedRef } from 'vue'
 
-import { addLoginToCustomService } from '@/entities/services-config'
+import { addLoginToService } from '@/entities/services-config'
 import type { ServiceData } from '@/entities/services-config'
 
-export const useAddLoginToCustomService = (
-  service: ComputedRef<ServiceData>
-) => {
+export const useLoginAdder = (service: ComputedRef<ServiceData>) => {
   const newLogin = ref('')
 
   const isSubmitDisabled = computed(
@@ -16,7 +14,7 @@ export const useAddLoginToCustomService = (
   )
 
   const onSubmit = () => {
-    addLoginToCustomService(service.value.name, newLogin.value)
+    addLoginToService(service.value.name, newLogin.value)
 
     newLogin.value = ''
   }

@@ -1,3 +1,5 @@
 import './index.scss'
 
-export { default as CustomService } from './components/CustomService.vue'
+export { default as ServiceItem } from './components/ServiceItem.vue'
+
+export { default as ServiceAdder } from './components/ServiceAdder.vue'

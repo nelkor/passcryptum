@@ -15,7 +15,7 @@ const { innerVersion, getLogin, getPassword } = useLoginItem(
 </script>
 
 <template>
-  <div class="login-item">
+  <li class="login-item">
     <h4>{{ login.name }}</h4>
 
     <label>
@@ -25,5 +25,5 @@ const { innerVersion, getLogin, getPassword } = useLoginItem(
 
     <CopyButton :get-content="getLogin">Copy login</CopyButton>
     <CopyButton :get-content="getPassword">Copy password</CopyButton>
-  </div>
+  </li>
 </template>
