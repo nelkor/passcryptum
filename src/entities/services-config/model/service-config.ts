@@ -1,15 +1,11 @@
 import { ref, computed } from 'vue'
 
-import {
-  createEmptyConfig,
-  createService,
-  createLogin,
-} from '../lib/creation-tools'
+import { createService, createLogin } from '../lib/creation-tools'
 import { compressConfig } from '../lib/compress-config'
 import { decompressConfig } from '../lib/decompress-config'
 import type { ServicesConfig, ServicePreferences } from '../types'
 
-export const servicesConfig = ref<ServicesConfig>(createEmptyConfig())
+export const servicesConfig = ref<ServicesConfig>([])
 
 export const compressedConfigText = computed(() =>
   JSON.stringify(compressConfig(servicesConfig.value))
@@ -37,7 +33,7 @@ export const cancelChanges = () => {
 }
 
 export const clearServicesConfig = () => {
-  setServicesConfig(createEmptyConfig())
+  setServicesConfig([])
 }
 
 export const getServiceByName = (name: string) =>

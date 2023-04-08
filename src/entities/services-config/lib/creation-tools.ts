@@ -1,6 +1,4 @@
-import type { ServicesConfig, ServiceData, LoginData } from '../types'
-
-export const createEmptyConfig = (): ServicesConfig => []
+import type { ServiceData, LoginData } from '../types'
 
 export const createService = (name: string): ServiceData => ({
   name,

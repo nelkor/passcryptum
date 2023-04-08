@@ -1,15 +1,9 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-
-import type { ServiceData } from '@/entities/services-config'
-
 import { useLoginAdder } from '../hooks/login-adder'
+import { injectService } from '../providers/service'
 
-const props = defineProps<{ service: ServiceData }>()
-
-const { newLogin, isSubmitDisabled, onSubmit } = useLoginAdder(
-  computed(() => props.service)
-)
+const service = injectService()
+const { newLogin, isSubmitDisabled, onSubmit } = useLoginAdder(service)
 </script>
 
 <template>
