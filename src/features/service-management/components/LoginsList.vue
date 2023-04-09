@@ -1,15 +1,16 @@
 <script setup lang="ts">
-import type { ServiceData } from '@/entities/services-config'
-
 import LoginItem from './LoginItem.vue'
+import { injectService } from '../providers/service'
 
-defineProps<{ service: ServiceData }>()
+const service = injectService()
 </script>
 
 <template>
   <ul>
-    <li v-for="login in service.logins" :key="login.name">
-      <LoginItem :service="service" :login="login" />
-    </li>
+    <LoginItem
+      v-for="login in service.logins"
+      :key="login.name"
+      :login="login"
+    />
   </ul>
 </template>

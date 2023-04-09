@@ -1,21 +1,23 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
-import type { ServiceData, LoginData } from '@/entities/services-config'
+import type { LoginData } from '@/entities/services-config'
 import { CopyButton } from '@/shared'
 
+import { injectService } from '../providers/service'
 import { useLoginItem } from '../hooks/login-item'
 
-const props = defineProps<{ service: ServiceData; login: LoginData }>()
+const props = defineProps<{ login: LoginData }>()
+const service = injectService()
 
 const { innerVersion, getLogin, getPassword } = useLoginItem(
-  computed(() => props.service),
+  service,
   computed(() => props.login)
 )
 </script>
 
 <template>
-  <div class="login-item">
+  <li class="login-item">
     <h4>{{ login.name }}</h4>
 
     <label>
@@ -25,5 +27,5 @@ const { innerVersion, getLogin, getPassword } = useLoginItem(
 
     <CopyButton :get-content="getLogin">Copy login</CopyButton>
     <CopyButton :get-content="getPassword">Copy password</CopyButton>
-  </div>
+  </li>
 </template>

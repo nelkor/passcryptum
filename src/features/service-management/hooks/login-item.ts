@@ -1,7 +1,7 @@
 import { ref, watch } from 'vue'
 import type { ComputedRef } from 'vue'
 
-import { setVersionOfLoginInCustomService } from '@/entities/services-config'
+import { setVersionOfLoginInService } from '@/entities/services-config'
 import type { LoginData, ServiceData } from '@/entities/services-config'
 
 import { getPasswordOfLogin } from '../lib/get-password-of-login'
@@ -13,11 +13,7 @@ export const useLoginItem = (
   const innerVersion = ref(login.value.version)
 
   const setVersion = (value: number) => {
-    setVersionOfLoginInCustomService(
-      service.value.name,
-      login.value.name,
-      value
-    )
+    setVersionOfLoginInService(service.value.name, login.value.name, value)
   }
 
   const getLogin = () => login.value.name

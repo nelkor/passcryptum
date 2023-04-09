@@ -10,4 +10,6 @@ export * from './lib/charset'
 
 export { getPasswordLengthByIndex } from './lib/password-length'
 
+export * from './hooks/provide'
+
 export * from './ui'

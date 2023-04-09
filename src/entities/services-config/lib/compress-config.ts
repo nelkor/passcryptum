@@ -6,7 +6,6 @@ import type {
   ServiceData,
   CompressedServiceData,
   CompressedServiceOptions,
-  CompressedServices,
 } from '../types'
 
 const compressLogins = (logins: LoginData[]): CompressedLogins =>
@@ -29,14 +28,9 @@ const compressServiceData = (data: ServiceData): CompressedServiceData => {
   return options === 5 ? logins : [options as CompressedServiceOptions, logins]
 }
 
-const compressServices = (services: ServiceData[]): CompressedServices =>
-  services.reduce<CompressedServices>((acc, cur) => {
+export const compressConfig = (config: ServicesConfig): CompressedConfig =>
+  config.reduce<CompressedConfig>((acc, cur) => {
     acc[cur.name] = compressServiceData(cur)
 
     return acc
   }, {})
-
-export const compressConfig = (config: ServicesConfig): CompressedConfig => [
-  compressServices(config.popular),
-  compressServices(config.custom),
-]

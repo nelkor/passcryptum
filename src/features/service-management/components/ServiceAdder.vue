@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { useAddCustomService } from '../hooks/add-custom-service'
+import { useServiceAdder } from '../hooks/service-adder'
 
-const { serviceName, isSubmitDisabled, onSubmit } = useAddCustomService()
+const { serviceName, isSubmitDisabled, onSubmit } = useServiceAdder()
 </script>
 
 <template>

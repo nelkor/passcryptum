@@ -1,18 +1,12 @@
 <script setup lang="ts">
-import { computed } from 'vue'
-
-import type { ServiceData } from '@/entities/services-config'
 import { PasswordLengthGroup } from '@/shared'
 
 import { useServicePreferences } from '../hooks/service-preferences'
+import { injectService } from '../providers/service'
 
-const props = defineProps<{ service: ServiceData }>()
 const emit = defineEmits(['update-preferences'])
-
-const { innerService } = useServicePreferences(
-  computed(() => props.service),
-  emit
-)
+const service = injectService()
+const { innerService } = useServicePreferences(service, emit)
 </script>
 
 <template>
