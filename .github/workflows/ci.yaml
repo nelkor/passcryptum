@@ -1,0 +1,52 @@
+name: CI
+
+on:
+  pull_request:
+    branches:
+      - dev
+      - main
+
+concurrency:
+  group: ci-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  lint:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛎
+        uses: actions/checkout@v3
+
+      - name: Install 👨🏻‍💻
+        run: npm i
+
+      - name: Lint 👀
+        run: npm run lint
+
+      - name: Prettier 🪞
+        run: npm run format
+
+  type_check:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛎
+        uses: actions/checkout@v3
+
+      - name: Install 👨🏻‍💻
+        run: npm i
+
+      - name: Type check 🔤
+        run: npm run type-check
+
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - name: Checkout 🛎
+        uses: actions/checkout@v3
+
+      - name: Install 👨🏻‍💻
+        run: npm i
+
+      - name: Test 🧪
+        run: npm run test:unit
