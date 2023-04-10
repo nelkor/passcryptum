@@ -10,7 +10,7 @@ import { useLoginItem } from '../hooks/login-item'
 const props = defineProps<{ login: LoginData }>()
 const service = injectService()
 
-const { innerVersion, getLogin, getPassword } = useLoginItem(
+const { innerVersion, getLogin, getPassword, deleteLogin } = useLoginItem(
   service,
   computed(() => props.login)
 )
@@ -19,6 +19,7 @@ const { innerVersion, getLogin, getPassword } = useLoginItem(
 <template>
   <li class="login-item">
     <h4>{{ login.name }}</h4>
+    <button @click="deleteLogin">Delete</button>
 
     <label>
       <span>version</span>

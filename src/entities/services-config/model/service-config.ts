@@ -82,6 +82,25 @@ export const addLoginToService = (serviceName: string, name: string) => {
   service.logins.unshift(createLogin(name))
 }
 
+export const deleteLoginFromService = (
+  serviceName: string,
+  loginName: string
+) => {
+  const service = getServiceByName(serviceName)
+
+  if (!service) {
+    throw new Error('Attempt to delete login in non-existent service')
+  }
+
+  const index = service.logins.findIndex(login => login.name === loginName)
+
+  if (index === -1) {
+    throw new Error('Attempt to delete a non-existent login')
+  }
+
+  service.logins.splice(index, 1)
+}
+
 export const setVersionOfLoginInService = (
   serviceName: string,
   loginName: string,
