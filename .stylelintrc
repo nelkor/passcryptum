@@ -5,13 +5,6 @@
   "rules": {
     "function-url-quotes": "never",
     "indentation": 2,
-    "at-rule-empty-line-before": [
-      "always",
-      {
-        "ignore": ["after-comment"],
-        "except": ["first-nested"]
-      }
-    ],
     "at-rule-no-unknown": null,
     "at-rule-no-vendor-prefix": true,
     "block-opening-brace-space-before": "always",

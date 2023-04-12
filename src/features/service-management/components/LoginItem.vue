@@ -18,12 +18,19 @@ const { innerVersion, getLogin, getPassword, deleteLogin } = useLoginItem(
 
 <template>
   <li class="login-item">
-    <h4>{{ login.name }}</h4>
+    <h4 class="login-name">{{ login.name }}</h4>
     <button @click="deleteLogin">Delete</button>
 
     <label>
       <span>version</span>
-      <input v-model="innerVersion" type="number" min="1" step="1" />
+
+      <input
+        v-model="innerVersion"
+        class="version-input"
+        type="number"
+        min="1"
+        step="1"
+      />
     </label>
 
     <CopyButton :get-content="getLogin">Copy login</CopyButton>
