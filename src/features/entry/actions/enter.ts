@@ -1,4 +1,5 @@
 import { decompressConfig, setServicesConfig } from '@/entities/services-config'
+import { setPasswordGenerator } from '@/entities/password-generator'
 import {
   setMasterPassword,
   getMasterTool,
@@ -6,7 +7,10 @@ import {
 } from '@/entities/master-tool'
 
 export const enter = async (masterPassword: string) => {
-  await setMasterPassword(masterPassword)
+  await Promise.all([
+    setMasterPassword(masterPassword),
+    setPasswordGenerator(masterPassword),
+  ])
 
   const { shortHash } = getMasterTool()
   const savedConfig = localStorage.getItem(shortHash)

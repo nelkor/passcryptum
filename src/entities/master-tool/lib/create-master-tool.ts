@@ -11,30 +11,22 @@ import type { MasterTool } from '../types'
 export const createMasterTool = async (
   password: string
 ): Promise<MasterTool> => {
-  const buffer = getBufferOfText(password)
-  const reverseBuffer = getBufferOfText(reverseText(password))
+  const buffer = getBufferOfText(reverseText(password))
 
-  const [mainHash, extraBytes] = await Promise.all([
-    sha512(buffer),
-    sha512(reverseBuffer),
-  ])
-
-  // hex string from 64-byte buffer
-  const hash = stringifyBuffer(mainHash)
+  const hash = await sha512(buffer)
 
   // hex string from 16-byte buffer
-  const shortHash = stringifyBuffer(extraBytes.slice(0, 16))
+  const shortHash = stringifyBuffer(hash.slice(0, 16))
 
   // 32-byte buffer
-  const keyData = extraBytes.slice(16, 48)
+  const keyData = hash.slice(16, 48)
 
   // 16-byte buffer
-  const iv = extraBytes.slice(48)
+  const iv = hash.slice(48)
 
   const key = await createCryptoKey(keyData)
 
   return {
-    hash,
     shortHash,
     key,
     iv,
