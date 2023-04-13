@@ -18,7 +18,7 @@ const { innerVersion, getLogin, getPassword, deleteLogin } = useLoginItem(
 
 <template>
   <li class="login-item">
-    <h4 class="login-name">{{ login.name }}</h4>
+    <h4 class="login-item__name">{{ login.name }}</h4>
     <button @click="deleteLogin">Delete</button>
 
     <label>
@@ -26,7 +26,7 @@ const { innerVersion, getLogin, getPassword, deleteLogin } = useLoginItem(
 
       <input
         v-model="innerVersion"
-        class="version-input"
+        class="login-item__input"
         type="number"
         min="1"
         step="1"

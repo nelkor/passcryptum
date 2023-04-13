@@ -7,13 +7,13 @@
   margin: 8px;
   border: solid 1px;
 
-  .login-name {
+  &__name {
     width: 144px;
     overflow: hidden;
     text-overflow: ellipsis;
   }
 
-  .version-input {
+  &__input {
     width: 64px;
     margin-left: 4px;
   }

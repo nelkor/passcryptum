@@ -3,13 +3,13 @@
   max-width: 640px;
   margin: 8px;
   border: solid 1px;
-}
 
-.service-item-header {
-  display: flex;
-  align-items: center;
+  &__header {
+    display: flex;
+    align-items: center;
+  }
 
-  h4 {
+  &__name {
     margin-right: 8px;
   }
 }
