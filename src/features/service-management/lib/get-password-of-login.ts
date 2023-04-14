@@ -1,27 +1,12 @@
-import { getMasterTool } from '@/entities/master-tool'
+import { calculate } from '@/entities/password-generator'
 import type { LoginData, ServiceData } from '@/entities/services-config'
-import {
-  getPasswordLengthByIndex,
-  getCharset,
-  getBufferOfText,
-  sha512,
-  generatePassword,
-} from '@/shared'
+import { getPasswordLengthByIndex } from '@/shared'
 
-export const getPasswordOfLogin = async (
-  service: ServiceData,
-  login: LoginData
-) => {
-  const { hash } = getMasterTool()
-  const serviceName = service.name
-  const { name, version } = login
-  const special = service.useSpecialCharacters ? 1 : 0
-  const length = getPasswordLengthByIndex(service.passwordLengthIndex)
-  const charset = getCharset(service.useSpecialCharacters)
-  const source = [hash, serviceName, name, version, special, length].join('/')
-  const sourceBuffer = getBufferOfText(source)
-
-  const entropyBuffer = await sha512(sourceBuffer)
-
-  return generatePassword(entropyBuffer, length, charset)
-}
+export const getPasswordOfLogin = (service: ServiceData, login: LoginData) =>
+  calculate(
+    service.name,
+    login.name,
+    login.version,
+    service.useSpecialCharacters,
+    getPasswordLengthByIndex(service.passwordLengthIndex)
+  )

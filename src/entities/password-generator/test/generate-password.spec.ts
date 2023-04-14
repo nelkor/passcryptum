@@ -2,7 +2,10 @@ import { webcrypto } from 'crypto'
 
 import { describe, it, expect } from 'vitest'
 
-import { sha512, getBufferOfText, generatePassword, getCharset } from '@/shared'
+import { sha512, getBufferOfText } from '@/shared'
+
+import { getCharset } from '../lib/charset'
+import { generatePassword } from '../lib/generate-password'
 
 Object.defineProperty(global.self, 'crypto', { value: webcrypto })
 
