@@ -19,10 +19,10 @@ const { rmService } = useServiceDeleting(getServiceName)
 
 <template>
   <li class="service-item">
-    <div class="service-item-header">
-      <h4>{{ service.name }}</h4>
+    <div class="service-item__header">
+      <h4 class="service-item__name">{{ service.name }}</h4>
 
-      <div class="buttons">
+      <div>
         <CopyButton :get-content="getServiceName">Copy service name</CopyButton>
         |
         <button @click="rmService">Delete service</button>

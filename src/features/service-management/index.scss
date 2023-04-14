@@ -1,20 +1,2 @@
-.service-item {
-  padding: 8px;
-  margin: 8px;
-  border: solid 1px;
-}
-
-.service-item-header {
-  display: flex;
-  align-items: center;
-
-  h4 {
-    margin-right: 8px;
-  }
-}
-
-.login-item {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 4px;
-}
+@import './style/service';
+@import './style/login';
