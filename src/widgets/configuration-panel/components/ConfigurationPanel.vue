@@ -6,10 +6,13 @@ import {
 } from '@/features/configuration-import'
 import {
   ConfigFileExport,
-  ConfigEncryptedCopy,
-  ConfigRawJsonCopy,
+  getConfigText,
 } from '@/features/configuration-export'
 import { SaveCancelConfig } from '@/features/save-configuration'
+import { isConfigEmpty } from '@/entities/services-config'
+import { CopyButton } from '@/shared'
+
+const getWithoutEncryption = getConfigText.bind(null, true)
 </script>
 
 <template>
@@ -28,9 +31,13 @@ import { SaveCancelConfig } from '@/features/save-configuration'
     <hr />
 
     <div>
-      <ConfigEncryptedCopy />
+      <CopyButton :disabled="isConfigEmpty" :get-content="getConfigText">
+        Copy config
+      </CopyButton>
       |
-      <ConfigRawJsonCopy />
+      <CopyButton :disabled="isConfigEmpty" :get-content="getWithoutEncryption">
+        Copy without encryption
+      </CopyButton>
     </div>
   </div>
 </template>

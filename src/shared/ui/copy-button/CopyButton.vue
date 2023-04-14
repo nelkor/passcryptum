@@ -1,8 +1,12 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
+const props = defineProps<{
+  getContent(): string | Promise<string>
+  disabled?: boolean
+}>()
+
 const DELAY_TIME = 2000
-const props = defineProps<{ getContent(): string | Promise<string> }>()
 const justCopied = ref(false)
 
 const copy = async () => {
@@ -21,7 +25,7 @@ const copy = async () => {
 </script>
 
 <template>
-  <button type="button" :disabled="justCopied" @click="copy">
+  <button type="button" :disabled="disabled || justCopied" @click="copy">
     <slot />
   </button>
 </template>
