@@ -6,7 +6,6 @@ import { getMasterTool } from '@/entities/master-tool'
 import type { ServicesConfig } from '@/entities/services-config'
 import { stringifyBuffer, getBufferOfText, encrypt } from '@/shared'
 
-// Attempt to push without PR
 export const setConfiguration = async (servicesConfig: ServicesConfig) => {
   setServicesConfig(servicesConfig)
 
