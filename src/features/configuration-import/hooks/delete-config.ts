@@ -3,7 +3,9 @@ import { clearServicesConfig } from '@/entities/services-config'
 
 export const useDelete = () => {
   const onClick = () => {
-    alert('Are you sure you want to delete all the services?\n— Yes!')
+    if (!confirm('Are you sure you want to delete all the services?')) {
+      return
+    }
 
     const { shortHash } = getMasterTool()
 
