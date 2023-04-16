@@ -1,19 +1,40 @@
 import { computed, ref, shallowRef } from 'vue'
 import type { Component } from 'vue'
 
-export const open = ref(false)
-
 const innerComponent = shallowRef(null)
 const title = ref('') as unknown as String
 const html = document.querySelector('.page')
+const triggerModal = ref() as unknown as HTMLElement | null
+
+export const open = ref(false)
 
 export const modal = computed(() => ({
   isOpen: open,
   component: innerComponent.value,
   name: title,
+  trigger: triggerModal,
 }))
 
-export const modalShow = (component: Component, title: String) => {
+/** Удерживает фокус в модальном окне. Когда пользователь дотабал до нижнего интерактивного элемента то, следующий таб перемещает фокус на первый интерактивный элемент модального окна*/
+export const focusTrap = () => {
+  const firstActiveElement = document.querySelector(
+    '.modal__button'
+  ) as HTMLElement
+
+  setTimeout(() => {
+    if (firstActiveElement) {
+      firstActiveElement.focus()
+    } else {
+      console.log('html element modal.value.trigger not found or null')
+    }
+  })
+}
+
+/**  Открывает доступное модальное окно c переданными параматрами, блокирую прокрутку страницы.
+ *  @param event event
+ *  @param component component который хотим открыть в модальном окне
+ *  @param  title загловок модального окна */
+export const modalShow = (e: Event, component: Component, title: String) => {
   if (html) {
     html.classList.add('hidden')
   } else {
@@ -22,10 +43,12 @@ export const modalShow = (component: Component, title: String) => {
 
   modal.value.name = title
   modal.value.component = component as unknown as null
-  // console.log(focusTrap())
+  modal.value.trigger = e.currentTarget as HTMLElement
   open.value = true
+  focusTrap()
 }
 
+/** Закрывает доступное модальное окно */
 export const modalClose = () => {
   if (html) {
     html.classList.remove('hidden')
@@ -34,39 +57,16 @@ export const modalClose = () => {
   }
 
   open.value = false
+  focusTriggerButton()
 }
 
-// export const focusTrap = () => {
-//   const element = document.querySelector('.modal') as HTMLElement
-//
-//   const focusableEls = element.querySelectorAll(
-//     'form, a, button, textarea, select, input, label'
-//   )
-//
-//   console.log(focusableEls)
-//
-//   const firstFocusableEl = focusableEls[0] as HTMLElement
-//   const lastFocusableEl = focusableEls[focusableEls.length - 1] as HTMLElement
-//   const KEYCODE_TAB = 9
-//
-//   element.addEventListener('keydown', e => {
-//     const isTabPressed = e.key === 'Tab' || e.keyCode === KEYCODE_TAB
-//
-//     if (!isTabPressed) {
-//       return
-//     }
-//
-//     /* shift + tab */
-//     if (e.shiftKey) {
-//       if (document.activeElement === firstFocusableEl) {
-//         lastFocusableEl.focus()
-//         e.preventDefault()
-//       }
-//     } /* tab */ else {
-//       if (document.activeElement === lastFocusableEl) {
-//         firstFocusableEl.focus()
-//         e.preventDefault()
-//       }
-//     }
-//   })
-// }
+/** Перемещает фокус к вызываемому элементу модального окна */
+const focusTriggerButton = () => {
+  setTimeout(() => {
+    if (modal.value.trigger) {
+      modal.value.trigger.focus()
+    } else {
+      console.log('html element modal.value.trigger not found or null')
+    }
+  })
+}

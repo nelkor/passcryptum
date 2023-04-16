@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { modal, modalClose, open } from '@/shared/lib/modal'
+import { modal, modalClose, open, focusTrap } from '@/shared/lib/modal'
 import './modal-window.scss'
+import '@/shared/styel/helpers.scss'
 </script>
 
 <template>
@@ -11,7 +12,7 @@ import './modal-window.scss'
     @click="modalClose()"
     @keydown.esc="modalClose()"
   >
-    <dialog class="modal" :open="open" autofocus @click.stop>
+    <dialog class="modal" :open="open" @click.stop>
       <header class="modal__header">
         <h3 id="modal-title" class="modal__title">
           {{ modal.name }}
@@ -27,6 +28,11 @@ import './modal-window.scss'
       <article class="modal__article">
         <component :is="modal.component" />
       </article>
+      <input
+        class="modal__end-tab visually-hidden"
+        type="text"
+        @focus="focusTrap()"
+      />
     </dialog>
   </div>
 </template>
