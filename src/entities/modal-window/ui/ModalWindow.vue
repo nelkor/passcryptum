@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { modal, modalClose, open, focusTrap } from '@/shared/lib/modal'
+import { modal, modalClose, open, focusTrap } from '../lib/modal'
 import './modal-window.scss'
 import '@/shared/styel/helpers.scss'
 </script>
