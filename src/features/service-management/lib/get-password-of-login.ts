@@ -1,6 +1,7 @@
 import { calculate } from '@/entities/password-generator'
 import type { LoginData, ServiceData } from '@/entities/services-config'
-import { getPasswordLengthByIndex } from '@/shared'
+
+import { getPasswordLengthByIndex } from '../lib/password-length'
 
 export const getPasswordOfLogin = (service: ServiceData, login: LoginData) =>
   calculate(
