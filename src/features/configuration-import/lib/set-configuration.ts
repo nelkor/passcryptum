@@ -1,13 +1,16 @@
 import {
+  servicesConfig,
   compressedConfigText,
   setServicesConfig,
 } from '@/entities/services-config'
-import { getMasterTool } from '@/entities/master-tool'
 import type { ServicesConfig } from '@/entities/services-config'
+import { getMasterTool } from '@/entities/master-tool'
 import { stringifyBuffer, getBufferOfText, encrypt } from '@/shared'
 
-export const setConfiguration = async (servicesConfig: ServicesConfig) => {
-  setServicesConfig(servicesConfig)
+import { mergeConfigurations } from './merge-configurations'
+
+export const setConfiguration = async (config: ServicesConfig) => {
+  setServicesConfig(mergeConfigurations(servicesConfig.value, config))
 
   const { shortHash, key, iv } = getMasterTool()
   const compressedConfigBuffer = getBufferOfText(compressedConfigText.value)
