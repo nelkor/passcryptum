@@ -2,7 +2,7 @@ import { computed, ref, shallowRef } from 'vue'
 import type { Component } from 'vue'
 
 const innerComponent = shallowRef(null)
-const title = ref('') as unknown as String
+const title = ref('')
 const html = document.querySelector('.page')
 const triggerModal = ref() as unknown as HTMLElement | null
 
@@ -34,23 +34,21 @@ export const focusTrap = () => {
   })
 }
 
-/**  Открывает доступное модальное окно c переданными параметрами, блокирует прокрутку страницы.
- *  @param event event
- *  @param component component который хотим открыть в модальном окне
- *  @param  title заголовок модального окна */
-export const modalShow = (e: Event, component: Component, title: String) => {
+export const showModal = (component: Component, title: string, e?: Event) => {
   html.classList.add('hidden')
 
-  modal.value.name = title
-  modal.value.component = component as unknown as null
-  modal.value.trigger = e.currentTarget as HTMLElement
   open.value = true
+  modal.value.name.value = title
+  modal.value.component = component as unknown as null
+
+  if (e) {
+    modal.value.trigger = e.currentTarget as HTMLElement
+  }
 
   focusTrap()
 }
 
-/** Закрывает доступное модальное окно */
-export const modalClose = () => {
+export const closeModal = () => {
   html.classList.remove('hidden')
 
   open.value = false
@@ -58,7 +56,6 @@ export const modalClose = () => {
   focusTriggerButton()
 }
 
-/** Перемещает фокус к вызываемому элементу модального окна */
 const focusTriggerButton = () => {
   setTimeout(() => {
     if (modal.value.trigger) {

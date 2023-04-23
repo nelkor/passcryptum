@@ -1,9 +1,8 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
-import { modal, modalClose, open, focusTrap } from '../lib/modal'
+import { modal, closeModal, open, focusTrap } from '../lib/modal'
 import './modal-window.scss'
-import '@/shared/styel/helpers.scss'
 
 const button = ref()
 </script>
@@ -13,8 +12,8 @@ const button = ref()
     class="dialog-bg"
     :class="{ open }"
     :aria-hidden="!open"
-    @click="modalClose"
-    @keydown.esc="modalClose"
+    @click="closeModal"
+    @keydown.esc="closeModal"
   >
     <dialog class="modal" :open="open" @click.stop>
       <header class="modal__header">
@@ -26,7 +25,7 @@ const button = ref()
           ref="button"
           class="modal__button"
           aria-label="закрыть модальное окно"
-          @click="modalClose"
+          @click="closeModal"
         >
           X
         </button>

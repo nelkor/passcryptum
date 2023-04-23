@@ -2,6 +2,7 @@
 import { WorkScreen } from '@/pages/work-screen'
 import { PasswordEntry } from '@/pages/password-entry'
 import { isMasterEntered } from '@/entities/master-tool'
+import '../../shared/styel/helpers.scss'
 </script>
 
 <template>
