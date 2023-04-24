@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { PasswordLengthGroup } from '@/shared'
-
+import { passwordLengthVariants } from '../lib/password-length'
 import { useServicePreferences } from '../hooks/service-preferences'
 import { injectService } from '../providers/service'
 
@@ -16,5 +15,18 @@ const { innerService } = useServicePreferences(service, emit)
   </label>
 
   <hr />
-  <PasswordLengthGroup v-model="innerService.passwordLengthIndex" />
+  <h5>Password length</h5>
+
+  <form @submit.prevent>
+    <label v-for="(variant, index) in passwordLengthVariants" :key="variant">
+      <input
+        v-model="innerService.passwordLengthIndex"
+        name="password-length"
+        type="radio"
+        :value="index"
+      />
+
+      <span>{{ variant }}</span>
+    </label>
+  </form>
 </template>
