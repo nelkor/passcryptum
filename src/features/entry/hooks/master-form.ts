@@ -1,10 +1,13 @@
-import { ref, computed } from 'vue'
+import { ref, computed, onMounted } from 'vue'
+
+import { createElementRef } from '@/shared'
 
 import { enter } from '../actions/enter'
 
 export const useMasterForm = () => {
   const masterPassword = ref('')
   const hashesAreCalculated = ref(false)
+  const inputElement = createElementRef<HTMLInputElement>()
 
   const isSubmitDisabled = computed(() =>
     Boolean(!masterPassword.value || hashesAreCalculated.value)
@@ -18,9 +21,14 @@ export const useMasterForm = () => {
     })
   }
 
+  onMounted(() => {
+    inputElement.value.focus()
+  })
+
   return {
     masterPassword,
     isSubmitDisabled,
+    inputElement,
     onSubmit,
   }
 }
