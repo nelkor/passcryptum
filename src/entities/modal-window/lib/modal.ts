@@ -1,10 +1,10 @@
 import { computed, ref, shallowRef } from 'vue'
 import type { Component } from 'vue'
 
-const innerComponent = shallowRef(null)
+const innerComponent = shallowRef()
 const title = ref('')
 const html = document.querySelector('.page')
-const triggerModal = ref() as unknown as HTMLElement | null
+const triggerModal = ref() as unknown as HTMLElement
 
 if (!html) {
   throw new Error(`HTML element .page is null`)
@@ -19,7 +19,7 @@ export const modal = computed(() => ({
   trigger: triggerModal,
 }))
 
-/** Удерживает фокус в модальном окне. Когда пользователь дотабал до нижнего интерактивного элемента то, следующий таб перемещает фокус на первый интерактивный элемент модального окна*/
+/** Удерживает фокус в модальном окне. Когда пользователь дотабал до нижнего интерактивного элемента то, следующий таб перемещает фокус на первый интерактивный элемент модального окна */
 export const focusTrap = () => {
   const firstActiveElement = document.querySelector(
     '.modal__button'
@@ -28,8 +28,6 @@ export const focusTrap = () => {
   setTimeout(() => {
     if (firstActiveElement) {
       firstActiveElement.focus()
-    } else {
-      console.log('html element modal.value.trigger not found or null')
     }
   })
 }
@@ -39,7 +37,7 @@ export const showModal = (component: Component, title: string, e?: Event) => {
 
   open.value = true
   modal.value.name.value = title
-  modal.value.component = component as unknown as null
+  modal.value.component = component
 
   if (e) {
     modal.value.trigger = e.currentTarget as HTMLElement
@@ -60,8 +58,6 @@ const focusTriggerButton = () => {
   setTimeout(() => {
     if (modal.value.trigger) {
       modal.value.trigger.focus()
-    } else {
-      console.log('html element modal.value.trigger not found or null')
     }
   })
 }
