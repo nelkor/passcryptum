@@ -1,3 +1,3 @@
 export * from './lib/modal'
 
-export { default as ModalWindow } from './ui/ModalWindow.vue'
+export { default as ModalWindow } from './components/ModalWindow.vue'

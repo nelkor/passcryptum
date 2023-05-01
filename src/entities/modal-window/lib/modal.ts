@@ -46,18 +46,18 @@ export const showModal = (component: Component, title: string, e?: Event) => {
   focusTrap()
 }
 
-export const closeModal = () => {
-  html.classList.remove('hidden')
-
-  open.value = false
-
-  focusTriggerButton()
-}
-
 const focusTriggerButton = () => {
   setTimeout(() => {
     if (modal.value.trigger) {
       modal.value.trigger.focus()
     }
   })
+}
+
+export const closeModal = () => {
+  html.classList.remove('hidden')
+
+  open.value = false
+
+  focusTriggerButton()
 }

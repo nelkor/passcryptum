@@ -2,9 +2,9 @@
 import { ref } from 'vue'
 
 import { modal, closeModal, open, focusTrap } from '../lib/modal'
-import './modal-window.scss'
+import '../ui/modal-window.scss'
 
-const button = ref()
+const button = ref(null)
 </script>
 
 <template>
