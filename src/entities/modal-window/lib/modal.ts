@@ -19,8 +19,7 @@ export const modal = computed(() => ({
   trigger: triggerModal,
 }))
 
-/** Удерживает фокус в модальном окне. Когда пользователь дотабал до нижнего интерактивного элемента то, следующий таб перемещает фокус на первый интерактивный элемент модального окна */
-export const focusTrap = () => {
+export const catchFocus = () => {
   const firstActiveElement = document.querySelector(
     '.modal__button'
   ) as HTMLElement
