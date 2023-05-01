@@ -7,7 +7,7 @@ const html = document.querySelector('.page')
 const triggerModal = ref() as unknown as HTMLElement
 
 if (!html) {
-  throw new Error(`HTML element .page is null`)
+  throw new Error(`HTML element is undefined`)
 }
 
 export const open = ref(false)
