@@ -15,5 +15,6 @@ import { open } from '@/entities/modal-window/'
     <ConfigurationPanel />
     <ServicesList />
   </main>
+
   <ModalWindow />
 </template>
