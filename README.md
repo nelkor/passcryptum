@@ -1,238 +1,98 @@
-# Passcryptum 🔑
+# Passcryptum
 
-Менеджер паролей нового типа. Пароли не хранятся ни в каком виде,
-а вычисляются по требованию из значений:
+A free open source cryptographic password manager.
 
-- мастер-пароль
-- имя сервиса
-- логин
-- версия
-- алгоритм
+Remember only one password
+and have unique strong passwords for each of your accounts.
 
-## 🗊 Описание значений для генерации
+Unlike other password managers, Passcryptum does not store passwords
+in the cloud or on your devices.
+You cannot lose your passwords even if you lose everything.
+As a web application, Passcryptum may be limited in access to the network.
+In case of Passcryptum, you can be 100% sure that it won't leak your personal
+data to the Internet.
 
-### Мастер-пароль
+## Online version
 
-Надёжный и секретный пароль, который знает пользователь.
-Пример мастер-пароля: `Ix6kNeHppAh1NaY`.
+[passcryptum.com](https://passcryptum.com)
 
-### Имя сервиса
+## Standalone offline version
 
-Пользователь заводит в систему сервисы, в которых он зарегистрирован.
-Имя каждого сервиса участвует в генерации пароля.
-Пример имени сервиса: `google.com`.
+Download the application directory from
+[the releases](https://github.com/nelkor/passcryptum/releases).
+Open the `index.html` file in a browser by double-clicking it.
 
-### Логин
+## Getting started
 
-Псевдоним пользователя, которым он авторизуется в сервисе. Для одного сервиса
-может быть заведено любое количество логинов. Пример логина: `nelkor@gmail.com`.
+Come up with a single strong password that you will have to remember.
 
-### Версия
+Enter it on the master password entry page.
 
-Иногда требуется поменять пароль для логина в сервисе. Например, если пароль
-был скомпрометирован. С этой целью существует переменная величина — версия.
-Версия представляет собой натуральное число. При создании нового логина
-ему выдаётся версия "1".
+Add a service to your configuration by simply entering its name.
 
-### Алгоритм
+Add a login to your service by simply entering its name.
 
-Разные сервисы по разному относятся к паролям своих пользователей. Например,
-где-то могут быть запрещены спецсимволы в пароле. С этой целью пользователь
-нашей системы может выбрать опциональный алгоритм генерации
-(например, "без спецсимволов"). Кроме того, пользователь может выбрать
-предпочитаемую длину пароля (от 8 до 32 символов).
-По умолчанию используется алгоритм "самый надёжный", длина 20 символов.
+Save the entered data by clicking the "Save configuration" button.
 
-## 🧑‍💻 Используемые технологии
+Get the login password by clicking the "Copy password" button.
 
-Приложение представляет собой исключительно Frontend.
-При разработке используем Vue 3, TypeScript, SCSS.
+Change the password for this login in the service
+to the generated one from Passcryptum.
 
-## 🧠 Архитектура
+Well done! You have transferred one of your accounts to Passcryptum.
+Every time you need to log in to your account, enter Passcryptum with
+your master password and copy the login password.
 
-Для организации кода используем методологию [Feature-Sliced Design](https://feature-sliced.design/ru).
+## Further use
 
-<details>
- <summary>📚 Справочник Feature-Sliced Design</summary>
-  
-  Концепции
+At the top of the working screen, we see a sequence of six characters.
+These characters are derived from your master password. Get used to your
+characters. If suddenly you see unfamiliar characters,
+then you have mistyped your master password.
 
-- Public API
+Some services restrict our ability to use special characters in passwords. For
+such services, you can uncheck "Use special characters". Also, just in case, the
+application has the ability to choose the length of passwords for the service.
 
-  Каждый модуль должен иметь на верхнем уровне декларацию своего публичного API
+Sometimes we need to update our account passwords. In order for the
+"Copy password" button to start issuing a new password for the old login,
+you need to increment its version. Don't forget to click "Save configuration"!
 
-- Изоляция
+The configuration is a list of your services, including password preferences,
+and a list of logins in services, including the logins' versions.
+The configuration is stored on the browser disk in encrypted form. Without
+knowing your master password, it is impossible to decrypt your configuration.
+You can transfer the configuration from one device to another. This is done in
+the configuration panel by copying a string or downloading a file.
 
-  Модуль не должен зависеть напрямую от других модулей того же слоя или вышележащих слоев
+If you have many services, it will be easier to find the right one by entering
+part of its name. To focus on the desired input from the keyboard,
+press `Alt + S`.
 
-- Понимание потребностей
+## Recommendations
 
-  Ориентирование на потребности бизнеса и пользователя
+[Explore](https://developer.chrome.com/docs/devtools/network)
+the browser's options for restricting applications from accessing the network.
+You won't have to trust an app
+if you know that it does not physically have internet access.
 
-- Явная бизнес-логика
+Think of a really strong master password. Over time, you will get used to it
+and learn how to enter it easily and quickly.
 
-  Архитектуру легко осваивать, поскольку она состоит из доменных модулей
+It is very important not to make mistakes in service names. They are responsible
+for password generation. Personally, I use second-level domains as service
+names. For example, "github.com".
 
-- Адаптивность
+Learn the
+[password generation algorithm](https://github.com/nelkor/passcryptum/blob/dev/docs/en/password-generation-algorithm.md).
+You will understand where passwords come from when they are not stored anywhere.
+You will realize that as long as you know your master password, you will be able
+to recover the password for any of your accounts.
 
-  Компоненты архитектуры можно гибко заменять, добавлять под новые условия
+## Contact us
 
-- Технический долг
+We use Telegram!
 
-  Каждый модуль можно независимо модифицировать / переписать без сайд-эффектов
-
-- Явная переиспользуемость
-
-  Сохраняется баланс между DRY и локальной кастомизацией
-
-![Схема](https://feature-sliced.design/ru/assets/ideal-img/visual_schema.d700567.1030.jpg)
-
-- Слой
-
-<strong>Представители</strong>: app, processes, pages, widgets, features, entities, shared
-
-  <pre>
-    <code>
-  └── src/
-      ├── app/                    # Инициализирующая логика приложения
-      ├── processes/              # (Опц.) Процессы приложения, протекающие над страницами
-      ├── pages/                  # Страницы приложения
-      ├── widgets/                # Самостоятельные и полноценные блоки для страниц
-      ├── features/               # (Опц.) Обрабатываемые пользовательские сценарии
-      ├── entities/               # (Опц.) Бизнес-сущности, которыми оперирует предметная область
-      └── shared/                 # Переиспользуемые модули, без привязки к бизнес-логике
-    </code>
-  </pre>
-
-- Слайс
-
-<strong>Представители</strong> (от каждого слоя) process, page, widget, feature, entity
-
-  <pre>
-    <code>
-  ├── app/
-      |   # Не имеет конкретных слайсов, 
-      |   # Т.к. там содержится мета-логика над проектом и его инициализации
-      ├── processes/
-      |   # Слайсы для реализации процессов на страницах
-      |   ├── payment
-      |   ├── auth
-      |   ├── quick-tour
-      |   └── ...
-      ├── pages/
-      |   # Слайсы для реализации страниц приложения
-      |   # При этом, в силу специфики роутинга - могут вкладываться друг в друга
-      |   ├── profile
-      |   ├── sign-up
-      |   ├── feed
-      |   └── ...
-      ├── widgets/
-      |   # Слайсы для реализации самостоятельных блоков страниц
-      |   ├── header
-      |   ├── feed
-      |   └── ...
-      ├── features/
-      |   # Слайсы для реализации пользовательских сценариев на страницах
-      |   ├── auth-by-phone
-      |   ├── inline-post
-      |   └── ...
-      ├── entities/
-      |   # Слайсы бизнес-сущностей для реализации более сложной БЛ
-      |   ├── viewer
-      |   ├── posts
-      |   ├── i18n
-      |   └── ...
-      ├── shared/
-      |    # Не имеет конкретных слайсов
-      |    # Представляет собой скорее набор общеиспользуемых сегментов, без привязки к БЛ
-    </code>
-  </pre>
-
-- Сегмент
-
-<strong>Представители:</strong> ui, model, lib, api, config
-
-  <pre>
-    <code>
-  {layer}/
-      ├── {slice}/
-      |   ├── ui/                     # UI-логика (components, ui-widgets, ...)
-      |   ├── model/                  # Бизнес-логика (store, actions, effects, reducers, ...)
-      |   ├── lib/                    # Инфраструктурная логика (utils/helpers)
-      |   ├── config/                 # Конфигурация приложения (env-vars, ...)
-      |   └── api/                    # Логика запросов к API (api instances, requests, ...)
-    </code>
-  </pre>
-</details>
-
-<br>
-
-При разработке вёрстки мы придерживаемся методологии [BEM</span>](https://ru.bem.info/methodology).
-
-<details>
-  <summary>📚 Справочник BEM</summary>
-  
-  ![BEM](https://res.cloudinary.com/practicaldev/image/fetch/s--OkBgfgPx--/c_limit%2Cf_auto%2Cfl_progressive%2Cq_auto%2Cw_880/https://dev-to-uploads.s3.amazonaws.com/i/yc0hv58in4eyxjj7qlcg.png)
-  
-- Блок
-
-    Название блока характеризует смысл («что это?» — «меню»: menu, «кнопка»: button), а не состояние («какой, как выглядит?» — «красный»: red, «большой»: big).
-
-#### Пример
-
-```html
-<!-- Блок `header` -->
-<header class="header">
-  <!-- Вложенный блок `logo` -->
-  <div class="logo"></div>
-
-  <!-- Вложенный блок `search-form` -->
-  <form class="search-form"></form>
-</header>
-```
-
-- Элемент
-
-  Составная часть блока, которая не может использоваться в отрыве от него.
-
-  Название элемента характеризует смысл («что это?» — «пункт»: item, «текст»: text), а не состояние («какой, как выглядит?» — «красный»: red, «большой»: big).
-
-  Структура полного имени элемента соответствует схеме: `имя-блока__имя-элемента`. Имя элемента отделяется от имени блока двумя подчеркиваниями (`__`).
-
-#### Пример
-
-```html
-<!-- Блок `search-form` -->
-<form class="search-form">
-  <!-- Элемент `input` блока `search-form` -->
-  <input class="search-form__input" />
-
-  <!-- Элемент `button` блока `search-form` -->
-  <button class="search-form__button">Найти</button>
-</form>
-```
-
-- Модификатор
-
-  Стиль Two Dashes
-  Сущность, определяющая внешний вид, состояние или поведение блока либо элемента.
-
-  Название модификатора характеризует внешний вид («какой размер?», «какая тема?» и т. п. — «размер»: block--size-s, «тема»: block--theme-islands), состояние («чем отличается от прочих?» — «отключен»: disabled, «фокусированный»: focused) и поведение («как ведет себя?», «как взаимодействует с пользователем?» — «направление»: directions--left-top).
-
-  Значение модификатора отделяется от его имени двумя дефисами (--).
-
-#### Пример
-
-```html
-<!-- Блок `search-form` имеет булевый модификатор `focused` -->
-<form class="search-form search-form--focused">
-  <input class="search-form__input" />
-
-  <!-- Элемент `button` имеет булевый модификатор `disabled` -->
-  <button class="search-form__button search-form__button--disabled">
-    Найти
-  </button>
-</form>
-```
-
-</details>
+- News [@passcryptum](https://t.me/passcryptum)
+- Chat [@passcryptum_chat](https://t.me/passcryptum_chat)
+- Chat in Russian [@passcryptum_ru](https://t.me/passcryptum_ru)
