@@ -7,6 +7,7 @@ export const useHotkeyFocus = () => {
 
   const keydownListener = (event: KeyboardEvent) => {
     if (event.altKey && event.code === 'KeyS') {
+      event.preventDefault()
       inputElement.value.focus()
     }
   }
