@@ -1,10 +1,11 @@
 import { computed, ref, shallowRef } from 'vue'
-import type { Component } from 'vue'
+import type { Component, ComputedRef } from 'vue'
+
+import type { Modal } from '../types'
 
 const innerComponent = shallowRef()
 const title = ref('')
 const html = document.querySelector('.page')
-const triggerModal = ref() as unknown as HTMLElement
 
 if (!html) {
   throw new Error(`HTML element is undefined`)
@@ -12,19 +13,17 @@ if (!html) {
 
 export const open = ref(false)
 
-export const modal = computed(() => ({
+export const modal: ComputedRef<Modal> = computed(() => ({
   isOpen: open,
   component: innerComponent.value,
   name: title,
-  trigger: triggerModal,
+  trigger: null,
 }))
 
-export const catchFocus = () => {
-  const firstActiveElement = document.querySelector(
-    '.modal__button'
-  ) as HTMLElement
+export const catchFocus = (button: HTMLElement) => {
+  const firstActiveElement = button
 
-  setTimeout(() => {
+  Promise.resolve().then(() => {
     if (firstActiveElement) {
       firstActiveElement.focus()
     }
@@ -35,20 +34,20 @@ export const showModal = (component: Component, title: string, e?: Event) => {
   html.classList.add('hidden')
 
   open.value = true
-  modal.value.name.value = title
+  modal.value.name = title
   modal.value.component = component
 
   if (e) {
-    modal.value.trigger = e.currentTarget as HTMLElement
+    modal.value.trigger = e.currentTarget
   }
-
-  focusTrap()
 }
 
 const focusTriggerButton = () => {
-  setTimeout(() => {
-    if (modal.value.trigger) {
-      modal.value.trigger.focus()
+  Promise.resolve().then(() => {
+    const button = modal.value.trigger as HTMLButtonElement
+
+    if (button) {
+      button.focus()
     }
   })
 }

@@ -1,8 +1,7 @@
 <script setup lang="ts">
 import { ref } from 'vue'
 
-import { modal, closeModal, open, focusTrap } from '../lib/modal'
-import '../ui/modal-window.scss'
+import { modal, closeModal, open, catchFocus } from '../lib/modal'
 
 const button = ref(null)
 </script>
@@ -37,8 +36,7 @@ const button = ref(null)
 
       <input
         class="modal__end-tab visually-hidden"
-        type="text"
-        @focus="focusTrap"
+        @focus="() => catchFocus(button)"
       />
     </dialog>
   </div>
