@@ -84,7 +84,7 @@ for password generation. Personally, I use second-level domains as service
 names. For example, "github.com".
 
 Learn the
-[password generation algorithm](https://github.com/nelkor/passcryptum/blob/dev/docs/en/password-generation-algorithm.md).
+[password generation algorithm](https://github.com/nelkor/passcryptum/blob/main/docs/en/password-generation-algorithm.md).
 You will understand where passwords come from when they are not stored anywhere.
 You will realize that as long as you know your master password, you will be able
 to recover the password for any of your accounts.
