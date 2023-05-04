@@ -1,1 +1,7 @@
+node_modules
+dist
+.DS_Store
 .idea
+.vscode/*
+!.vscode/extensions.json
+package-lock.json
