@@ -1,0 +1,51 @@
+<script setup lang="ts">
+import type { Component } from 'vue'
+
+import {
+  isAsideOpen,
+  asideTitle,
+  asideComponent,
+  closeAside,
+} from '../model/aside-window'
+import { useAppAside } from '../hooks/app-aside'
+
+const { buttonClose, focusButtonClose, focusLastInput } = useAppAside()
+</script>
+
+<template>
+  <!-- @mousedown.prevent blocks focus loss when closing with the mouse -->
+  <!-- @keydown.stop blocks hotkeys under the window -->
+  <div
+    class="aside"
+    :class="{ 'aside-closed': !isAsideOpen }"
+    @mousedown.prevent="closeAside"
+    @keydown.stop
+    @keydown.esc="closeAside"
+  >
+    <aside class="aside__wrapper" @mousedown.stop>
+      <input
+        aria-hidden="true"
+        :hidden="!isAsideOpen"
+        class="invisible"
+        @focus="focusLastInput"
+      />
+
+      <div class="aside__header">
+        <h2>{{ asideTitle }}</h2>
+
+        <button ref="buttonClose" :disabled="!isAsideOpen" @click="closeAside">
+          X
+        </button>
+      </div>
+
+      <component :is="asideComponent as Component" />
+
+      <input
+        :hidden="!isAsideOpen"
+        aria-hidden="true"
+        class="invisible"
+        @focus="focusButtonClose"
+      />
+    </aside>
+  </div>
+</template>
