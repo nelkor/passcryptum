@@ -1,0 +1,28 @@
+.aside {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.4);
+  transition: opacity 200ms;
+
+  &-closed {
+    opacity: 0;
+    pointer-events: none;
+
+    .aside__wrapper {
+      transform: translateX(-280px);
+    }
+  }
+
+  &__wrapper {
+    width: 280px;
+    height: 100%;
+    overflow-y: auto;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.12), 0 16px 16px rgba(0, 0, 0, 0.16);
+    background-color: #fff;
+    transition: 200ms;
+  }
+}

@@ -35,7 +35,11 @@ const getWithoutEncryption = getConfigText.bind(null, true)
         Copy config
       </CopyButton>
       |
-      <CopyButton :disabled="isConfigEmpty" :get-content="getWithoutEncryption">
+      <CopyButton
+        class="aside__input"
+        :disabled="isConfigEmpty"
+        :get-content="getWithoutEncryption"
+      >
         Copy without encryption
       </CopyButton>
     </div>
