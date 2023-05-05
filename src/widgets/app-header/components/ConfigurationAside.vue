@@ -16,32 +16,29 @@ const getWithoutEncryption = getConfigText.bind(null, true)
 </script>
 
 <template>
-  <div class="configuration-panel">
-    <h3>Configuration panel</h3>
-    <hr />
-    <SaveCancelConfig />
-    <hr />
-    <DeleteConfig />
-    <hr />
-    <ConfigFileImport />
-    <hr />
-    <ConfigTextImport />
-    <hr />
-    <ConfigFileExport />
-    <hr />
+  <hr />
+  <SaveCancelConfig />
+  <hr />
+  <DeleteConfig />
+  <hr />
+  <ConfigFileImport />
+  <hr />
+  <ConfigTextImport />
+  <hr />
+  <ConfigFileExport />
+  <hr />
 
-    <div>
-      <CopyButton :disabled="isConfigEmpty" :get-content="getConfigText">
-        Copy config
-      </CopyButton>
-      |
-      <CopyButton
-        class="aside__input"
-        :disabled="isConfigEmpty"
-        :get-content="getWithoutEncryption"
-      >
-        Copy without encryption
-      </CopyButton>
-    </div>
+  <div>
+    <CopyButton :disabled="isConfigEmpty" :get-content="getConfigText">
+      Copy config
+    </CopyButton>
+    |
+    <CopyButton
+      class="aside__input"
+      :disabled="isConfigEmpty"
+      :get-content="getWithoutEncryption"
+    >
+      Copy without encryption
+    </CopyButton>
   </div>
 </template>
