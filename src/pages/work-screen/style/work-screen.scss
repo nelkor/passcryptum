@@ -1,0 +1,12 @@
+.work-screen {
+  padding: 1rem;
+  width: 24rem;
+  margin: 0 auto;
+  background-color: #fff;
+}
+
+@media (max-width: 540px) {
+  .work-screen {
+    width: 100%;
+  }
+}
