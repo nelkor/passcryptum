@@ -7,7 +7,12 @@ import { AppAside } from '@/entities/aside-window'
 
 <template>
   <AppAside />
-  <AppHeader />
-  <ServicesHeader />
-  <ServicesList />
+
+  <div class="work-wrapper">
+    <div class="work-screen">
+      <AppHeader />
+      <ServicesHeader />
+      <ServicesList />
+    </div>
+  </div>
 </template>
