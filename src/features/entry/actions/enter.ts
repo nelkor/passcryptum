@@ -26,7 +26,7 @@ export const enter = async (masterPassword: string) => {
   } catch (e) {
     localStorage.removeItem(shortHash)
 
-    alert('Invalid saved configuration detected and deleted')
+    alert('Invalid saved configuration detected and deleted.')
 
     return
   }

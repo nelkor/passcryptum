@@ -1,4 +1,6 @@
-import { addService } from '@/entities/services-config'
+import { ServiceDetails } from '@/features/service-management'
+import { addService, getServiceByName } from '@/entities/services-config'
+import { openAside } from '@/entities/aside-window'
 
 export const useServiceHeader = () => {
   const startServiceCreation = () => {
@@ -11,8 +13,10 @@ export const useServiceHeader = () => {
     try {
       addService(name)
     } catch (e) {
-      alert('A service with the same name already exists')
+      alert('This service has already been added.')
     }
+
+    openAside(name, ServiceDetails, { service: getServiceByName(name) })
   }
 
   return { startServiceCreation }
