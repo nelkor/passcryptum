@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { AppHeader } from '@/widgets/app-header'
+import { WorkHeader } from '@/widgets/work-header'
 import { ServicesHeader } from '@/widgets/services-header'
 import { ServicesList } from '@/widgets/services-list'
 import { AppAside } from '@/entities/aside-window'
@@ -10,7 +10,7 @@ import { AppAside } from '@/entities/aside-window'
 
   <div class="work-wrapper">
     <div class="work-screen">
-      <AppHeader />
+      <WorkHeader />
       <ServicesHeader />
       <ServicesList />
     </div>
