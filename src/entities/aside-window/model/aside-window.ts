@@ -3,29 +3,33 @@ import type { Component } from 'vue'
 
 import { disableScroll, enableScroll } from '@/dom'
 
-import type { AsideState } from '../types'
-
 let previousFocus: HTMLInputElement | null = null
 
-const asideState = ref<AsideState>({
-  isOpen: false,
-  title: '',
-})
+export const isAsideOpen = ref(false)
 
-export const asideComponent = shallowRef<Component | null>(null)
+const asideComponent = shallowRef<Component | null>(null)
+const asideAttrs = ref<Record<string, unknown>>({})
+const asideTitle = ref('')
 
-export const isAsideOpen = computed(() => asideState.value.isOpen)
+export const asideState = computed(() => ({
+  component: asideComponent.value,
+  attrs: asideAttrs.value,
+  title: asideTitle.value,
+}))
 
-export const asideTitle = computed(() => asideState.value.title)
-
-export const openAside = (title: string, component: Component) => {
+export const openAside = (
+  title: string,
+  component: Component,
+  attrs: Record<string, unknown> = {}
+) => {
   if (document.activeElement) {
     previousFocus = document.activeElement as HTMLInputElement
   }
 
   asideComponent.value = component
-  asideState.value.title = title
-  asideState.value.isOpen = true
+  asideTitle.value = title
+  asideAttrs.value = attrs
+  isAsideOpen.value = true
 
   disableScroll()
 }
@@ -37,8 +41,9 @@ export const closeAside = () => {
     previousFocus = null
   }
 
-  asideState.value.isOpen = false
-  asideState.value.title = ''
+  isAsideOpen.value = false
+  asideTitle.value = ''
+  asideAttrs.value = {}
   asideComponent.value = null
 
   enableScroll()

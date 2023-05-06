@@ -79,6 +79,12 @@ export const addLoginToService = (serviceName: string, name: string) => {
     throw new Error('Attempt to create login in non-existent service')
   }
 
+  const doesLoginExist = service.logins.some(login => login.name === name)
+
+  if (doesLoginExist) {
+    throw new Error('Attempt to create an already existing login')
+  }
+
   service.logins.unshift(createLogin(name))
 }
 
