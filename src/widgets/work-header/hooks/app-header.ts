@@ -19,7 +19,7 @@ export const useAppHeader = () => {
   })
 
   return {
-    shortHash,
+    hash: shortHash.slice(0, 6),
     buttonExit,
     openConfigurationAside,
   }
