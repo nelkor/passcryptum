@@ -4,5 +4,5 @@ export interface ModalState {
   isOpen: Ref<boolean>
   component: any
   name: string | Ref<string>
-  trigger: null | EventTarget
+  trigger: null | HTMLButtonElement | EventTarget
 }

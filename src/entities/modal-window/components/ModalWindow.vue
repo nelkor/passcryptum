@@ -1,9 +1,5 @@
 <script setup lang="ts">
-import { createElementRef } from '@/shared'
-
-import { modal, closeModal, open, catchFocus } from '../lib/modal'
-
-const button = createElementRef<HTMLButtonElement>()
+import { modal, closeModal, open, catchFocus, buttonClose } from '../lib/modal'
 </script>
 
 <template>
@@ -21,7 +17,7 @@ const button = createElementRef<HTMLButtonElement>()
         </h3>
 
         <button
-          ref="button"
+          ref="buttonClose"
           class="modal__button"
           aria-label="закрыть модальное окно"
           @click="closeModal"
@@ -36,7 +32,7 @@ const button = createElementRef<HTMLButtonElement>()
 
       <input
         class="modal__end-tab visually-hidden"
-        @focus="() => catchFocus(button)"
+        @focus="() => catchFocus(buttonClose)"
       />
     </dialog>
   </div>

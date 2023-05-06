@@ -1,7 +1,9 @@
 import { computed, ref, shallowRef } from 'vue'
-import type { Component, ComputedRef } from 'vue'
+import type { Component } from 'vue'
 
-import type { Modal } from '../types'
+import { createElementRef } from '@/shared'
+
+import type { ModalState } from '../types'
 
 const innerComponent = shallowRef()
 const title = ref('')
@@ -13,11 +15,14 @@ if (!html) {
 
 export const open = ref(false)
 
-export const modal = computed<Modal>(() => ({
+export const buttonClose = createElementRef<HTMLButtonElement>()
+
+export const modal = computed<ModalState>(() => ({
   isOpen: open,
   component: innerComponent.value,
   name: title,
   trigger: null,
+  close: null,
 }))
 
 export const catchFocus = (button: HTMLElement) => {
@@ -40,13 +45,17 @@ export const showModal = (component: Component, title: string, e?: Event) => {
   if (e) {
     modal.value.trigger = e.currentTarget
   }
+
+  Promise.resolve().then(() => {
+    buttonClose.value.focus()
+  })
 }
 
 const focusTriggerButton = () => {
   Promise.resolve().then(() => {
-    const button = modal.value.trigger as HTMLButtonElement
+    const button = modal.value.trigger
 
-    if (button) {
+    if (button instanceof HTMLButtonElement) {
       button.focus()
     }
   })
