@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import { ref } from 'vue'
+import { createElementRef } from '@/shared'
 
 import { modal, closeModal, open, catchFocus } from '../lib/modal'
 
-const button = ref(null)
+const button = createElementRef<HTMLButtonElement>()
 </script>
 
 <template>

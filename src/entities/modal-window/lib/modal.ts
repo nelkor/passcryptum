@@ -13,7 +13,7 @@ if (!html) {
 
 export const open = ref(false)
 
-export const modal: ComputedRef<Modal> = computed(() => ({
+export const modal = computed<Modal>(() => ({
   isOpen: open,
   component: innerComponent.value,
   name: title,
