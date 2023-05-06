@@ -18,9 +18,9 @@ data to the Internet.
 
 ## Standalone offline version
 
-Download the application directory from
+Download `passcryptum.html` from
 [the releases](https://github.com/nelkor/passcryptum/releases).
-Open the `index.html` file in a browser by double-clicking it.
+Open the file in a browser by double-clicking it.
 
 ## Getting started
 
