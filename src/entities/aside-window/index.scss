@@ -25,6 +25,29 @@
     background-color: #fff;
     transition: 200ms;
   }
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.6rem;
+    border-bottom: solid 1px #eeeeee;
+  }
+
+  &__title {
+    font-size: 1rem;
+  }
+
+  &__close {
+    padding: 0;
+    width: 1.4rem;
+    height: 1.4rem;
+    border: unset;
+
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+  }
 }
 
 @media (max-width: 540px) {
