@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import type { Component } from 'vue'
 
+import { IconCross } from '@/shared'
+
 import { asideState, isAsideOpen, closeAside } from '../model/aside-window'
 import { useAppAside } from '../hooks/app-aside'
 
@@ -27,10 +29,15 @@ const { buttonClose, focusButtonClose, focusLastInput } = useAppAside()
       />
 
       <div class="aside__header">
-        <h2>{{ asideState.title }}</h2>
+        <h2 class="aside__title">{{ asideState.title }}</h2>
 
-        <button ref="buttonClose" :disabled="!isAsideOpen" @click="closeAside">
-          X
+        <button
+          ref="buttonClose"
+          class="aside__close"
+          :disabled="!isAsideOpen"
+          @click="closeAside"
+        >
+          <IconCross />
         </button>
       </div>
 
