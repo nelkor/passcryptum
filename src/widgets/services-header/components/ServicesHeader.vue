@@ -7,13 +7,16 @@ const { startServiceCreation } = useServiceHeader()
 </script>
 
 <template>
-  <div>
-    <h1>My services</h1>
-    <span>({{ filteredServices.length }})</span>
+  <div class="services-title">
+    <h1 class="services-title__text">My services</h1>
+    <span class="services-title__count">({{ filteredServices.length }})</span>
   </div>
 
-  <div>
+  <div class="services-controls">
     <ServicesFilter />
-    <button @click="startServiceCreation">Add a service</button>
+
+    <button class="services-controls__add" @click="startServiceCreation">
+      Add a service
+    </button>
   </div>
 </template>
