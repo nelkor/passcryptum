@@ -16,7 +16,6 @@ const getWithoutEncryption = getConfigText.bind(null, true)
 </script>
 
 <template>
-  <hr />
   <SaveCancelConfig />
   <hr />
   <DeleteConfig />
