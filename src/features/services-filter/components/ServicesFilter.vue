@@ -9,6 +9,7 @@ const { inputElement } = useHotkeyFocus()
   <input
     ref="inputElement"
     v-model="nameSubstring"
+    class="services-filter"
     type="text"
     placeholder="Filter by name"
     @keydown.esc="clearNameSubstring"

@@ -1,0 +1,40 @@
+.services-title {
+  display: flex;
+  font-size: 1.4rem;
+
+  &__text {
+    font-size: inherit;
+  }
+
+  &__count {
+    margin-left: 0.4rem;
+    font-weight: 700;
+    color: #666666;
+  }
+}
+
+.services-controls {
+  display: flex;
+  margin-top: 0.4rem;
+
+  &__add {
+    padding: 0 0.6rem;
+    height: 1.6rem;
+    margin-left: 0.6em;
+    outline-color: cyan;
+    border: unset;
+    background-color: #000000;
+    font-size: 0.6rem;
+    color: #fff;
+  }
+}
+
+@media (max-width: 320px) {
+  .services-controls {
+    flex-direction: column;
+
+    &__add {
+      margin: 0.4rem 0;
+    }
+  }
+}
