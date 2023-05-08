@@ -7,8 +7,6 @@ import {
 } from '@/entities/services-config'
 import type { LoginData, ServiceData } from '@/entities/services-config'
 
-import { getPasswordOfLogin } from '../lib/get-password-of-login'
-
 export const useLoginItem = (
   service: ComputedRef<ServiceData>,
   login: ComputedRef<LoginData>
@@ -30,9 +28,6 @@ export const useLoginItem = (
     }
   }
 
-  const getLogin = () => login.value.name
-  const getPassword = () => getPasswordOfLogin(service.value, login.value)
-
   watch(innerVersion, setVersion)
 
   watch(
@@ -45,8 +40,6 @@ export const useLoginItem = (
 
   return {
     innerVersion,
-    getLogin,
-    getPassword,
     deleteLogin,
   }
 }

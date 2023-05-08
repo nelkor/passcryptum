@@ -10,6 +10,7 @@ const { inputString, isSubmitDisabled, onSubmit } = useTextImport()
   <form @submit.prevent="onSubmit">
     <input
       v-model="inputString"
+      class="aside__input"
       type="text"
       placeholder="Paste configuration text"
     />

@@ -1,38 +1,42 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
-import { updateServicePreferences } from '@/entities/services-config'
 import type { ServiceData } from '@/entities/services-config'
 import { CopyButton } from '@/shared'
 
-import { useServiceDeleting } from '../hooks/service-deleting'
-import { provideService } from '../providers/service'
-import ServicePreferences from './ServicePreferences.vue'
-import LoginAdder from './LoginAdder.vue'
-import LoginsList from './LoginsList.vue'
+import { useServiceItem } from '../hooks/service-item'
 
 const props = defineProps<{ service: ServiceData }>()
-const service = provideService(computed(() => props.service))
-const getServiceName = () => service.value.name
-const { rmService } = useServiceDeleting(getServiceName)
+
+const {
+  logins,
+  currentLogin,
+  isSelectDisabled,
+  isCopyDisabled,
+  openDetails,
+  getLogin,
+  getPassword,
+} = useServiceItem(computed(() => props.service))
 </script>
 
 <template>
-  <li class="service-item">
-    <div class="service-item__header">
-      <h4 class="service-item__name">{{ service.name }}</h4>
+  <li>
+    <span>{{ service.name }}</span>
 
-      <div>
-        <CopyButton :get-content="getServiceName">Copy service name</CopyButton>
-        |
-        <button @click="rmService">Delete service</button>
-      </div>
-    </div>
+    <select v-model="currentLogin" :disabled="isSelectDisabled">
+      <option v-for="login in logins" :key="login" :value="login">
+        {{ login }}
+      </option>
+    </select>
 
-    <hr />
-    <ServicePreferences @update-preferences="updateServicePreferences" />
-    <hr />
-    <LoginAdder />
-    <LoginsList />
+    <CopyButton :disabled="isCopyDisabled" :get-content="getLogin">
+      Copy login
+    </CopyButton>
+
+    <CopyButton :disabled="isCopyDisabled" :get-content="getPassword">
+      Copy password
+    </CopyButton>
+
+    <button @click="openDetails">Details</button>
   </li>
 </template>

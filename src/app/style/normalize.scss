@@ -10,6 +10,11 @@ html {
   margin: 0;
 }
 
+body {
+  min-height: 100vh;
+  overflow-y: scroll;
+}
+
 h1,
 h2,
 h3,
