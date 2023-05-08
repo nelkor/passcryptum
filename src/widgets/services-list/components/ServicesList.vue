@@ -4,7 +4,7 @@ import { filteredServices } from '@/features/services-filter'
 </script>
 
 <template>
-  <ul>
+  <ul class="services-list">
     <ServiceItem
       v-for="service in filteredServices"
       :key="service.name"

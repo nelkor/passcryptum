@@ -5,5 +5,11 @@ const { onClick, isExportDisabled } = useFileExport()
 </script>
 
 <template>
-  <button :disabled="isExportDisabled" @click="onClick">Download file</button>
+  <button
+    class="app-button app-button__common"
+    :disabled="isExportDisabled"
+    @click="onClick"
+  >
+    Download file
+  </button>
 </template>

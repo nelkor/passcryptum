@@ -7,11 +7,19 @@ const { isSaveDisabled, saveChanges } = useSaveChanges()
 </script>
 
 <template>
-  <button :disabled="isSaveDisabled" @click="saveChanges">
+  <button
+    class="app-button app-button__common in-block-element"
+    :disabled="isSaveDisabled"
+    @click="saveChanges"
+  >
     Save configuration
   </button>
-  |
-  <button :disabled="isConfigSaved" @click="cancelChanges">
+
+  <button
+    class="app-button app-button__common in-block-element"
+    :disabled="isConfigSaved"
+    @click="cancelChanges"
+  >
     Cancel changes
   </button>
 </template>

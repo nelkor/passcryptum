@@ -2,6 +2,7 @@
 import { computed } from 'vue'
 
 import type { LoginData } from '@/entities/services-config'
+import { IconCross } from '@/shared'
 
 import { injectService } from '../providers/service'
 import { useLoginItem } from '../hooks/login-item'
@@ -9,21 +10,31 @@ import { useLoginItem } from '../hooks/login-item'
 const props = defineProps<{ login: LoginData }>()
 const service = injectService()
 
-const { innerVersion, deleteLogin } = useLoginItem(
+const { innerVersion, deleteLogin, onVersionBlur } = useLoginItem(
   service,
   computed(() => props.login)
 )
 </script>
 
 <template>
-  <li>
-    <h4>{{ login.name }}</h4>
+  <li class="login-item">
+    <button class="aside__input login-item__delete" @click="deleteLogin">
+      <IconCross />
+    </button>
 
-    <label>
-      <span>version</span>
-      <input v-model="innerVersion" type="number" min="1" step="1" />
+    <span class="login-item__name">{{ login.name }}</span>
+
+    <label class="login-item__version">
+      <span class="login-item__version-title">version</span>
+
+      <input
+        v-model="innerVersion"
+        class="login-item__input"
+        type="number"
+        min="1"
+        step="1"
+        @blur="onVersionBlur"
+      />
     </label>
-
-    <button class="aside__input" @click="deleteLogin">Delete</button>
   </li>
 </template>

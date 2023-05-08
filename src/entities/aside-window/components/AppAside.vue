@@ -33,7 +33,7 @@ const { buttonClose, focusButtonClose, focusLastInput } = useAppAside()
 
         <button
           ref="buttonClose"
-          class="aside__close"
+          class="icon-button"
           :disabled="!isAsideOpen"
           @click="closeAside"
         >
@@ -41,10 +41,12 @@ const { buttonClose, focusButtonClose, focusLastInput } = useAppAside()
         </button>
       </div>
 
-      <component
-        :is="asideState.component as Component"
-        v-bind="asideState.attrs"
-      />
+      <div class="aside__body">
+        <component
+          :is="asideState.component as Component"
+          v-bind="asideState.attrs"
+        />
+      </div>
 
       <input
         :hidden="!isAsideOpen"

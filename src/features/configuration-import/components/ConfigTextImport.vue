@@ -5,16 +5,20 @@ const { inputString, isSubmitDisabled, onSubmit } = useTextImport()
 </script>
 
 <template>
-  <h4>Configuration text import</h4>
-
-  <form @submit.prevent="onSubmit">
+  <form class="config-text-import" @submit.prevent="onSubmit">
     <input
       v-model="inputString"
-      class="aside__input"
+      class="text-input aside__input config-text-import__input"
       type="text"
-      placeholder="Paste configuration text"
+      placeholder="Import from text"
     />
 
-    <button type="submit" :disabled="isSubmitDisabled">Import</button>
+    <button
+      class="app-button app-button__common config-text-import__submit"
+      type="submit"
+      :disabled="isSubmitDisabled"
+    >
+      Import
+    </button>
   </form>
 </template>

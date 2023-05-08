@@ -37,16 +37,8 @@
     font-size: 1rem;
   }
 
-  &__close {
-    padding: 0;
-    width: 1.4rem;
-    height: 1.4rem;
-    border: unset;
-
-    svg {
-      width: 100%;
-      height: 100%;
-    }
+  &__body {
+    padding: 0.6rem;
   }
 }
 
