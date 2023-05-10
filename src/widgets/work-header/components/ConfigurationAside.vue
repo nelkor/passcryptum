@@ -8,7 +8,6 @@ import {
   ConfigFileExport,
   getConfigText,
 } from '@/features/configuration-export'
-import { SaveCancelConfig } from '@/features/save-configuration'
 import { isConfigEmpty } from '@/entities/services-config'
 import { CopyButton } from '@/shared'
 
@@ -16,7 +15,6 @@ const getWithoutEncryption = getConfigText.bind(null, true)
 </script>
 
 <template>
-  <SaveCancelConfig />
   <DeleteConfig />
   <h4 class="configuration-label">Configuration import</h4>
   <ConfigFileImport />
