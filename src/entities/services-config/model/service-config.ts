@@ -2,7 +2,6 @@ import { ref, computed } from 'vue'
 
 import { createService, createLogin } from '../lib/creation-tools'
 import { compressConfig } from '../lib/compress-config'
-import { decompressConfig } from '../lib/decompress-config'
 import type { ServicesConfig, ServicePreferences } from '../types'
 
 export const servicesConfig = ref<ServicesConfig>([])
@@ -11,25 +10,10 @@ export const compressedConfigText = computed(() =>
   JSON.stringify(compressConfig(servicesConfig.value))
 )
 
-const savedConfig = ref(compressedConfigText.value)
-
-export const isConfigSaved = computed(
-  () => savedConfig.value === compressedConfigText.value
-)
-
 export const isConfigEmpty = computed(() => servicesConfig.value.length === 0)
 
 export const setServicesConfig = (config: ServicesConfig) => {
   servicesConfig.value = config
-  savedConfig.value = compressedConfigText.value
-}
-
-export const saveConfig = () => {
-  savedConfig.value = compressedConfigText.value
-}
-
-export const cancelChanges = () => {
-  servicesConfig.value = decompressConfig(JSON.parse(savedConfig.value))
 }
 
 export const clearServicesConfig = () => {

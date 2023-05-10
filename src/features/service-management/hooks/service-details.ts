@@ -7,6 +7,8 @@ import {
 } from '@/entities/services-config'
 import type { ServiceData } from '@/entities/services-config'
 
+import { saveConfiguration } from '../lib/save-configuration'
+
 export const useServiceDetails = (service: ComputedRef<ServiceData>) => {
   const deleteService = () => {
     const confirmationText = [
@@ -16,6 +18,7 @@ export const useServiceDetails = (service: ComputedRef<ServiceData>) => {
 
     if (confirm(confirmationText)) {
       deleteServiceByName(service.value.name)
+      saveConfiguration()
       closeAside()
     }
   }
@@ -34,6 +37,7 @@ export const useServiceDetails = (service: ComputedRef<ServiceData>) => {
 
     try {
       addLoginToService(service.value.name, name)
+      saveConfiguration()
     } catch (e) {
       alert('This login has already been added.')
     }

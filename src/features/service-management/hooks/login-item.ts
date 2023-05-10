@@ -7,6 +7,8 @@ import {
 } from '@/entities/services-config'
 import type { LoginData, ServiceData } from '@/entities/services-config'
 
+import { saveConfiguration } from '../lib/save-configuration'
+
 export const useLoginItem = (
   service: ComputedRef<ServiceData>,
   login: ComputedRef<LoginData>
@@ -23,6 +25,8 @@ export const useLoginItem = (
       login.value.name,
       innerVersion.value
     )
+
+    saveConfiguration()
   }
 
   const deleteLogin = () => {
@@ -33,6 +37,7 @@ export const useLoginItem = (
 
     if (confirm(confirmationText)) {
       deleteLoginFromService(service.value.name, login.value.name)
+      saveConfiguration()
     }
   }
 

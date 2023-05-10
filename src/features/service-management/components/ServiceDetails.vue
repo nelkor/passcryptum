@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
-import { updateServicePreferences } from '@/entities/services-config'
 import type { ServiceData } from '@/entities/services-config'
 
 import { provideService } from '../providers/service'
@@ -29,7 +28,8 @@ const { deleteService, startLoginCreation } = useServiceDetails(service)
     Add a login
   </button>
 
-  <ServicePreferences @update-preferences="updateServicePreferences" />
+  <ServicePreferences />
+
   <h4 class="service-details-logins-title">
     {{ service.logins.length ? 'Logins' : 'No logins here yet' }}
   </h4>

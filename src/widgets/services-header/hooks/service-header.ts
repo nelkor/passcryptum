@@ -1,4 +1,7 @@
-import { ServiceDetails } from '@/features/service-management'
+import {
+  ServiceDetails,
+  saveConfiguration,
+} from '@/features/service-management'
 import { addService, getServiceByName } from '@/entities/services-config'
 import { openAside } from '@/entities/aside-window'
 
@@ -12,6 +15,7 @@ export const useServiceHeader = () => {
 
     try {
       addService(name)
+      saveConfiguration()
     } catch (e) {
       alert('This service has already been added.')
     }
