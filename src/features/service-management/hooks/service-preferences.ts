@@ -15,6 +15,9 @@ export const useServicePreferences = (
   const { name, passwordLengthIndex, useSpecialCharacters } = service.value
   const innerService = ref({ name, passwordLengthIndex, useSpecialCharacters })
 
+  const checkIsInputActive = (index: number) =>
+    innerService.value.passwordLengthIndex === index
+
   watch(
     innerService,
     value => {
@@ -33,5 +36,8 @@ export const useServicePreferences = (
     { deep: true }
   )
 
-  return { innerService }
+  return {
+    innerService,
+    checkIsInputActive,
+  }
 }

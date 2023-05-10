@@ -15,7 +15,10 @@ const { startServiceCreation } = useServiceHeader()
   <div class="services-controls">
     <ServicesFilter />
 
-    <button class="services-controls__add" @click="startServiceCreation">
+    <button
+      class="services-controls__add app-button app-button__important"
+      @click="startServiceCreation"
+    >
       Add a service
     </button>
   </div>

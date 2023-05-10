@@ -15,10 +15,24 @@ const { deleteService, startLoginCreation } = useServiceDetails(service)
 </script>
 
 <template>
-  <button @click="deleteService">Delete service</button>
-  <hr />
+  <button
+    class="app-button app-button__delete in-block-element"
+    @click="deleteService"
+  >
+    Delete service
+  </button>
+
+  <button
+    class="app-button app-button__important in-block-element"
+    @click="startLoginCreation"
+  >
+    Add a login
+  </button>
+
   <ServicePreferences @update-preferences="updateServicePreferences" />
-  <button class="aside__input" @click="startLoginCreation">Add a login</button>
+  <h4 class="service-details-logins-title">
+    {{ service.logins.length ? 'Logins' : 'No logins here yet' }}
+  </h4>
 
   <ul>
     <LoginItem

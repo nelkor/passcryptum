@@ -13,8 +13,16 @@ export const useLoginItem = (
 ) => {
   const innerVersion = ref(login.value.version)
 
-  const setVersion = (value: number) => {
-    setVersionOfLoginInService(service.value.name, login.value.name, value)
+  const onVersionBlur = () => {
+    if (!Number.isFinite(innerVersion.value) || innerVersion.value < 0) {
+      innerVersion.value = 1
+    }
+
+    setVersionOfLoginInService(
+      service.value.name,
+      login.value.name,
+      innerVersion.value
+    )
   }
 
   const deleteLogin = () => {
@@ -28,8 +36,6 @@ export const useLoginItem = (
     }
   }
 
-  watch(innerVersion, setVersion)
-
   watch(
     login,
     ({ version }) => {
@@ -41,5 +47,6 @@ export const useLoginItem = (
   return {
     innerVersion,
     deleteLogin,
+    onVersionBlur,
   }
 }

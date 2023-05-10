@@ -11,7 +11,7 @@ export const useAppHeader = () => {
   const buttonExit = createElementRef<HTMLButtonElement>()
 
   const openConfigurationAside = () => {
-    openAside('Configuration console', ConfigurationAside)
+    openAside('Configuration panel', ConfigurationAside)
   }
 
   onMounted(() => {
