@@ -12,19 +12,14 @@ const { hash, buttonExit, openConfigurationAside } = useAppHeader()
     <div class="work-header__identification">
       <span class="work-header__hash">{{ hash }}</span>
 
-      <button
-        ref="buttonExit"
-        title="Exit"
-        class="work-header__button"
-        @click="exit"
-      >
+      <button ref="buttonExit" title="Exit" class="icon-button" @click="exit">
         <IconExit />
       </button>
     </div>
 
     <button
-      title="Open configuration console"
-      class="work-header__button"
+      title="Open configuration panel"
+      class="icon-button"
       @click="openConfigurationAside"
     >
       <IconBurger />

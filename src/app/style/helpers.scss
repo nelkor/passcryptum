@@ -7,3 +7,69 @@
   top: -1000px;
   left: -1000px;
 }
+
+.text-input {
+  flex-grow: 1;
+  padding-left: 0.4rem;
+  height: 1.6rem;
+  border-top: unset;
+  border-right: unset;
+  border-bottom: 1px solid #666666;
+  border-left: unset;
+  font-size: 0.8rem;
+}
+
+.icon-button {
+  padding: 0;
+  width: 1.4rem;
+  height: 1.4rem;
+  border: unset;
+
+  svg {
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.app-button {
+  padding: 0 0.6rem;
+  height: 1.6rem;
+  outline-color: cyan;
+  border: unset;
+  font-size: 0.6rem;
+  color: #fff;
+
+  &__common {
+    background-color: #666666;
+
+    &:focus {
+      background-color: #888888;
+    }
+  }
+
+  &__important {
+    background-color: #000000;
+
+    &:focus {
+      background-color: #333333;
+    }
+  }
+
+  &__delete {
+    outline-color: orangered;
+    background-color: #8e0000;
+
+    &:focus {
+      background-color: #b00000;
+    }
+  }
+
+  &:disabled {
+    opacity: 0.4;
+  }
+}
+
+.in-block-element {
+  margin-right: 0.4rem;
+  margin-bottom: 0.6rem;
+}

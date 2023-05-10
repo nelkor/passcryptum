@@ -2,7 +2,7 @@
 import { computed } from 'vue'
 
 import type { ServiceData } from '@/entities/services-config'
-import { CopyButton } from '@/shared'
+import { CopyButton, IconDetails, IconKey, IconUser } from '@/shared'
 
 import { useServiceItem } from '../hooks/service-item'
 
@@ -20,23 +20,40 @@ const {
 </script>
 
 <template>
-  <li>
-    <span>{{ service.name }}</span>
+  <li class="service-item">
+    <span class="service-item__name">{{ service.name }}</span>
 
-    <select v-model="currentLogin" :disabled="isSelectDisabled">
-      <option v-for="login in logins" :key="login" :value="login">
-        {{ login }}
-      </option>
-    </select>
+    <div class="service-item__controls">
+      <select
+        v-if="!isCopyDisabled"
+        v-model="currentLogin"
+        class="service-item__select"
+        :disabled="isSelectDisabled"
+      >
+        <option v-for="login in logins" :key="login" :value="login">
+          {{ login }}
+        </option>
+      </select>
 
-    <CopyButton :disabled="isCopyDisabled" :get-content="getLogin">
-      Copy login
-    </CopyButton>
+      <CopyButton
+        class="icon-button service-item__button"
+        :disabled="isCopyDisabled"
+        :get-content="getLogin"
+      >
+        <IconUser />
+      </CopyButton>
 
-    <CopyButton :disabled="isCopyDisabled" :get-content="getPassword">
-      Copy password
-    </CopyButton>
+      <CopyButton
+        class="icon-button service-item__button"
+        :disabled="isCopyDisabled"
+        :get-content="getPassword"
+      >
+        <IconKey />
+      </CopyButton>
 
-    <button @click="openDetails">Details</button>
+      <button class="icon-button service-item__button" @click="openDetails">
+        <IconDetails />
+      </button>
+    </div>
   </li>
 </template>

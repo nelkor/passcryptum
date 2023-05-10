@@ -1,3 +1,5 @@
+import './index.scss'
+
 export { default as ConfigTextImport } from './components/ConfigTextImport.vue'
 
 export { default as ConfigFileImport } from './components/ConfigFileImport.vue'
