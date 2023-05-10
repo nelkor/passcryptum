@@ -1,17 +1,12 @@
 import { ref, watch } from 'vue'
 import type { ComputedRef } from 'vue'
 
-import type {
-  ServiceData,
-  ServicePreferences,
-} from '@/entities/services-config'
+import { updateServicePreferences } from '@/entities/services-config'
+import type { ServiceData } from '@/entities/services-config'
 
-type EmitFn = (event: 'update-preferences', value: ServicePreferences) => void
+import { saveConfiguration } from '../lib/save-configuration'
 
-export const useServicePreferences = (
-  service: ComputedRef<ServiceData>,
-  emit: EmitFn
-) => {
+export const useServicePreferences = (service: ComputedRef<ServiceData>) => {
   const { name, passwordLengthIndex, useSpecialCharacters } = service.value
   const innerService = ref({ name, passwordLengthIndex, useSpecialCharacters })
 
@@ -19,11 +14,14 @@ export const useServicePreferences = (
     innerService.value.passwordLengthIndex === index
 
   watch(
-    innerService,
-    value => {
-      emit('update-preferences', value)
-    },
-    { deep: true }
+    [
+      () => innerService.value.passwordLengthIndex,
+      () => innerService.value.useSpecialCharacters,
+    ],
+    () => {
+      updateServicePreferences(innerService.value)
+      saveConfiguration()
+    }
   )
 
   watch(

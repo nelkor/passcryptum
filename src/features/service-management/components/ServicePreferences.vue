@@ -3,12 +3,8 @@ import { passwordLengthVariants } from '../lib/password-length'
 import { useServicePreferences } from '../hooks/service-preferences'
 import { injectService } from '../providers/service'
 
-const emit = defineEmits(['update-preferences'])
-const service = injectService()
-
 const { innerService, checkIsInputActive } = useServicePreferences(
-  service,
-  emit
+  injectService()
 )
 </script>
 
