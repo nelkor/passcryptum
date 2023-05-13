@@ -29,7 +29,8 @@ export const useServiceDetails = (service: ComputedRef<ServiceData>) => {
       `the "${service.value.name}" service.`,
     ].join(' ')
 
-    const name = prompt(requestText)
+    const enteredName = prompt(requestText)
+    const name = enteredName && enteredName.trim()
 
     if (!name) {
       return

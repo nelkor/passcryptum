@@ -7,7 +7,8 @@ import { openAside } from '@/entities/aside-window'
 
 export const useServiceHeader = () => {
   const startServiceCreation = () => {
-    const name = prompt('Please enter a service name.')
+    const enteredName = prompt('Please enter a service name.')
+    const name = enteredName && enteredName.trim()
 
     if (!name) {
       return
