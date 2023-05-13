@@ -1,8 +1,12 @@
 import { decompressConfig } from '@/entities/services-config'
 
+import { checkCompressed } from './check-compressed'
+
 export const parseConfig = (text: string) => {
   try {
-    return decompressConfig(JSON.parse(text))
+    const data = JSON.parse(text) as unknown
+
+    return checkCompressed(data) ? decompressConfig(data) : null
   } catch (e) {
     return null
   }
