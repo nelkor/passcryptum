@@ -20,7 +20,7 @@ const { innerVersion, deleteLogin, onVersionBlur } = useLoginItem(
   <li class="login-item">
     <button
       title="Delete login"
-      class="aside__input login-item__delete"
+      class="login-item__delete"
       @click="deleteLogin"
     >
       <IconCross />
@@ -33,7 +33,7 @@ const { innerVersion, deleteLogin, onVersionBlur } = useLoginItem(
 
       <input
         v-model="innerVersion"
-        class="login-item__input"
+        class="aside__input login-item__input"
         type="number"
         min="1"
         step="1"
