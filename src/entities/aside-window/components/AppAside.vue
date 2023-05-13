@@ -35,6 +35,7 @@ const { buttonClose, focusButtonClose, focusLastInput } = useAppAside()
           ref="buttonClose"
           class="icon-button"
           :disabled="!isAsideOpen"
+          title="Close aside"
           @click="closeAside"
         >
           <IconCross />

@@ -36,6 +36,7 @@ const {
       </select>
 
       <CopyButton
+        title="Copy login"
         class="icon-button service-item__button"
         :disabled="isCopyDisabled"
         :get-content="getLogin"
@@ -44,6 +45,7 @@ const {
       </CopyButton>
 
       <CopyButton
+        title="Copy password"
         class="icon-button service-item__button"
         :disabled="isCopyDisabled"
         :get-content="getPassword"
@@ -51,7 +53,11 @@ const {
         <IconKey />
       </CopyButton>
 
-      <button class="icon-button service-item__button" @click="openDetails">
+      <button
+        title="Open details"
+        class="icon-button service-item__button"
+        @click="openDetails"
+      >
         <IconDetails />
       </button>
     </div>
