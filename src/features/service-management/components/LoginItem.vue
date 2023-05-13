@@ -18,7 +18,11 @@ const { innerVersion, deleteLogin, onVersionBlur } = useLoginItem(
 
 <template>
   <li class="login-item">
-    <button class="aside__input login-item__delete" @click="deleteLogin">
+    <button
+      title="Delete login"
+      class="aside__input login-item__delete"
+      @click="deleteLogin"
+    >
       <IconCross />
     </button>
 
