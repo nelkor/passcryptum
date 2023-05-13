@@ -1,0 +1,12 @@
+.master-form {
+  display: flex;
+  flex-direction: column;
+
+  &__input {
+    margin: 0.8rem 0 0.6rem;
+  }
+
+  &__submit {
+    align-self: end;
+  }
+}

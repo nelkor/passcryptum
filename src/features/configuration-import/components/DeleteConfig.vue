@@ -7,7 +7,11 @@ const { onClick } = useDelete()
 </script>
 
 <template>
-  <button :disabled="isConfigEmpty" @click="onClick">
+  <button
+    class="app-button app-button__delete"
+    :disabled="isConfigEmpty"
+    @click="onClick"
+  >
     Delete configuration
   </button>
 </template>

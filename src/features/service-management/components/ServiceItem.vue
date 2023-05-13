@@ -1,38 +1,65 @@
 <script setup lang="ts">
 import { computed } from 'vue'
 
-import { updateServicePreferences } from '@/entities/services-config'
 import type { ServiceData } from '@/entities/services-config'
-import { CopyButton } from '@/shared'
+import { CopyButton, IconDetails, IconKey, IconUser } from '@/shared'
 
-import { useServiceDeleting } from '../hooks/service-deleting'
-import { provideService } from '../providers/service'
-import ServicePreferences from './ServicePreferences.vue'
-import LoginAdder from './LoginAdder.vue'
-import LoginsList from './LoginsList.vue'
+import { useServiceItem } from '../hooks/service-item'
 
 const props = defineProps<{ service: ServiceData }>()
-const service = provideService(computed(() => props.service))
-const getServiceName = () => service.value.name
-const { rmService } = useServiceDeleting(getServiceName)
+
+const {
+  logins,
+  currentLogin,
+  isSelectDisabled,
+  isCopyDisabled,
+  openDetails,
+  getLogin,
+  getPassword,
+} = useServiceItem(computed(() => props.service))
 </script>
 
 <template>
   <li class="service-item">
-    <div class="service-item__header">
-      <h4 class="service-item__name">{{ service.name }}</h4>
+    <span class="service-item__name">{{ service.name }}</span>
 
-      <div>
-        <CopyButton :get-content="getServiceName">Copy service name</CopyButton>
-        |
-        <button @click="rmService">Delete service</button>
-      </div>
+    <div class="service-item__controls">
+      <select
+        v-if="!isCopyDisabled"
+        v-model="currentLogin"
+        class="service-item__select"
+        :disabled="isSelectDisabled"
+      >
+        <option v-for="login in logins" :key="login" :value="login">
+          {{ login }}
+        </option>
+      </select>
+
+      <CopyButton
+        title="Copy login"
+        class="icon-button service-item__button"
+        :disabled="isCopyDisabled"
+        :get-content="getLogin"
+      >
+        <IconUser />
+      </CopyButton>
+
+      <CopyButton
+        title="Copy password"
+        class="icon-button service-item__button"
+        :disabled="isCopyDisabled"
+        :get-content="getPassword"
+      >
+        <IconKey />
+      </CopyButton>
+
+      <button
+        title="Open details"
+        class="icon-button service-item__button"
+        @click="openDetails"
+      >
+        <IconDetails />
+      </button>
     </div>
-
-    <hr />
-    <ServicePreferences @update-preferences="updateServicePreferences" />
-    <hr />
-    <LoginAdder />
-    <LoginsList />
   </li>
 </template>

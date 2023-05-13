@@ -1,0 +1,43 @@
+.login-item {
+  display: flex;
+  align-items: center;
+
+  &__name {
+    flex-grow: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 0.8rem;
+    white-space: nowrap;
+  }
+
+  &__version {
+    flex: none;
+  }
+
+  &__version-title {
+    font-size: 0.5rem;
+  }
+
+  &__input {
+    padding: 0 0.2rem;
+    width: 4rem;
+    height: 1.4rem;
+    border: unset;
+    font-size: 0.6rem;
+  }
+
+  &__delete {
+    flex: none;
+    padding: 0;
+    width: 1rem;
+    height: 1rem;
+    margin-right: 0.4rem;
+    border: unset;
+    background-color: #ffeeee;
+
+    svg {
+      width: 100%;
+      height: 100%;
+    }
+  }
+}

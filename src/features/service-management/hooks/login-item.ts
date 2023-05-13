@@ -7,7 +7,7 @@ import {
 } from '@/entities/services-config'
 import type { LoginData, ServiceData } from '@/entities/services-config'
 
-import { getPasswordOfLogin } from '../lib/get-password-of-login'
+import { saveConfiguration } from '../lib/save-configuration'
 
 export const useLoginItem = (
   service: ComputedRef<ServiceData>,
@@ -15,8 +15,18 @@ export const useLoginItem = (
 ) => {
   const innerVersion = ref(login.value.version)
 
-  const setVersion = (value: number) => {
-    setVersionOfLoginInService(service.value.name, login.value.name, value)
+  const onVersionBlur = () => {
+    if (!Number.isFinite(innerVersion.value) || innerVersion.value < 0) {
+      innerVersion.value = 1
+    }
+
+    setVersionOfLoginInService(
+      service.value.name,
+      login.value.name,
+      innerVersion.value
+    )
+
+    saveConfiguration()
   }
 
   const deleteLogin = () => {
@@ -27,13 +37,9 @@ export const useLoginItem = (
 
     if (confirm(confirmationText)) {
       deleteLoginFromService(service.value.name, login.value.name)
+      saveConfiguration()
     }
   }
-
-  const getLogin = () => login.value.name
-  const getPassword = () => getPasswordOfLogin(service.value, login.value)
-
-  watch(innerVersion, setVersion)
 
   watch(
     login,
@@ -45,8 +51,7 @@ export const useLoginItem = (
 
   return {
     innerVersion,
-    getLogin,
-    getPassword,
     deleteLogin,
+    onVersionBlur,
   }
 }

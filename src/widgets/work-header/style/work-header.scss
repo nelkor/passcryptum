@@ -1,0 +1,14 @@
+.work-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+
+  &__identification {
+    display: flex;
+    align-items: center;
+  }
+
+  &__hash {
+    margin-right: 0.2rem;
+  }
+}
