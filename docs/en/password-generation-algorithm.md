@@ -6,7 +6,7 @@
 
 ## Foreword
 
-Here we will look at the password generation algorithm used in Passcryptum.
+Here we will go into the password generation algorithm used in Passcryptum.
 In addition to theory, we will generate a password for the "nelkor" login in the
 "github.com" service with the master password "123456" entered. To facilitate
 manual work, we will choose a password length of 8 characters (minimum).
@@ -25,7 +25,7 @@ and stores it in the browser's memory.
     [Wikipedia article](https://en.wikipedia.org/wiki/Hash_function).
 
 The algorithm for calculating the SHA-512 hash is very complex and will not be
-presented in this article. You can read about it on Wikipedia —
+presented in this article. You can read about it in Wikipedia —
 [set of cryptographic hash functions SHA-2](https://en.wikipedia.org/wiki/SHA-2).
 
 There are services[^2]
@@ -59,7 +59,7 @@ which formed from the following parts:
 - `1` if we use special characters, `0` if not;
 - password length.
 
-These parts are written one after the other and are separated by the `/` (slash)
+These parts are written one after another and are separated by the `/` (slash)
 character.
 
 Let's compose a unique source string for our experiment:
@@ -73,10 +73,10 @@ Let's compose a unique source string for our experiment:
 
 ### Seeds
 
-One seed is a number from zero to 65535. And we need so many of them,
-how many characters we want in the password. For our experiment,
-this number is 8. First, what will we do to get the seeds —
-compute the SHA-512 hash from the unique original login string:
+One seed is a number from zero to 65535. We need as many of them as many
+characters we want to be in our password. For our experiment,
+this number is 8. The first thing we need to do to get the seeds is to compute
+the SHA-512 hash from the unique original login string:
 `ae87ff96d30d17fe67e88ab599c4beba6446d12188c88beeb4ce9ec41f2a74567e76ac231444cd1908d884e4ea883354165383c4682adcab0b9f406a76974e43`.
 
 Next, we take N times 4 characters from the string of the resulting hash,
@@ -143,8 +143,8 @@ from the part of set `0123456789`. That is, we will take the character `4`.
 
 #### Second, third and fourth seeds
 
-The second and third parts of the charset are the letters of the Latin alphabet.
-Uppercase and lowercase. They both have size `26`. Let's perform operations for
+The second and third parts of the charset are the letters of the Latin alphabet,
+uppercase and lowercase. They both have size `26`. Let's perform operations for
 the second and third seeds, by analogy with the first:
 
 - `38655 % 26 = 19`;
@@ -181,8 +181,8 @@ In total, the seeds were converted to the string `4Td#5YJG`.
 #### Shuffling
 
 The string `4Td#5YJG` already looks like a good password. But it is not.
-And it's not even that we chose the minimum length. The point is that the first
-four characters is pretty predictable. With this approach, we know exactly that
+It's not even that we have chosen the minimum length. The point is that the first
+four characters are pretty predictable. With this approach, we know exactly that
 the first character is a digit, the second is an uppercase letter, the third is
 a lowercase letter, and the fourth is a special character. We would not like to
 provide such information to someone who tries to guess our password.
