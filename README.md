@@ -8,7 +8,7 @@ and have unique strong passwords for each of your accounts.
 Unlike other password managers, Passcryptum does not store passwords
 in the cloud or on your devices.
 You cannot lose your passwords even if you lose everything.
-As a web application, Passcryptum may be limited in access to the network.
+As a web application, Passcryptum can be limited in access to the network.
 In case of Passcryptum, you can be 100% sure that it won't leak your personal
 data to the Internet.
 

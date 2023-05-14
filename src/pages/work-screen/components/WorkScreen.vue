@@ -1,14 +1,18 @@
 <script setup lang="ts">
-import { ConfigurationPanel } from '@/widgets/configuration-panel'
+import { WorkHeader } from '@/widgets/work-header'
+import { ServicesHeader } from '@/widgets/services-header'
 import { ServicesList } from '@/widgets/services-list'
-import { ShortHash } from '@/widgets/short-hash'
-import { exit } from '@/features/entry'
+import { AppAside } from '@/entities/aside-window'
 </script>
 
 <template>
-  <h1>Work screen</h1>
-  <ShortHash />
-  <button @click="exit">Exit</button>
-  <ConfigurationPanel />
-  <ServicesList />
+  <AppAside />
+
+  <div class="work-wrapper">
+    <div class="work-screen">
+      <WorkHeader />
+      <ServicesHeader />
+      <ServicesList />
+    </div>
+  </div>
 </template>

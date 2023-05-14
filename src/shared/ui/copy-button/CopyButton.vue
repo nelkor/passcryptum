@@ -7,14 +7,21 @@ const props = defineProps<{
 }>()
 
 const DELAY_TIME = 2000
+const type = 'text/plain'
 const justCopied = ref(false)
 
-const copy = async () => {
+const copy = () => {
   if (justCopied.value) {
     return
   }
 
-  await navigator.clipboard.writeText(await props.getContent())
+  const clipboardItem = new ClipboardItem({
+    [type]: Promise.resolve()
+      .then(props.getContent)
+      .then(result => new Blob([result], { type })),
+  })
+
+  navigator.clipboard.write([clipboardItem])
 
   justCopied.value = true
 

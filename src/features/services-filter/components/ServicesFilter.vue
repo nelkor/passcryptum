@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { nameSubstring } from '../model/services-filter'
+import { nameSubstring, clearNameSubstring } from '../model/services-filter'
 import { useHotkeyFocus } from '../hooks/hotkey-focus'
 
 const { inputElement } = useHotkeyFocus()
@@ -9,7 +9,9 @@ const { inputElement } = useHotkeyFocus()
   <input
     ref="inputElement"
     v-model="nameSubstring"
+    class="text-input"
     type="text"
     placeholder="Filter by name"
+    @keydown.esc="clearNameSubstring"
   />
 </template>

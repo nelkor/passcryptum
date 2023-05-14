@@ -1,0 +1,28 @@
+.password-entry {
+  display: flex;
+  flex-direction: column;
+  padding-top: 4rem;
+  min-height: 100vh;
+
+  &__bottom {
+    flex-grow: 1;
+    background-color: #eeeeee;
+    font-size: 0.6rem;
+  }
+
+  &__wrapper {
+    padding: 1rem;
+    width: 24rem;
+    margin: 0 auto;
+  }
+
+  &__header {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 540px) {
+  .password-entry__wrapper {
+    width: 100%;
+  }
+}
