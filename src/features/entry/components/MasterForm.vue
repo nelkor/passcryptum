@@ -6,8 +6,21 @@ const { masterPassword, isSubmitDisabled, inputElement, onSubmit } =
 </script>
 
 <template>
-  <form @submit.prevent="onSubmit">
-    <input ref="inputElement" v-model="masterPassword" type="password" />
-    <button type="submit" :disabled="isSubmitDisabled">Enter</button>
+  <form class="master-form" @submit.prevent="onSubmit">
+    <input
+      ref="inputElement"
+      v-model="masterPassword"
+      class="text-input master-form__input"
+      type="password"
+      placeholder="Your top secret is here"
+    />
+
+    <button
+      class="app-button app-button__common master-form__submit"
+      type="submit"
+      :disabled="isSubmitDisabled"
+    >
+      Continue
+    </button>
   </form>
 </template>
