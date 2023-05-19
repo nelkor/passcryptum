@@ -34,7 +34,11 @@
   }
 
   &__title {
+    max-width: 20rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
     font-size: 1rem;
+    white-space: nowrap;
   }
 
   &__body {
