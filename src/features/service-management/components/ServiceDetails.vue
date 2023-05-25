@@ -9,8 +9,10 @@ import ServicePreferences from './ServicePreferences.vue'
 import LoginItem from './LoginItem.vue'
 
 const props = defineProps<{ service: ServiceData }>()
-const service = provideService(computed(() => props.service))
-const { deleteService, startLoginCreation } = useServiceDetails(service)
+
+const { deleteService, startLoginCreation } = useServiceDetails(
+  provideService(computed(() => props.service))
+)
 </script>
 
 <template>
