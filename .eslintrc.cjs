@@ -4,6 +4,7 @@ require('@rushstack/eslint-patch/modern-module-resolution')
 module.exports = {
   root: true,
   plugins: ['import'],
+  ignorePatterns: ['/public'],
   extends: [
     'plugin:vue/vue3-essential',
     'eslint:recommended',
@@ -158,6 +159,5 @@ module.exports = {
     'vue/order-in-components': 2,
     'vue/no-empty-component-block': 2,
     'vue/max-attributes-per-line': 0,
-    'vue/singleline-html-element-content-newline': 0,
   },
 }
