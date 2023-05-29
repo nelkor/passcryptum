@@ -10,7 +10,6 @@ export default defineConfig({
   plugins: [
     vue(),
     viteSingleFile(),
-    viteSingleFile(),
     viteStaticCopy({
       targets: [
         {

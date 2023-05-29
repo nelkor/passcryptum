@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'cache-version-1'
+const CACHE_VERSION = 'v1'
 const HOST = 'http://localhost:3000/'
 
 addEventListener('install', () => {
@@ -27,7 +27,6 @@ addEventListener('fetch', event => {
       }
 
       if (request.url !== HOST) {
-          console.log(request.url !== HOST, request.url)
         return new Response(null, {
           status: 403,
           statusText: 'Forbidden',
