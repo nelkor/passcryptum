@@ -1,5 +1,5 @@
 const CACHE_VERSION = 'v1'
-const HOST = 'http://localhost:3000/'
+const ROOT_PATH = 'https://passcryptum.com/'
 
 addEventListener('install', () => {
   skipWaiting()
