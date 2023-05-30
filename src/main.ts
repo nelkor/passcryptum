@@ -5,5 +5,5 @@ import { App } from './app'
 createApp(App).mount('#app')
 
 if (location.host && 'serviceWorker' in navigator) {
-  navigator.serviceWorker.register('./public/sw.js')
+  navigator.serviceWorker.register('/sw.js')
 }
