@@ -26,7 +26,7 @@ addEventListener('fetch', event => {
         return fromCache
       }
 
-      if (request.url !== HOST) {
+      if (request.url !== ROOT_PATH) {
         return new Response(null, {
           status: 403,
           statusText: 'Forbidden',
