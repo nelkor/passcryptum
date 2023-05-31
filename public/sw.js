@@ -2,16 +2,16 @@ const CACHE_VERSION = 'v1'
 const ROOT_PATH = 'https://passcryptum.com/'
 
 addEventListener('install', () => {
-  skipWaiting()
+  skipWaiting().then()
 })
 
 addEventListener('activate', event => {
-  clients.claim()
+  clients.claim().then()
 
   event.waitUntil(
     caches.keys().then(keys =>
       keys.forEach(key => {
-        caches.delete(key)
+        caches.delete(key).then()
       })
     )
   )
