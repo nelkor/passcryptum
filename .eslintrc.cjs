@@ -4,7 +4,10 @@ require('@rushstack/eslint-patch/modern-module-resolution')
 module.exports = {
   root: true,
   plugins: ['import'],
-  ignorePatterns: ['/public'],
+  env: {
+    browser: true,
+    serviceworker: true,
+  },
   extends: [
     'plugin:vue/vue3-essential',
     'eslint:recommended',
