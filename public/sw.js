@@ -9,11 +9,11 @@ addEventListener('activate', event => {
   clients.claim().then()
 
   event.waitUntil(
-    caches.keys().then(keys =>
-      keys.forEach(key => {
-        caches.delete(key).then()
-      })
-    )
+    caches
+      .keys()
+      .then(keys => Promise.all(keys.map(key => caches.delete(key))))
+      .then(() => caches.open(CACHE_VERSION))
+      .then(cache => cache.add(ROOT_PATH))
   )
 })
 
