@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import GitHubLink from './GitHubLink.vue'
 import AppInfoLink from './AppInfoLink.vue'
 </script>
 
@@ -10,13 +11,18 @@ import AppInfoLink from './AppInfoLink.vue'
     </p>
 
     <p class="app-info__text">
-      You can <AppInfoLink text="download the application" path="/releases" />
+      You can <GitHubLink text="download the application" path="/releases" />
       to&nbsp;your&nbsp;computer to&nbsp;run&nbsp;it&nbsp;locally.
     </p>
 
     <p class="app-info__text">
-      Read <AppInfoLink text="the instructions" path="#passcryptum" /> in
-      <AppInfoLink text="our repository" path="" />.
+      Read <GitHubLink text="the instructions" path="#passcryptum" /> in
+      <GitHubLink text="our repository" path="" />.
+    </p>
+
+    <p class="app-info__text">
+      You can also join
+      <AppInfoLink text="our Telegram channel" url="t.me/passcryptum" />.
     </p>
   </div>
 </template>
