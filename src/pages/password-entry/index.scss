@@ -6,7 +6,7 @@
 
   &__bottom {
     flex-grow: 1;
-    background-color: #eeeeee;
+    background-color: #eee;
     font-size: 0.6rem;
   }
 
@@ -21,8 +21,10 @@
   }
 }
 
-@media (max-width: 540px) {
-  .password-entry__wrapper {
-    width: 100%;
+@media (width <= 540px) {
+  .password-entry {
+    &__wrapper {
+      width: 100%;
+    }
   }
 }

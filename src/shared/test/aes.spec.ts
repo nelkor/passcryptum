@@ -13,7 +13,7 @@ import {
   getTextFromBuffer,
 } from '@/shared'
 
-Object.defineProperty(global.self, 'crypto', { value: webcrypto })
+Object.defineProperty(global, 'crypto', { value: webcrypto })
 
 const hash = await sha512(getBufferOfText('Random string'))
 
