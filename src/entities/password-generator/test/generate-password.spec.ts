@@ -7,7 +7,7 @@ import { sha512, getBufferOfText } from '@/shared'
 import { getCharset } from '../lib/charset'
 import { generatePassword } from '../lib/generate-password'
 
-Object.defineProperty(global.self, 'crypto', { value: webcrypto })
+Object.defineProperty(global, 'crypto', { value: webcrypto })
 
 const buffer1 = await sha512(getBufferOfText('Thoughts'))
 const buffer2 = await sha512(getBufferOfText('rule'))

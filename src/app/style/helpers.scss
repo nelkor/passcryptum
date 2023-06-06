@@ -14,7 +14,7 @@
   height: 1.6rem;
   border-top: unset;
   border-right: unset;
-  border-bottom: 1px solid #666666;
+  border-bottom: 1px solid #666;
   border-left: unset;
   font-size: 0.8rem;
 }
@@ -41,18 +41,18 @@
   color: #fff;
 
   &__common {
-    background-color: #666666;
+    background-color: #666;
 
     &:focus {
-      background-color: #888888;
+      background-color: #888;
     }
   }
 
   &__important {
-    background-color: #000000;
+    background-color: #000;
 
     &:focus {
-      background-color: #333333;
+      background-color: #333;
     }
   }
 

@@ -4,7 +4,7 @@ import { describe, it, expect } from 'vitest'
 
 import { createMasterTool } from '../lib/create-master-tool'
 
-Object.defineProperty(global.self, 'crypto', { value: webcrypto })
+Object.defineProperty(global, 'crypto', { value: webcrypto })
 
 describe('Create Master tool', () => {
   it('should be defined', () => {
