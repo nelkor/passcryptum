@@ -2,5 +2,8 @@
   "extends": [
     "stylelint-config-standard-scss",
     "stylelint-config-prettier-scss"
-  ]
+  ],
+  "rules": {
+    "media-feature-range-notation": "prefix"
+  }
 }

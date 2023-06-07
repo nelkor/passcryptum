@@ -48,7 +48,7 @@
   }
 }
 
-@media (width <= 540px) {
+@media (max-width: 540px) {
   .aside {
     &__wrapper {
       width: 90vw;
