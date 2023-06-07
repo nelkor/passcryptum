@@ -1,16 +1,12 @@
 <script setup lang="ts">
 defineProps<{
-  path: string
+  url: string
   text: string
 }>()
 </script>
 
 <template>
-  <a
-    :href="`https://github.com/nelkor/passcryptum${path}`"
-    target="_blank"
-    rel="noopener noreferrer"
-  >
+  <a :href="`https://${url}`" target="_blank" rel="noopener noreferrer">
     {{ text }}
   </a>
 </template>

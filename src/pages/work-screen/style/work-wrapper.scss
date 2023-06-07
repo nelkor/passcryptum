@@ -5,7 +5,7 @@
   background-color: #eee;
 }
 
-@media (max-width: 540px) {
+@media (width <= 540px) {
   .work-wrapper {
     padding: 0;
   }

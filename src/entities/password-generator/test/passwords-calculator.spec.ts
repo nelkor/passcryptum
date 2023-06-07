@@ -4,7 +4,7 @@ import { describe, it, expect } from 'vitest'
 
 import { createCalculator } from '../lib/create-calculator'
 
-Object.defineProperty(global.self, 'crypto', { value: webcrypto })
+Object.defineProperty(global, 'crypto', { value: webcrypto })
 
 describe('Passwords calculator', () => {
   it('should be defined', () => {

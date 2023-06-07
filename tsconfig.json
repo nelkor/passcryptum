@@ -1,14 +1,17 @@
 {
-  "files": [],
-  "references": [
-    {
-      "path": "./tsconfig.config.json"
-    },
-    {
-      "path": "./tsconfig.app.json"
-    },
-    {
-      "path": "./tsconfig.vitest.json"
+  "compilerOptions": {
+    "strict": true,
+    "target": "esnext",
+    "lib": ["esnext", "dom"],
+    "module": "esnext",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "typeRoots": ["node_modules/@types", "env.d.ts"],
+    "baseUrl": "src",
+    "paths": {
+      "@/*": ["./*"]
     }
-  ]
+  }
 }

@@ -9,7 +9,7 @@
   &__count {
     margin-left: 0.4rem;
     font-weight: 700;
-    color: #666666;
+    color: #666;
   }
 }
 
@@ -22,7 +22,7 @@
   }
 }
 
-@media (max-width: 320px) {
+@media (width <= 320px) {
   .services-controls {
     flex-direction: column;
 
