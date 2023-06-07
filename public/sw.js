@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'v1.2.0'
+const CACHE_VERSION = 'v1.2.1'
 const ROOT_PATH = 'https://passcryptum.com/'
 
 addEventListener('install', () => {
