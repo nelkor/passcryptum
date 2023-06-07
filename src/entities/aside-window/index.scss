@@ -52,11 +52,14 @@
   .aside {
     &__wrapper {
       width: 90vw;
-      transform: translateX(-90vw);
     }
   }
 
   .aside-closed {
-    transform: translateX(-90vw);
+    .aside {
+      &__wrapper {
+        transform: translateX(-90vw);
+      }
+    }
   }
 }
