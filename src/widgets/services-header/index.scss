@@ -22,7 +22,7 @@
   }
 }
 
-@media (width <= 320px) {
+@media (max-width: 320px) {
   .services-controls {
     flex-direction: column;
 

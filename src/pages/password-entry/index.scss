@@ -21,7 +21,7 @@
   }
 }
 
-@media (width <= 540px) {
+@media (max-width: 540px) {
   .password-entry {
     &__wrapper {
       width: 100%;
