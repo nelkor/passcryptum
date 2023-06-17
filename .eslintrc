@@ -27,7 +27,7 @@
       {
         "pathGroups": [
           {
-            "pattern": "@*/**",
+            "pattern": "[@|#]/**",
             "group": "parent"
           },
           {

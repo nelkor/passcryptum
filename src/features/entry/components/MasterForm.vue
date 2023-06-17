@@ -10,6 +10,7 @@ const { masterPassword, isSubmitDisabled, inputElement, onSubmit } =
     <input
       ref="inputElement"
       v-model="masterPassword"
+      name="master-password"
       class="text-input master-form__input"
       type="password"
       placeholder="Your top secret is here"
