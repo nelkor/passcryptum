@@ -3,7 +3,7 @@ import {
   saveConfiguration,
 } from '@/features/service-management'
 import { addService, getServiceByName } from '@/entities/services-config'
-import { openAside } from '@/entities/aside-window'
+import { openAside } from '@/entities/app-window'
 
 export const useServiceHeader = () => {
   const startServiceCreation = () => {

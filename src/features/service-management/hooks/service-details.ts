@@ -1,6 +1,6 @@
 import type { ComputedRef } from 'vue'
 
-import { closeAside } from '@/entities/aside-window'
+import { closeAside } from '@/entities/app-window'
 import {
   deleteServiceByName,
   addLoginToService,

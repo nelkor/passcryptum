@@ -1,4 +1,4 @@
-.aside {
+.window {
   position: fixed;
   top: 0;
   left: 0;
@@ -40,7 +40,7 @@
     opacity: 0;
     pointer-events: none;
 
-    .aside {
+    .window {
       &__wrapper {
         transform: translateX(-24rem);
       }
@@ -49,14 +49,14 @@
 }
 
 @media (max-width: 540px) {
-  .aside {
+  .window {
     &__wrapper {
       width: 90vw;
     }
   }
 
-  .aside-closed {
-    .aside {
+  .window-closed {
+    .window {
       &__wrapper {
         transform: translateX(-90vw);
       }

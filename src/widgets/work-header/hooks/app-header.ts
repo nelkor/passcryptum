@@ -1,7 +1,7 @@
 import { onMounted } from 'vue'
 
 import { getMasterTool } from '@/entities/master-tool'
-import { openAside } from '@/entities/aside-window'
+import { openAside } from '@/entities/app-window/'
 import { createElementRef } from '@/shared'
 
 import ConfigurationAside from '../components/ConfigurationAside.vue'
@@ -11,7 +11,7 @@ export const useAppHeader = () => {
   const buttonExit = createElementRef<HTMLButtonElement>()
 
   const openConfigurationAside = () => {
-    openAside('Configuration panel', ConfigurationAside)
+    openAside('Configuration panel', ConfigurationAside, {})
   }
 
   onMounted(() => {

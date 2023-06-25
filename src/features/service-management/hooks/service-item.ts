@@ -1,7 +1,7 @@
 import { ref, watch, computed } from 'vue'
 import type { ComputedRef } from 'vue'
 
-import { openAside } from '@/entities/aside-window'
+import { openAside } from '@/entities/app-window'
 import type { ServiceData } from '@/entities/services-config'
 
 import { getPasswordOfLogin } from '../lib/get-password-of-login'

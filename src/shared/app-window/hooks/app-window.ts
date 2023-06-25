@@ -2,9 +2,9 @@ import { watch } from 'vue'
 
 import { createElementRef } from '@/shared'
 
-import { isAsideOpen } from '../model/aside-window'
+import { isWindowOpen } from '../model/app-window'
 
-export const useAppAside = () => {
+export const useAppWindow = () => {
   const buttonClose = createElementRef<HTMLButtonElement>()
 
   const focusButtonClose = () => {
@@ -25,7 +25,7 @@ export const useAppAside = () => {
     }
   }
 
-  watch(isAsideOpen, value => {
+  watch(isWindowOpen, value => {
     if (value) {
       Promise.resolve().then(focusButtonClose)
     }
