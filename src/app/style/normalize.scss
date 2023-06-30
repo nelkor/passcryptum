@@ -2,10 +2,13 @@
 *::after,
 *::before {
   box-sizing: border-box;
+  font-size: 1rem;
 }
 
 body,
-html {
+html,
+ol,
+ul {
   padding: 0;
   margin: 0;
 }
@@ -13,15 +16,7 @@ html {
 h1,
 h2,
 h3,
-h4,
-h5,
-h6,
-p,
-footer,
-header,
-menu,
-nav,
-section {
+p {
   margin: 0;
 }
 
@@ -32,8 +27,6 @@ a {
 
 ol,
 ul {
-  padding: 0;
-  margin: 0;
   list-style: none;
 }
 

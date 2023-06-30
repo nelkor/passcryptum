@@ -11,7 +11,7 @@
     "typeRoots": ["node_modules/@types", "env.d.ts"],
     "baseUrl": ".",
     "paths": {
-      "#/*": ["./library/*"],
+      "#/*": ["./modules/*"],
       "@/*": ["./src/*"]
     }
   }
