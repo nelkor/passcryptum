@@ -1,5 +1,5 @@
 const BLOCK_CLASS_NAME = 'overflow-hidden'
-const html = document.querySelector<HTMLHtmlElement>('.page')
+const html = document.querySelector<HTMLHtmlElement>('.html')
 
 if (!html) {
   throw new Error('HTML element is undefined')

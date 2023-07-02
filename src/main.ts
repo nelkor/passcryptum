@@ -1,6 +1,6 @@
 import { createApp } from 'vue'
 
-import { App } from './app'
+import { App, normalize100vh } from './app'
 
 Object.defineProperty(window, 'WebSocket', { value: null })
 
@@ -13,3 +13,5 @@ if (
 ) {
   navigator.serviceWorker.register('/sw.js')
 }
+
+normalize100vh()
