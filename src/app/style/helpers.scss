@@ -1,3 +1,12 @@
+.html {
+  height: calc(var(--vh) * 100);
+}
+
+.page {
+  min-height: 100%;
+  overflow-y: scroll;
+}
+
 .overflow-hidden {
   overflow: hidden;
 }
