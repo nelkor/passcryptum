@@ -1,8 +1,8 @@
 export const watchHeight = () => {
   const setHeight = () => {
-    const vh = window.innerHeight * 0.01
+    const vh = window.innerHeight / 100
 
-    document.documentElement.style.setProperty('--vh', `${vh.toFixed(2)}px`)
+    document.documentElement.style.setProperty('--vh', `${vh}px`)
   }
 
   setHeight()
