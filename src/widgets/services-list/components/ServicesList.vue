@@ -1,10 +1,19 @@
 <script setup lang="ts">
-import { ServiceItem } from '@/features/service-management'
-import { filteredServices } from '@/features/services-filter'
+import {
+  ServiceItem,
+  ServicesFilter,
+  filteredServices,
+} from '@/features/services'
 </script>
 
 <template>
-  <ul class="services-list">
+  <h2 class="proto-secondary-title">
+    My services ({{ filteredServices.length }})
+  </h2>
+
+  <ServicesFilter />
+
+  <ul>
     <ServiceItem
       v-for="service in filteredServices"
       :key="service.name"

@@ -5,6 +5,7 @@ on:
     branches:
       - story-*
       - main
+      - dev
 
 concurrency:
   group: ci-${{ github.event.pull_request.number || github.ref }}

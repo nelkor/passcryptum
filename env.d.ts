@@ -1,7 +1,7 @@
 /// <reference types="vite/client" />
 
 declare module '*.vue' {
-  import type { Component } from 'vue'
+  import { Component } from 'vue'
 
   const component: Component
 

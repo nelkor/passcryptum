@@ -8,7 +8,7 @@ import { viteSingleFile } from 'vite-plugin-singlefile'
 export default defineConfig({
   resolve: {
     alias: {
-      '#': resolve('library'),
+      '#': resolve('modules'),
       '@': resolve('src'),
     },
   },

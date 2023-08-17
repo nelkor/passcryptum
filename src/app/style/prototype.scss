@@ -1,0 +1,82 @@
+.page {
+  padding: 1rem;
+  min-height: 100%;
+  overflow-y: scroll;
+}
+
+#app {
+  margin: 0 auto;
+  max-width: 24rem;
+}
+
+fieldset {
+  margin-top: 1rem;
+
+  legend {
+    background-color: #000;
+    color: #fff;
+    padding: 0.2rem 0.4rem;
+  }
+}
+
+input,
+button {
+  font-size: 0.8rem;
+  margin: 0.1rem;
+}
+
+input {
+  padding-left: 0.2rem;
+}
+
+.proto-description {
+  margin: 0.6rem 0;
+  font-size: 0.6rem;
+}
+
+.proto-secondary-title {
+  margin-top: 1rem;
+  font-size: 1.4rem;
+}
+
+.proto-service-preferences {
+  margin-bottom: 0.8rem;
+
+  span {
+    font-size: 0.8rem;
+  }
+}
+
+.proto-length-form {
+  label {
+    margin-right: 0.4rem;
+  }
+}
+
+.proto-login-item {
+  padding: 0.8rem;
+  margin-bottom: 0.8rem;
+  background: linear-gradient(to right, #ddd, #fff);
+}
+
+.proto-name-version {
+  display: flex;
+  max-width: 20rem;
+  justify-content: space-between;
+}
+
+.proto-login-name {
+  overflow: hidden;
+  font-size: 0.8rem;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: calc(70vw - 5rem);
+}
+
+.proto-v {
+  font-size: 0.8rem;
+}
+
+.proto-version-input {
+  width: 3rem;
+}

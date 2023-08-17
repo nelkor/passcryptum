@@ -6,8 +6,8 @@
     "type-check": "vue-tsc --noemit",
     "format": "prettier . --ignore-path .gitignore --check",
     "format:fix": "prettier . --ignore-path .gitignore --write",
-    "lint": "eslint . --ext .vue,.js,.ts --ignore-path .gitignore && stylelint **/*.scss",
-    "lint:fix": "eslint . --ext .vue,.js,.ts --fix --ignore-path .gitignore && stylelint --fix **/*.scss"
+    "lint": "eslint . --ext .vue,.js,.ts --ignore-path .gitignore",
+    "lint:fix": "eslint . --ext .vue,.js,.ts --fix --ignore-path .gitignore"
   },
   "devDependencies": {
     "@types/node": "^20.2.5",
