@@ -47,7 +47,7 @@ const startSession = async (buffer: ArrayBuffer): Promise<StarterKit> => {
   }
 }
 
-export const enterWithMasterPassword = async (
+export const enterWithOriginPassword = async (
   password: string
 ): Promise<StarterKit> =>
   startSession(

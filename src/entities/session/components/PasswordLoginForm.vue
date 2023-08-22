@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { enterWithMasterPassword } from '#/core'
+import { enterWithOriginPassword } from '#/core'
 
 import { initSession } from '../model/private'
 
@@ -13,7 +13,7 @@ const onSubmit = async () => {
   password.value = ''
   isEnterInProgress.value = true
 
-  const { id, data } = await enterWithMasterPassword(value)
+  const { id, data } = await enterWithOriginPassword(value)
 
   initSession(id, data)
 

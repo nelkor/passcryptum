@@ -11,4 +11,4 @@ export { generatePassword } from './generator'
 
 export { setPin, deletePin, isTherePin } from './pin'
 
-export { exit, enterWithPin, enterWithMasterPassword } from './session'
+export { exit, enterWithPin, enterWithOriginPassword } from './session'
