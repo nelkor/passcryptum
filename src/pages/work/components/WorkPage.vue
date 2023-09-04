@@ -17,7 +17,7 @@ import { AddServiceForm, DeleteConfigButton } from '@/features/services'
         After setting the PIN, it will be possible to enter here using it. PIN
         login information is stored on your device. You can set and delete
         different PIN codes as many times as you like, the main thing is to
-        remember your master password.
+        remember your origin password.
       </p>
 
       <DeletePinButton />
