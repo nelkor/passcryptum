@@ -1,29 +1,99 @@
 <script setup lang="ts">
-import { DeletePinButton } from '@/features/pin'
-import { PinLoginForm, PasswordLoginForm } from '@/entities/session'
+import { ref, watch, nextTick } from 'vue'
+import {
+  NA,
+  NCard,
+  NTabs,
+  NSpace,
+  NTabPane,
+  TabsInst,
+  useMessage,
+  useLoadingBar,
+} from 'naive-ui'
+
+import { createElementRef } from '@/shared'
+import { AppInfo } from '@/widgets/app-info'
+import {
+  isPinSet,
+  enterByPin,
+  enterByPassword,
+  isCalculationInProgress,
+} from '@/entities/session'
+
+import LoginForm from './LoginForm.vue'
+
+const tabs = {
+  PIN: 'pin',
+  PASSWORD: 'password',
+}
+
+const message = useMessage()
+const loadingBar = useLoadingBar()
+const tabsInstRef = createElementRef<TabsInst>()
+const currentTab = ref(isPinSet.value ? tabs.PIN : tabs.PASSWORD)
+
+const onEnterPassword = (password: string) => {
+  loadingBar.start()
+  enterByPassword(password).then(() => loadingBar.finish())
+}
+
+const onEnterPin = (pin: string) => {
+  loadingBar.start()
+
+  enterByPin(pin)
+    .then(() => loadingBar.finish())
+    .catch(e => {
+      loadingBar.error()
+      message.error(e.message)
+    })
+}
+
+watch(isPinSet, () => {
+  currentTab.value = tabs.PASSWORD
+
+  nextTick(() => tabsInstRef.value.syncBarPosition())
+})
 </script>
 
 <template>
-  <fieldset>
-    <legend>PIN</legend>
+  <NSpace vertical size="large">
+    <NCard title="Sign in">
+      <NTabs
+        ref="tabsInstRef"
+        v-model:value="currentTab"
+        size="large"
+        type="segment"
+      >
+        <NTabPane
+          tab="PIN"
+          :name="tabs.PIN"
+          :disabled="isCalculationInProgress || !isPinSet"
+        >
+          <LoginForm
+            :disabled="isCalculationInProgress"
+            placeholder="Enter PIN"
+            @enter="onEnterPin"
+          />
+        </NTabPane>
 
-    <p class="proto-description">
-      Login by PIN is available after setting it up. PIN login information is
-      stored on your device. You can delete this data at any time. To set up a
-      PIN, first log in with your password.
-    </p>
+        <NTabPane
+          tab="Password"
+          :name="tabs.PASSWORD"
+          :disabled="isCalculationInProgress"
+        >
+          <LoginForm
+            :disabled="isCalculationInProgress"
+            placeholder="Enter password"
+            @enter="onEnterPassword"
+          />
+        </NTabPane>
+      </NTabs>
+    </NCard>
 
-    <DeletePinButton />
-    <PinLoginForm />
-  </fieldset>
+    <AppInfo />
 
-  <fieldset>
-    <legend>Password</legend>
-
-    <p class="proto-description">
-      Come up with, remember and enter a strong password.
-    </p>
-
-    <PasswordLoginForm />
-  </fieldset>
+    <NCard title="Previous version">
+      <NA href="https://v1.passcryptum.com">v1.passcryptum.com</NA>
+    </NCard>
+  </NSpace>
 </template>

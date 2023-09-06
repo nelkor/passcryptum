@@ -1,0 +1,10 @@
+.full-width {
+  width: 100%;
+}
+
+.n-button {
+  &__icon .n-icon-slot svg {
+    width: 1em;
+    height: 1em;
+  }
+}

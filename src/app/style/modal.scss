@@ -1,0 +1,17 @@
+@import '@/shared/breakpoints';
+
+.app-modal {
+  max-width: 500px;
+}
+
+@media (max-width: $breakpoint-532) {
+  .app-modal {
+    margin: auto 16px;
+  }
+}
+
+@media (max-width: $breakpoint-330) {
+  .app-modal {
+    margin: auto 8px;
+  }
+}

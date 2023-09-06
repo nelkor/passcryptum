@@ -1,12 +1,12 @@
 import { ref } from 'vue'
 import { isTherePin } from '#/core'
-import { createEmptyServices, parse, ServicesConfig } from '#/services'
-
-export const privateSessionId = ref<string | null>(null)
+import { createEmptyServices, parse } from '#/services'
 
 export const privateIsPinSet = ref(isTherePin())
 
-export const privateServices = ref<ServicesConfig>(createEmptyServices())
+export const privateSessionId = ref<string | null>(null)
+
+export const privateServices = ref(createEmptyServices())
 
 export const initSession = (id: string, data: string | null) => {
   privateSessionId.value = id

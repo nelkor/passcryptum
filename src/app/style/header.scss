@@ -1,0 +1,13 @@
+@import '@/shared/breakpoints';
+
+body {
+  --constant-header-height: 72px;
+  --extra-header-height: 124px;
+  --header-height: var(--constant-header-height);
+}
+
+@media (max-width: $breakpoint-720) {
+  body[header='work'] {
+    --header-height: var(--extra-header-height);
+  }
+}

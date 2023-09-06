@@ -10,7 +10,6 @@ export {
   updateVersionOfLogin,
   passwordLengthVariants,
   updateServicePreferences,
-  getPasswordLengthByIndex,
 } from './features'
 
 export type { ServicesConfig, ServiceData, LoginData } from './types'

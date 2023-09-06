@@ -35,10 +35,10 @@ export const add = (
       !existingService.logins.some(({ name }) => name === loginName) &&
       newLogin
     ) {
-      existingService.logins.push(newLogin)
+      existingService.logins.unshift(newLogin)
     }
   } else {
-    config.push({
+    config.unshift({
       name: serviceName,
       useSpecialCharacters: true,
       passwordLengthIndex: 2,
