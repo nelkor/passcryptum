@@ -51,14 +51,6 @@ declare const passwordLengthVariants: readonly number[]
 
 Список вариантов длины пароля. Доступен только для чтения.
 
-### Получить длину пароля по индексу
-
-```typescript
-declare const getPasswordLengthByIndex: (index: 0 | 1 | 2 | 3) => number
-```
-
-Возвращает длину пароля по индексу варианта.
-
 ## Слияние конфигураций
 
 ```typescript

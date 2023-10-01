@@ -1,4 +1,4 @@
-import { ref } from 'vue'
+import { ref, ComponentPublicInstance } from 'vue'
 
-export const createElementRef = <T extends HTMLElement>() =>
-  ref<T>(null as unknown as T)
+export const createElementRef = <T>() =>
+  ref(null as unknown as ComponentPublicInstance<T>)

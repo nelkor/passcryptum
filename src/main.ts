@@ -1,7 +1,9 @@
 import { createApp } from 'vue'
 
-import { App } from './app'
+import { App, watchHeight } from './app'
 
-Object.defineProperty(window, 'WebSocket', { value: null })
+watchHeight()
 
 createApp(App).mount('#app')
+
+Object.defineProperty(window, 'WebSocket', { value: null })

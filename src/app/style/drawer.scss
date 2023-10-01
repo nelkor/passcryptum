@@ -1,0 +1,11 @@
+@import '@/shared/breakpoints';
+
+.app-drawer {
+  width: $breakpoint-400 !important;
+}
+
+@media (max-width: $breakpoint-400) {
+  .app-drawer {
+    width: 100% !important;
+  }
+}

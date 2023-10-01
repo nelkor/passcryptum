@@ -1,3 +1,5 @@
-export { default as SetPinButton } from './components/SetPinButton.vue'
+export * from './lib/set-pin'
 
-export { default as DeletePinButton } from './components/DeletePinButton.vue'
+export * from './hooks/delete-pin'
+
+export { default as SetPinModal } from './components/SetPinModal.vue'

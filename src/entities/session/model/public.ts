@@ -1,4 +1,3 @@
-import { computed } from 'vue'
 import {
   add,
   stringify,
@@ -6,26 +5,42 @@ import {
   deleteService,
   ServicesConfig,
   checkForEmptiness,
-  createEmptyServices,
   mergeConfigurations,
+  createEmptyServices,
   updateVersionOfLogin,
   updateServicePreferences,
 } from '#/services'
-import { deleteData, saveData } from '#/core'
+import { ref, computed } from 'vue'
+import { saveData, deleteData } from '#/core'
 
 import { privateServices, privateIsPinSet, privateSessionId } from './private'
 
-const saveServices = () => void saveData(stringify(privateServices.value))
+export const isCalculationInProgress = ref(false)
+
+export const isPinSet = computed(() => privateIsPinSet.value)
 
 export const setPinState = (value: boolean) => {
   privateIsPinSet.value = value
 }
 
-export const isPinSet = computed(() => privateIsPinSet.value)
-
 export const services = computed(() => privateServices.value)
 
 export const sessionId = computed(() => privateSessionId.value)
+
+const saveServices = () => saveData(stringify(privateServices.value))
+
+export const addServiceAndLogin = (serviceName: string, loginName: string) => {
+  add(privateServices.value, serviceName.trim(), loginName.trim())
+
+  return saveServices()
+}
+
+export const importServices = (newServices: ServicesConfig) => {
+  privateServices.value = mergeConfigurations(
+    privateServices.value,
+    newServices
+  )
+}
 
 export const areServicesEmpty = computed(() =>
   checkForEmptiness(services.value)
@@ -35,20 +50,6 @@ export const clearServices = () => {
   deleteData()
 
   privateServices.value = createEmptyServices()
-}
-
-export const addServiceAndLogin = (serviceName: string, loginName: string) => {
-  add(privateServices.value, serviceName, loginName)
-  saveServices()
-}
-
-export const setVersionOfLogin = (
-  serviceName: string,
-  loginName: string,
-  version: number
-) => {
-  updateVersionOfLogin(privateServices.value, serviceName, loginName, version)
-  saveServices()
 }
 
 export const setServicePreferences = (
@@ -63,22 +64,27 @@ export const setServicePreferences = (
     useSpecialCharacters
   )
 
-  saveServices()
+  return saveServices()
 }
 
 export const rmService = (name: string) => {
   deleteService(privateServices.value, name)
-  saveServices()
+
+  return saveServices()
 }
 
 export const rmLogin = (serviceName: string, loginName: string) => {
   deleteLogin(privateServices.value, serviceName, loginName)
-  saveServices()
+
+  return saveServices()
 }
 
-export const importServices = (newServices: ServicesConfig) => {
-  privateServices.value = mergeConfigurations(
-    privateServices.value,
-    newServices
-  )
+export const setVersionOfLogin = (
+  serviceName: string,
+  loginName: string,
+  version: number
+) => {
+  updateVersionOfLogin(privateServices.value, serviceName, loginName, version)
+
+  return saveServices()
 }

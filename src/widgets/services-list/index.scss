@@ -1,0 +1,7 @@
+@import '@/shared/breakpoints';
+
+@media (max-width: $breakpoint-532) {
+  .service-list-button {
+    margin-left: 24vw;
+  }
+}

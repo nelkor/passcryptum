@@ -1,45 +1,39 @@
 <script setup lang="ts">
 import { ref } from 'vue'
+import { NButton, useMessage } from 'naive-ui'
+import { CopyOutline } from '@vicons/ionicons5'
 
-const props = defineProps<{
-  getContent(): string | Promise<string>
-  disabled?: boolean
-}>()
+import { COPY_DELAY_TIME } from '@/shared'
 
-const DELAY_TIME = 2000
-const type = 'text/plain'
+import { writeToClipboard } from '../lib/clipboard'
+
+const message = useMessage()
 const justCopied = ref(false)
-
-const polyfillCopy = async () =>
-  navigator.clipboard.writeText(await props.getContent())
+const props = defineProps<{ getContent(): string | Promise<string> }>()
 
 const copy = () => {
-  if (!document.hasFocus() || justCopied.value) {
+  if (justCopied.value) {
     return
-  }
-
-  if ('ClipboardItem' in window) {
-    const clipboardItem = new ClipboardItem({
-      [type]: Promise.resolve()
-        .then(props.getContent)
-        .then(result => new Blob([result], { type })),
-    })
-
-    navigator.clipboard.write([clipboardItem])
-  } else {
-    polyfillCopy()
   }
 
   justCopied.value = true
 
+  writeToClipboard(props.getContent())
+
   setTimeout(() => {
     justCopied.value = false
-  }, DELAY_TIME)
+
+    message.info('In your clipboard')
+  }, COPY_DELAY_TIME)
 }
 </script>
 
 <template>
-  <button type="button" :disabled="disabled || justCopied" @click="copy">
+  <NButton :loading="justCopied" v-bind="$attrs" @click="copy">
+    <template #icon>
+      <CopyOutline />
+    </template>
+
     <slot />
-  </button>
+  </NButton>
 </template>
