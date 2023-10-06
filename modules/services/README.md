@@ -1,57 +1,56 @@
 # Passcryptum services
 
-Данный пакет содержит функциональность по управлению конфигурацией сервисов
-Passcryptum.
+This package contains the functionality of the Passcryptum service management.
 
-## Конвертация
+## Conversion
 
-### Чтение из строки
+### Reading from string
 
 ```typescript
 declare const parse: (data: string) => ServicesConfig
 ```
 
-Если переданная строка является сжатой конфигурацией сервисов, вернёт эту
-конфигурацию сервисов. Вернёт пустую конфигурацию сервисов в противном случае.
+If the passed string is a zipped service configuration, returns
+this service configuration. Otherwise, returns empty services.
 
-### Приведение к строке
+### Stringification
 
 ```typescript
 declare const stringify: (data: ServicesConfig) => string
 ```
 
-Сжимает конфигурацию сервисов в строку.
+Zips the service configuration to the string.
 
-## Создание пустого множества сервисов
+## Creation of an empty set of services
 
 ```typescript
 declare const createEmptyServices: () => ServicesConfig
 ```
 
-Создаёт пустую конфигурацию сервисов.
+Creates an empty services.
 
-## Проверка множества сервисов на пустоту
+## Checking of set of services for emptiness
 
 ```typescript
 declare const checkForEmptiness: (config: ServicesConfig) => boolean
 ```
 
-Вернёт `true`, если конфигурация пустая и `false` в противном случае.
+Returns `true` if the services is empty. Otherwise, returns `false`.
 
-## Длина пароля
+## Password length
 
-Конфигурация хранит длину пароля, привязанную к сервису, как индекс одного из
-четырёх возможных вариантов.
+The configuration keeps the password length tied to the service
+as an index of one of the four possible variants.
 
-### Варианты длины пароля
+### Password length variants
 
 ```typescript
 declare const passwordLengthVariants: readonly number[]
 ```
 
-Список вариантов длины пароля. Доступен только для чтения.
+List of the password length variants, read-only.
 
-## Слияние конфигураций
+## Configurations merge
 
 ```typescript
 declare const mergeConfigurations: (
@@ -60,18 +59,19 @@ declare const mergeConfigurations: (
 ) => ServicesConfig
 ```
 
-Создаёт новую конфигурацию на основе переданных. В результат будут добавлены все
-сервисы и логины из обеих конфигураций. Для одинаковых логинов с разными
-версиями в результат войдёт старшая версия. Если есть разница в настройках
-одного и того же сервиса, будут взяты настройки из второй конфигурации.
+Creates a new configuration on the basis of the passed ones. All the services
+and logins from both configurations will be added to the result. Higher version
+will be in the result for the same logins with different versions.
+If there is a difference in settings of the same service,
+the settings from the second configuration will be taken.
 
-## Операции над сервисами
+## Operations on services
 
-Пакет представляет набор процедур, каждая из которых принимает конфигурацию
-сервисов и выполняет требуемую операцию. Процедуры ничего не возвращают,
-изменения применяются к переданной конфигурации.
+This package provides a set of procedures, each of which takes
+the services configuration and performs the demanded operation.
+Procedures return nothing, changes are applied to the passed configuration.
 
-### Добавление сервиса/логина
+### Adding a service/login
 
 ```typescript
 declare const add: (
@@ -81,13 +81,13 @@ declare const add: (
 ) => void
 ```
 
-Выбросит исключение, если `serviceName` является пустой строкой.
+Throws an exception if `serviceName` is an empty string.
 
-Добавляет сервис с именем `serviceName`, если такого ещё нет. Если передан
-`loginName`, новый сервис добавится сразу же с логином. Если сервис с именем
-`serviceName` уже существует, к нему будет добавлен логин с именем `loginName`.
+Adds the `serviceName` if it doesn't exist yet. If `loginName` is passed,
+the new service will be added with the login at once.
+If `serviceName` already exists, `loginName` will be added to it.
 
-### Удаление логина
+### Deleting login
 
 ```typescript
 declare const deleteLogin: (
@@ -97,21 +97,21 @@ declare const deleteLogin: (
 ) => void
 ```
 
-Выбросит исключение, если сервис не существует.
+Throws an exception if the service doesn't exist.
 
-Удаляет из сервиса логин с заданным именем, если он есть.
+Deletes a login with a given name if it exists.
 
-### Удаление сервиса
+### Deleting service
 
 ```typescript
 declare const deleteService: (config: ServicesConfig, name: string) => void
 ```
 
-Выбросит исключение, если сервис не существует.
+Throws an exception if the service doesn't exist.
 
-Удаляет сервис с заданным именем.
+Deletes service with a given name.
 
-### Обновление версии логина
+### Updating the login version
 
 ```typescript
 declare const updateVersionOfLogin: (
@@ -122,11 +122,11 @@ declare const updateVersionOfLogin: (
 ) => void
 ```
 
-Выбросит исключение, если сервис или логин не существует.
+Throws an exception if the service/login doesn't exist.
 
-Устанавливает заданному логину в заданном сервисе заданную версию.
+Sets a given version to a given login in a given service.
 
-### Обновление настроек сервиса
+### Updating service settings
 
 ```typescript
 declare const updateServicePreferences: (
@@ -137,8 +137,8 @@ declare const updateServicePreferences: (
 ) => void
 ```
 
-Выбросит исключение, если сервис не существует или если `passwordLengthIndex`
-не является допустимым индексом варианта длины пароля.
+Throws an exception if the service doesn't exist or if `passwordLengthIndex`
+is an invalid index of the password length variant.
 
-Устанавливает заданному сервису индекс варианта длины пароля и флаг
-использования специальных символов.
+Sets the index of the password length variant
+and the flag of special symbols usage to a given service.
