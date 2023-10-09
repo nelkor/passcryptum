@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { ref, watch } from 'vue'
 import { passwordLengthVariants } from '#/services'
-import { NH4, NText, NCheckbox, NSlider, NSpace } from 'naive-ui'
+import { NH4, NText, NSpace, NRadio, NCheckbox, NRadioGroup } from 'naive-ui'
 
 import { setServicePreferences } from '@/entities/session'
 
@@ -9,15 +9,6 @@ import { service } from '../model'
 
 const innerUseSpecialCharacters = ref(service.useSpecialCharacters)
 const innerLength = ref(passwordLengthVariants[service.passwordLengthIndex])
-
-const lengthMarks = passwordLengthVariants.reduce<Record<string, string>>(
-  (acc, cur) => {
-    acc[cur] = cur.toString()
-
-    return acc
-  },
-  {}
-)
 
 watch(
   [innerUseSpecialCharacters, innerLength],
@@ -41,12 +32,15 @@ watch(
       <NText>Length</NText>
     </div>
 
-    <NSlider
-      v-model:value="innerLength"
-      step="mark"
-      :marks="lengthMarks"
-      :min="passwordLengthVariants.at(0)"
-      :max="passwordLengthVariants.at(-1)"
-    />
+    <NRadioGroup v-model:value="innerLength" name="password-length">
+      <NSpace size="large">
+        <NRadio
+          v-for="variant in passwordLengthVariants"
+          :key="variant"
+          :value="variant"
+          :label="variant.toString()"
+        />
+      </NSpace>
+    </NRadioGroup>
   </NSpace>
 </template>
