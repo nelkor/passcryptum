@@ -1,54 +1,54 @@
 # PIN
 
-Постоянно использовать исходный пароль для входа в систему может быть небезопасно.
-Его может кто-то увидеть, а что ещё страшнее, он попадёт на запись камер
-видеонаблюдения. При использовании Passcryptum критически важно не давать никому
-возможности узнать свой исходный пароль.
+It may be insecure to use your origin password constantly, to log in
+the system. Someone may see it, or, what's even worse, it may be recorded
+on the surveillance camera. Using Passcryptum, it is crucially important
+not to give anyone a single opportunity to learn your origin password.
 
-Вот зачем существует PIN. Свой исходный пароль всё равно необходимо знать, но его
-можно будет не показывать при входе в систему.
+That is why PIN exists. You will still need to know and remember your
+origin password, but it will be possible not to show it while logging in.
 
 ## Getting started
 
-- Войдите в систему при помощи своего исходного пароля;
-- Нажмите кнопку установки PIN;
-- Введите желаемый PIN.
+- Log in the system with the help of your origin password;
+- Press the PIN setting button;
+- Enter any PIN you want.
 
-Готово. Теперь вы можете войти в систему при помощи PIN.
+Done! Now you can log in the system with the help of your PIN.
 
-## Что если я забуду свой PIN?
+## What if I forget my PIN?
 
-Совершенно ничего страшного, просто войдите в систему опять при помощи своего
-исходного пароля и установите новый PIN.
+There is absolutely no problem in it. Just log in the system again using your
+origin password and set a new PIN.
 
-## Как это работает
+## How it works
 
-Хеш вашего исходного пароля зашифровывается синхронным алгоритмом двумя компонентами:
-отпечатком операционной системы устройства и заданным PIN. Зашифрованный хеш
-хранится на вашем устройстве. Это значит, что для генерации паролей
-к вашим аккаунтам надо:
+The hash of your origin password is encrypted by a synchronous algorithm
+with two components: the device operating system fingerprint and your PIN.
+Encrypted hash is being stored on your device. It means that in order
+to generate password to your account, a person needs to know:
 
-- Знать строку, сохранённую на вашем устройстве;
-- Знать цифровой отпечаток операционной системы вашего устройства;
-- Знать ваш PIN.
+- The text saved on your device;
+- Your device operating system fingerprint;
+- Your PIN.
 
-В общем случае, такими ресурсами можете обладать только вы и никто кроме вас.
+In general, only you and nobody but you can possess these resources.
 
-## Что если кто-то увидит мой PIN?
+## What if someone sees my PIN?
 
-Тоже ничего страшного. Без полного доступа к вашему устройству сам по себе PIN
-не несёт никакой информации. Если PIN был скомпрометирован, просто поменяйте его.
-Чтобы поменять PIN, просто войдите в систему любым способом и установите новый.
-Кроме того, PIN можно вообще удалить. И для этого даже не обязательно входить
-в систему.
+There is no problem in that as well. The PIN, by itself, doesn't contain
+any information without full access to your device. If the PIN was compromised,
+just change it. In order to change the PIN, just log in the system
+by any means and set the new one. Besides, you can simply delete the PIN,
+and you don't even need to log in the system to do it.
 
-## Отпечаток системы
+## System fingerprint
 
-Если вы обновляете операционную систему или веб-браузер, отпечаток может
-измениться. Это значит, что вы больше не сможете войти в Passcryptum
-при помощи установленного PIN. В таком случае ведём себя так же, как если бы
-просто забыли PIN — входим по исходному паролю и устанавливаем новый.
+If you update your operating system or web browser, the fingerprint may change.
+It means that you won't be able to log in Passcryptum using your set PIN.
+In this case you must act the same way as if you forgot it.
+You log in using your origin password and set a new PIN.
 
-Это может показаться неудобным, но это мера безопасности. Если некий вирус украдёт
-зашифрованную строку, то его владельцу будет недостаточно перебирать возможные
-значения PIN, надо ещё знать отпечаток операционной системы.
+It may seem inconvenient, but it's a safety measure. If a virus steals
+an encrypted text, it won't be enough for its owner to brute-force
+possible PINs. They will have to know the operating system fingerprint as well.

@@ -1,23 +1,23 @@
 # Passcryptum core
 
-Данный пакет содержит всю криптографическую функциональность Passcryptum. Его
-создание мотивировано желанием отделить эту логику от логики интерфейса приложения.
-Будучи отделённой, эта функциональность не зависит от фреймворка интерфейса и не
-спутывается со сторонними зонами ответственности.
+This package contains all the cryptographic functionality of Passcryptum.
+Its creation is motivated by the intention of separating this logic from
+the one of the application interface. Being separated, this functionality
+doesn't depend on the interface framework or gets confused with the off-side
+areas of responsibility.
 
-## Вход/выход
+## Logging in and out
 
-Вся функциональность ядра Passcryptum строится на криптографических данных,
-полученных из исходного пароля. Под "входом в систему" подразумевается получение
-ядром Passcryptum этих данных (начало активной сессии). Соответственно, под
-"выходом из системы" — удаление этих данных из оперативной памяти
-(окончание активной сессии).
+All the functionality of the Passcryptum core is built on cryptographic data
+received from the origin password. By 'logging in' we mean getting these data
+by the Passcryptum core (the start of an active session). Thus, 'logging out'
+means deletion of these data from the RAM (the end of an active session).
 
-Начиная сессию, клиент ядра Passcryptum получает идентификатор сессии
-(строка, четыре латинские буквы), а также сохранённые для этой сессии данные
-(произвольная строка, например, JSON).
+Starting the session, the Passcryptum core client receives the session ID
+(a string, four Latin letters), and saved data for this session
+(a custom string, e.g. JSON).
 
-### Вход при помощи исходного пароля
+### Logging in using an origin password
 
 ```typescript
 declare const enterWithOriginPassword: (
@@ -25,11 +25,11 @@ declare const enterWithOriginPassword: (
 ) => Promise<{ id: string; data: string | null }>
 ```
 
-Принимает строку (исходный пароль), запускает сессию.
-Асинхронно возвращает объект с идентификатором и данными.
-Используется медленная криптография, вычисление может занять время.
+Takes string (origin password), launches the session.
+Returns the object asynchronously with the identifier and the data.
+Slow cryptography is used, calculation may take some time.
 
-### Вход при помощи ПИН-кода
+### Logging in using PIN
 
 ```typescript
 declare const enterWithPin: (
@@ -37,46 +37,47 @@ declare const enterWithPin: (
 ) => Promise<{ id: string; data: string | null }>
 ```
 
-Принимает строку (ПИН-код). Ищет в локальном хранилище зашифрованный хеш
-исходного пароля и пробует его расшифровать. Используется медленная криптография,
-вычисление может занять время. Если не получается — выбрасывает исключение.
-Запускает сессию. Асинхронно возвращает объект с идентификатором и данными.
+Takes string (PIN). Searches for the encrypted hash of the origin password
+in the local storage and tries to decrypt it. Slow cryptography is used,
+calculation may take some time. If unsuccessful, throws an exception.
+Launches the session.
+Returns the object asynchronously with the identifier and the data.
 
-### Выход
+### Logging out
 
 ```typescript
 declare const exit: () => void
 ```
 
-Завершает сессию. Все функции, зависящие от данных сессии,
-перестают работать (начинают выбрасывать исключение).
+Ends the session. All the functions depending on the session data stop working
+(start throwing an exception).
 
-## Хранение данных
+## Data keeping
 
-### Сохранение данных
+### Data saving
 
 ```typescript
 declare const saveData: (data: string) => Promise<void>
 ```
 
-Выбросит исключение, если сессия не активна.
+Throws an exception if the session is inactive.
 
-Принимает строку (например, JSON). Строка зашифровывается данными
-активной сессии и сохраняется в локальное хранилище.
+Takes the string (e.g. JSON). The string is encrypted by the active session data
+and saves into the local storage.
 
-### Чтение зашифрованных данных
+### Reading the encrypted data
 
 ```typescript
 declare const readData: (data: string | ArrayBuffer) => Promise<string | null>
 ```
 
-Выбросит исключение, если сессия не активна.
+Throws an exception if the session is inactive.
 
-Принимает строку или буфер. Пробует расшифровать её данными активной сессии.
-Если не получается — возвращает `null`.
-Возвращает расшифрованные данные переданного аргумента в виде строки.
+Takes a string or a buffer. Tries to decipher it with the active session data.
+If unsuccessful, returns `null`.
+Returns decrypted data of the passed argument as a string.
 
-### Получение данных
+### Getting data
 
 ```typescript
 declare const getDataAsBuffer: () => Promise<ArrayBuffer | null>
@@ -84,55 +85,55 @@ declare const getDataAsString: () => Promise<string | null>
 declare const getDataDecrypted: () => Promise<string | null>
 ```
 
-Выбросит исключение, если сессия не активна.
+Throws an exception if the session is inactive.
 
-Первые две функции возвращают зашифрованные данные, сохранённые в локальное
-хранилище под ключом активной сессии. Отличается тип возвращаемых данных:
+First two functions return encrypted data saved to the local storage
+with the active session key. The type of returned data differs:
 
-- `getDataAsBuffer` — бинарный вид;
-- `getDataAsString` — hex-строка.
+- `getDataAsBuffer` — binary view;
+- `getDataAsString` — hex string.
 
-Последняя функция `getDataDecrypted` возвращает расшифрованную строку данных.
+The last function `getDataDecrypted` returns the decrypted data string.
 
-### Удаление данных
+### Deleting data
 
 ```typescript
 declare const deleteData: () => void
 ```
 
-Выбросит исключение, если сессия не активна.
+Throws an exception if the session is inactive.
 
-Удаляет данные, сохранённые в локальное хранилище под ключом активной сессии.
+Deletes data saved into the local storage with the active session key.
 
-## ПИН-код
+## PIN
 
-### Проверка состояния ПИН-кода
+### PIN status check
 
 ```typescript
 declare const isTherePin: () => boolean
 ```
 
-Вернёт `true`, если PIN установлен и `false` в противном случае.
+Returns `true` if the PIN is set, otherwise returns `false`.
 
-### Установка ПИН-кода
+### PIN setting
 
 ```typescript
 declare const setPin: (pin: string) => Promise<void>
 ```
 
-Выбросит исключение, если сессия не активна.
+Throws an exception if the session is inactive.
 
-Устанавливает переданный PIN и записывает его в локальное хранилище.
+Sets the passed PIN and writes it into the local storage.
 
-### Удаление ПИН-кода
+### PIN deletion
 
 ```typescript
 declare const deletePin: () => void
 ```
 
-Удаляет PIN.
+Deletes PIN.
 
-## Генерация паролей
+## Password generation
 
 ```typescript
 declare const generatePassword: (
@@ -144,6 +145,6 @@ declare const generatePassword: (
 ) => Promise<string>
 ```
 
-Выбросит исключение, если сессия не активна.
+Throws an exception if the session is inactive.
 
-Вычисляет пароль на основе текущей сессии и переданных параметров.
+Calculates the password on the basis of the current session and passed parameters.

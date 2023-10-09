@@ -1,102 +1,99 @@
-# Рекомендации
+# Recommendations
 
-Passcryptum не ограничивает пользователей в выборе исходного пароля, способах
-именования сервисов и в чём бы то ни было ещё. Этой свободой надо уметь правильно
-распорядиться. Когда настанет момент восстановить доступы ко всем свои аккаунтам
-с нуля, вам лучше не гадать, как именно вы называли тот или иной сервис
-и какие там были настройки паролей.
+Passcryptum doesn't restrict users' choices of origin passwords, ways of naming
+services etc. This freedom must be used in a right way. When a moment comes,
+to restore access to all of your accounts from scratch, you'd better not guess
+the name of this or that service and its password settings.
 
-Конфигурация сервисов зашифрована. Без вашего исходного пароля она представляет
-собой случайный набор байтов. Не стесняйтесь сохранять резервные копии
-конфигурации где угодно, даже в публичных местах. Это может уберечь вас от
-необходимости восстановления всех сервисов вручную.
+Service configuration is encrypted. Without your origin password, it's just
+a random set of bytes. Don't limit yourself in saving backups of your
+services anywhere, even in public places. It may save you from possible
+restoring of all your services manually.
 
-## Исходный пароль
+## Origin password
 
-Не стоит скупиться на сложность исходного пароля. Очень важно, чтобы никто не смог
-догадаться, какой исходный пароль вы используете, иначе они смогут получить доступ
-ко всем вашим аккаунтам.
+You'd better not economize on the difficulty of your origin password. It's very
+important that nobody should be able to guess what origin password you use,
+otherwise they will be able to gain access to all your accounts.
 
-Мы рекомендуем использовать строку из случайных символов. Например, можно
-сгенерировать пароль в любом генераторе паролей онлайн, а потом случайным образом
-изменить и перемешать в нём символы.
+We recommend to use a string of random symbols. E.g. you may generate
+a password in any online password generator and then randomly
+change and shuffle symbols in it.
 
-Мы настоятельно не рекомендуем пользоваться исходным паролем длиной менее
-8 символов. Пароль из восьми символов является достаточно надёжным почти для всех.
+We highly recommend not to use an origin password less than 8 symbols long.
+Password length of 8 symbols is quite strong for almost everyone and everything.
 
-> При использовании латинских букв, цифр и специальных символов
-> (коих в общем количестве не менее 90 штук)
-> число вариантов для пароля из 8 символов составляет
-> 90 ^ 8 = 4304672100000000, что превышает численность людей на Земле
-> в пол-миллиона раз.
+> Using Latin letters, figures and special symbols
+> (there are not less than 90 of them in all),
+> the number of possible variants for 8-symbol password is
+> 90 ^ 8 = 4304672100000000, which exceeds the population of our planet
+> half a million times.
 
-Однако, если вы хотите спать спокойно будучи уверенным, что даже хакеры с мощным
-оборудованием никогда не смогут получить доступ к вашим аккаунтам, то потрудитесь
-запомнить случайную строку из 12 символов.
+However, if you want to be sure that even hackers with powerful devices
+won't gain access to your accounts,
+try and remember a random string of 12 symbols.
 
-> 90 ^ 12 = 282429536481000000000000, что как минимум в несколько десятков тысяч
-> раз превышает количество песчинок на нашей планете.
+> 90 ^ 12 = 282429536481000000000000, which exceeds the number
+> of sand grains on Earth myriads of times.
 
-Пароли длиннее 12 символов опасны тем, что их можно забыть. Забывать свой исходный
-пароль нельзя ни в коем случае. Восстановить его невозможно. Помнить ваш исходный
-пароль — это полностью ваша ответственность.
+Passwords of more than 12 symbols are dangerous, because you may forget them.
+It is strictly forbidden to forget your origin password, as it is impossible
+to restore. It is your full responsibility to remember your origin password.
 
 ## PIN
 
-Используйте надёжный PIN. Четыре цифры, как на банковской карте, увы, слишком
-слабы. Нельзя исключать того, что кто-то получит доступ к вашему устройству и
-попробует подобрать значение PIN перебором.
+Use a strong PIN. Four-digit version, as of a credit card, is too weak.
+You cannot exclude the possibility of someone gaining access to your device
+and trying to brute-force your PIN.
 
-Сложность PIN должна быть сопоставима со сложностью исходного пароля. Хорошая
-новость в том, что PIN можно сколько угодно раз забыть и поставить новый.
+The difficulty of your PIN must be comparable to the one
+of your origin password. The good news is that you can forget your PIN
+and set a new one as often as possible.
 
-Меняйте PIN время от времени. Мало ли где вас сняла камера видеонаблюдения,
-когда вы его вводили.
+Change your PIN from time to time. You can never say where a surveillance camera
+could record you entering it.
 
-Если вам надо войти в систему в публичном месте, а PIN вы забыли, примите меры
-предосторожности при вводе исходного пароля.
+If you need to log in the system in a public place, and you have forgotten
+your PIN, take every precaution while entering your origin password.
 
-Имейте в виду: если постоянно вводить только PIN, есть риск забыть исходный
-пароль и это может стать катастрофой. Находясь в безопасном месте вводите иногда
-исходный пароль, чтобы освежать его в памяти.
+Remember that if you enter only your PIN, there is a risk of forgetting your
+origin password, and it may be a disaster. Being in a safe place,
+enter your origin password from time to time in order to refresh your memory.
 
-## Имена сервисов
+## Service names
 
-Мы рекомендуем называть сервисы по имени домена второго уровня их сайта.
-Например, сервис GitHub в системе Passcryptum будет иметь имя `github.com`.
-Это простое правило позволит вам вспомнить нужные имена сервисов, если придётся
-восстанавливать конфигурацию сервисов с нуля.
+We recommend to name services by the name of their second-level domain.
+E.g. GitHub in the Passcryptum system will have the name of `github.com`.
+This simple rule will allow you to remember the necessary service names
+in case you have to restore the service configuration from scratch.
 
-Тяжело представить сервис, у которого не было бы сайта. Так что вероятно, это
-правило будет работать для абсолютно всех сервисов. Иногда бывает, что сервис
-меняет имя сайта (например, Twitter). Плохая новость в том, что в такие моменты
-придётся менять пароль. Хорошая новость в том, что случается такое крайне редко.
+It's hard to imagine a service without a site. Probably, this rule will work
+for all the services. Sometimes it happens so that the service changes
+the site name (e.g. Twitter). The bad news is that you will have to change your
+password. The good news is that it is a very rare case.
 
-## Настройки сервисов
+## Service preferences
 
-Мы рекомендуем всегда, когда это возможно, оставлять настройки сервисов
-по умолчанию. То есть использование специальных символов будет включено, а длина
-паролей будет составлять 20 символов.
+We recommend to have default settings whenever it is possible. I.e. special
+symbols will be enabled, and the password length will be 20 symbols.
 
-Это возможно в большинстве случаев, но, к сожалению, не всегда. Некоторые
-сервисы считают своим долгом указать нам, какие символы можно использовать
-в пароле, а какие нельзя. Если сервис не принимает специальные символы в пароле,
-просто выключите использование специальных символов, не меняя длину.
+It is possible in the majority of cases, but not in all of them.
+Some of the services think that they must tell us which symbols we can use and
+which we can't. If the service doesn't accept special symbols in the password,
+just disable the usage of them without changing the length.
 
-Настройка длины пароля существует для совершенно специфических случаев.
-Вы можете пользоваться ей по своему усмотрению. Но имейте в виду, если файл
-конфигурации будет утерян, вам придётся вспоминать, где и какая длина пароля
-была установлена.
+The password length setting is only for specific cases. You can use it of your
+own free choice. But beware, if the services file is lost, you will have
+to remember what password length was set in each case.
 
-## Логины
+## Logins
 
-Используйте преимущественно очевидные логины. Например, один и тот же логин
-в большинстве сервисов. Имейте запасные логины на случай, если основной будет
-занят.
+Use the obvious logins mainly. E.g. the same login in the majority of services.
+You should have spare logins in case the main one is already used by someone else.
 
-## Версии
+## Versions
 
-Увеличивайте версию на один каждый раз, когда есть желание изменить пароль.
-Версия — это единственное, что вам придётся перебирать при восстановлении
-конфигурации. Как правило, пароли не меняются слишком часто, так что и версий
-придётся перебрать немного.
+Increase the version by 1 every time you want to change your password.
+Version is the only thing you will have to sort through while restoring
+the configuration. As a rule, passwords don't change very often,
+so you won't have to sort through too many versions.
