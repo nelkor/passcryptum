@@ -39,7 +39,7 @@ const onCopyPassword = createCopyHandler(passwordJustCopied, copyPassword)
 </script>
 
 <template>
-  <NCollapseItem :title="service.name">
+  <NCollapseItem :title="service.name" :name="service.name">
     <NSpace :vertical="false" size="large" justify="end">
       <NButton
         :loading="loginJustCopied"
