@@ -1,19 +1,23 @@
 const CACHE_VERSION = 'v2.0.0'
 const ROOT_PATH = 'https://passcryptum.com/'
+const files = ['manifest.json', 'icon-192x192.png', 'icon-512x512.png']
+
+/** @type {string[]} */
+const urls = [ROOT_PATH, ...files.map(file => ROOT_PATH + file)]
 
 addEventListener('install', () => {
-  skipWaiting().then()
+  void skipWaiting()
 })
 
 addEventListener('activate', event => {
-  clients.claim().then()
+  void clients.claim()
 
   event.waitUntil(
     caches
       .keys()
       .then(keys => Promise.all(keys.map(key => caches.delete(key))))
       .then(() => caches.open(CACHE_VERSION))
-      .then(cache => cache.add(ROOT_PATH))
+      .then(cache => cache.addAll(urls))
   )
 })
 
@@ -26,11 +30,8 @@ addEventListener('fetch', event => {
         return fromCache
       }
 
-      if (request.url !== ROOT_PATH) {
-        return new Response(null, {
-          status: 403,
-          statusText: 'Forbidden',
-        })
+      if (!urls.includes(request.url)) {
+        return new Response(null, { status: 403, statusText: 'Forbidden' })
       }
 
       return Promise.all([caches.open(CACHE_VERSION), fetch(request)])
