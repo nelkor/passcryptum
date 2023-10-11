@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import { ref, watch } from 'vue'
 import { NH1, NText, NCollapse } from 'naive-ui'
 
 import { filteredServices } from '@/features/services-filter'
@@ -6,6 +7,24 @@ import { AddLoginModal, ServiceDetails } from '@/features/service-details'
 import { CredentialsModal, clearLastCopiedLogin } from '@/features/credentials'
 
 import ServiceItem from './ServiceItem.vue'
+
+const expandedNames = ref<null | string | undefined>(undefined)
+
+watch(
+  filteredServices,
+  services => {
+    if (services.length === 1) {
+      expandedNames.value = services[0].name
+    } else {
+      expandedNames.value = null
+
+      requestAnimationFrame(() => {
+        expandedNames.value = undefined
+      })
+    }
+  },
+  { immediate: true }
+)
 </script>
 
 <template>
@@ -16,6 +35,7 @@ import ServiceItem from './ServiceItem.vue'
   <NCollapse
     v-if="filteredServices.length"
     accordion
+    :expanded-names="expandedNames"
     @item-header-click="clearLastCopiedLogin"
   >
     <ServiceItem
