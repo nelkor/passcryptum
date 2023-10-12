@@ -1,28 +1,32 @@
 <script setup lang="ts">
+import { NP, NCard } from 'naive-ui'
+
 import GitHubLink from './GitHubLink.vue'
-import AppInfoLink from './AppInfoLink.vue'
+import ExternalLink from './ExternalLink.vue'
 </script>
 
 <template>
-  <div class="app-info">
-    <p class="app-info__text">
+  <NCard title="For your information">
+    <NP>
       Working with the Passcryptum application takes&nbsp;place&nbsp;offline.
       Any&nbsp;data&nbsp;processing is&nbsp;performed by&nbsp;your&nbsp;device.
-    </p>
+    </NP>
 
-    <p class="app-info__text">
-      You can <GitHubLink text="download the application" path="/releases" />
+    <NP>
+      You can
+      <GitHubLink path="/releases">download the application</GitHubLink>
       to&nbsp;your&nbsp;computer to&nbsp;run&nbsp;it&nbsp;locally.
-    </p>
+    </NP>
 
-    <p class="app-info__text">
-      Read <GitHubLink text="the instructions" path="#passcryptum" /> in
-      <GitHubLink text="our repository" path="" />.
-    </p>
+    <NP>
+      Read
+      <GitHubLink path="#passcryptum">the instructions</GitHubLink>
+      in our repository.
+    </NP>
 
-    <p class="app-info__text">
+    <NP>
       You can also join
-      <AppInfoLink text="our Telegram channel" url="t.me/passcryptum" />.
-    </p>
-  </div>
+      <ExternalLink url="t.me/passcryptum">our Telegram channel</ExternalLink>.
+    </NP>
+  </NCard>
 </template>

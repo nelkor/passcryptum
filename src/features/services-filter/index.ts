@@ -1,3 +1,5 @@
-export { default as ServicesFilter } from './components/ServicesFilter.vue'
+import './index.scss'
 
-export { filteredServices } from './model/services-filter'
+export { filteredServices } from './model'
+
+export { default as ServicesFilter } from './components/ServicesFilter.vue'

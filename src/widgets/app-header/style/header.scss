@@ -1,0 +1,49 @@
+@import '@/shared/breakpoints';
+
+.app-header {
+  height: var(--header-height);
+}
+
+.constant-header {
+  display: flex;
+  padding: 16px 32px;
+  align-items: center;
+  box-sizing: border-box;
+  justify-content: space-between;
+  height: var(--constant-header-height);
+}
+
+.extra-header {
+  display: none;
+  justify-content: center;
+  padding: 0 24px;
+}
+
+.header-content {
+  display: flex;
+  align-items: center;
+}
+
+.app-version {
+  padding-left: 8px;
+}
+
+.header-menu {
+  margin-left: 8px;
+}
+
+@media (max-width: $breakpoint-400) {
+  .constant-header {
+    padding: 16px;
+  }
+}
+
+@media (max-width: $breakpoint-720) {
+  .extra-header {
+    display: flex;
+  }
+
+  .constant-services-filter {
+    display: none;
+  }
+}

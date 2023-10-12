@@ -1,17 +1,24 @@
 <script setup lang="ts">
-import { nameSubstring, clearNameSubstring } from '../model/services-filter'
-import { useHotkeyFocus } from '../hooks/hotkey-focus'
+import { NInput, NIcon } from 'naive-ui'
+import { Filter } from '@vicons/ionicons5'
 
-const { inputElement } = useHotkeyFocus()
+import { areServicesEmpty } from '@/entities/session'
+
+import { filterSubstring, clearFilterSubstring } from '../model'
 </script>
 
 <template>
-  <input
-    ref="inputElement"
-    v-model="nameSubstring"
-    class="text-input"
-    type="text"
+  <NInput
+    v-model:value="filterSubstring"
+    size="large"
+    class="services-filter"
     placeholder="Filter by name"
-    @keydown.esc="clearNameSubstring"
-  />
+    :disabled="areServicesEmpty"
+    :input-props="{ name: 'Filter by name' }"
+    @keydown.esc="clearFilterSubstring"
+  >
+    <template #prefix>
+      <NIcon :component="Filter" />
+    </template>
+  </NInput>
 </template>

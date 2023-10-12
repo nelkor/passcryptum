@@ -1,10 +1,25 @@
 <script setup lang="ts">
-import { WorkScreen } from '@/pages/work-screen'
-import { PasswordEntry } from '@/pages/password-entry'
-import { isMasterEntered } from '@/entities/master-tool'
+import { NLayout, NLayoutContent } from 'naive-ui'
+
+import { WorkPage } from '@/pages/work'
+import { LoginPage } from '@/pages/login'
+import { sessionId } from '@/entities/session'
+import { AppHeader } from '@/widgets/app-header'
+
+import NaiveProvider from './NaiveProvider.vue'
 </script>
 
 <template>
-  <WorkScreen v-if="isMasterEntered" />
-  <PasswordEntry v-else />
+  <NaiveProvider>
+    <NLayout>
+      <AppHeader />
+
+      <NLayoutContent class="app-layout-content" :native-scrollbar="false">
+        <div class="page-wrapper">
+          <WorkPage v-if="sessionId" />
+          <LoginPage v-else />
+        </div>
+      </NLayoutContent>
+    </NLayout>
+  </NaiveProvider>
 </template>

@@ -1,0 +1,28 @@
+@import '@/shared/breakpoints';
+
+.app-layout-content {
+  height: calc(var(--vh) * 100 - var(--header-height));
+}
+
+.page-wrapper {
+  max-width: 540px;
+  margin: 0 auto;
+  padding: 32px 16px;
+}
+
+@media (max-width: $breakpoint-330) {
+  .page-wrapper {
+    padding: 16px 8px;
+  }
+}
+
+@media (min-width: $breakpoint-1600) {
+  .n-drawer,
+  .n-dropdown-menu,
+  .n-modal-container,
+  .n-message-container,
+  .n-loading-bar-container,
+  .app-layout-content > .n-scrollbar {
+    zoom: 1.4;
+  }
+}

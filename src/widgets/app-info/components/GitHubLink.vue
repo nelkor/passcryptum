@@ -1,12 +1,11 @@
 <script setup lang="ts">
-import AppInfoLink from './AppInfoLink.vue'
+import ExternalLink from './ExternalLink.vue'
 
-defineProps<{
-  path: string
-  text: string
-}>()
+defineProps<{ path: string }>()
 </script>
 
 <template>
-  <AppInfoLink :text="text" :url="`github.com/nelkor/passcryptum${path}`" />
+  <ExternalLink :url="`github.com/nelkor/passcryptum${path}`">
+    <slot />
+  </ExternalLink>
 </template>

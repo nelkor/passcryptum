@@ -9,9 +9,10 @@
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "typeRoots": ["node_modules/@types", "env.d.ts"],
-    "baseUrl": "src",
+    "baseUrl": ".",
     "paths": {
-      "@/*": ["./*"]
+      "#/*": ["./modules/*"],
+      "@/*": ["./src/*"]
     }
   }
 }

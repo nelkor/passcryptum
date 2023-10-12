@@ -6,6 +6,11 @@ import { viteSingleFile } from 'vite-plugin-singlefile'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  resolve: { alias: { '@': resolve('src') } },
+  resolve: {
+    alias: {
+      '#': resolve('modules'),
+      '@': resolve('src'),
+    },
+  },
   plugins: [vue(), viteSingleFile()],
 })
