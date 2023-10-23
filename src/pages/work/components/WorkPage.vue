@@ -3,8 +3,9 @@ import { NEmpty, NButton } from 'naive-ui'
 import { AddCircleOutline } from '@vicons/ionicons5'
 
 import { addService } from '@/features/add-service'
-import { areServicesEmpty } from '@/entities/session'
-import { ServicesList } from '@/widgets/services-list'
+import { ServiceView } from '@/widgets/service-view'
+import { ServiceStub } from '@/widgets/service-stub'
+import { areServicesEmpty, isServiceSelected } from '@/entities/session'
 </script>
 
 <template>
@@ -24,5 +25,6 @@ import { ServicesList } from '@/widgets/services-list'
     </template>
   </NEmpty>
 
-  <ServicesList v-else />
+  <ServiceView v-else-if="isServiceSelected" />
+  <ServiceStub v-else />
 </template>

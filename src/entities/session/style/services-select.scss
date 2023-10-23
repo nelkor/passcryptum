@@ -1,0 +1,13 @@
+.services-select {
+  position: relative;
+  max-width: 400px;
+  width: 100%;
+
+  select {
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+  }
+}

@@ -23,8 +23,6 @@ export const setPinState = (value: boolean) => {
   privateIsPinSet.value = value
 }
 
-export const services = computed(() => privateServices.value)
-
 export const sessionId = computed(() => privateSessionId.value)
 
 const saveServices = () => saveData(stringify(privateServices.value))
@@ -43,7 +41,7 @@ export const importServices = (newServices: ServicesConfig) => {
 }
 
 export const areServicesEmpty = computed(() =>
-  checkForEmptiness(services.value)
+  checkForEmptiness(privateServices.value)
 )
 
 export const clearServices = () => {
