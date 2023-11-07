@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'v2.0.0'
+const CACHE_VERSION = 'v2.1.0'
 const ROOT_PATH = 'https://passcryptum.com/'
 const files = ['manifest.json', 'icon-192x192.png', 'icon-512x512.png']
 

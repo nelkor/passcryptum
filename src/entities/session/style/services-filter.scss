@@ -1,0 +1,11 @@
+@import '@/shared/breakpoints';
+
+.services-filter {
+  max-width: 400px;
+}
+
+@media (min-width: $breakpoint-1600) {
+  .services-filter {
+    max-width: 600px;
+  }
+}

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { NLayoutHeader, NText } from 'naive-ui'
 
-import { ServicesFilter } from '@/features/services-filter'
+import { ServicesSelect, ServicesFilter } from '@/entities/session'
 
 import AppLogo from './AppLogo.vue'
 import MenuButton from './MenuButton.vue'
@@ -17,13 +17,13 @@ const { isEntered } = useAppHeader()
       <ServicesFilter v-if="isEntered" class="constant-services-filter" />
 
       <div class="header-content">
-        <NText class="app-version">2.0.0</NText>
+        <NText class="app-version">2.1.0</NText>
         <MenuButton :is-entered="isEntered" />
       </div>
     </div>
 
     <div v-if="isEntered" class="extra-header">
-      <ServicesFilter />
+      <ServicesSelect />
     </div>
   </NLayoutHeader>
 </template>
