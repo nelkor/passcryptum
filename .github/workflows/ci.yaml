@@ -65,6 +65,11 @@ jobs:
       - name: Checkout 🛎
         uses: actions/checkout@v3
 
+      - name: Set up NodeJS 🚉
+        uses: actions/setup-node@v2
+        with:
+          node-version: 18
+
       - name: Install 👨🏻‍💻
         run: npm i
 
@@ -74,10 +79,13 @@ jobs:
       - name: Calculate hash 🧮
         run: sha256sum dist/index.html > sha256sum.txt
 
+      - name: Copy HTML file to root
+        run: cp dist/index.html passcryptum.html
+
       - name: Publish artifacts 📢
         uses: actions/upload-artifact@v2
         with:
           name: Build artifacts
           path: |
-            dist/index.html
+            passcryptum.html
             sha256sum.txt
