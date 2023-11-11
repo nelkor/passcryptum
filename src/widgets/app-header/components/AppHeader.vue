@@ -17,7 +17,7 @@ const { isEntered } = useAppHeader()
       <ServicesFilter v-if="isEntered" class="constant-services-filter" />
 
       <div class="header-content">
-        <NText class="app-version">2.1.0</NText>
+        <NText class="app-version">2.1.1</NText>
         <MenuButton :is-entered="isEntered" />
       </div>
     </div>

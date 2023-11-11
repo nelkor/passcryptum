@@ -1,6 +1,9 @@
 name: CI
 
 on:
+  push:
+    branches:
+      - main
   pull_request:
     branches:
       - story-*
@@ -13,6 +16,7 @@ concurrency:
 
 jobs:
   lint:
+    if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout 🛎
@@ -28,6 +32,7 @@ jobs:
         run: npm run format
 
   type_check:
+    if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
     steps:
       - name: Checkout 🛎
@@ -40,6 +45,7 @@ jobs:
         run: npm run type-check
 
   test:
+    if: github.event_name == 'pull_request'
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
@@ -51,3 +57,27 @@ jobs:
 
       - name: Test 🧪
         run: npm run test
+
+  build-and-hash:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout 🛎
+        uses: actions/checkout@v3
+
+      - name: Install 👨🏻‍💻
+        run: npm i
+
+      - name: Build 🏗️
+        run: npm run build
+
+      - name: Calculate hash 🧮
+        run: sha256sum dist/index.html > sha256sum.txt
+
+      - name: Publish artifacts 📢
+        uses: actions/upload-artifact@v2
+        with:
+          name: Build artifacts
+          path: |
+            dist/index.html
+            sha256sum.txt
