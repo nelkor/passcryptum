@@ -33,10 +33,10 @@ export const servicesOptions = computed(() =>
 watch(
   servicesCount,
   value => {
-    if (!value) {
-      selectedServiceName.value = null
-    } else if (value === 1) {
+    if (value === 1) {
       selectedServiceName.value = privateServices.value[0].name
+    } else {
+      selectedServiceName.value = null
     }
   },
   { immediate: true }
