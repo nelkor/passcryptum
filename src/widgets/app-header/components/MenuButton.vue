@@ -30,11 +30,6 @@ const options = computed(() => [
   ...(props.isEntered
     ? [
         {
-          key: 'signOut',
-          label: 'Sign out',
-          icon: renderIcon(LogOutOutline),
-        },
-        {
           key: 'storage',
           label: 'Storage',
           icon: renderIcon(ServerOutline),
@@ -75,6 +70,11 @@ const options = computed(() => [
         'GitHub'
       ),
     icon: renderIcon(LogoGithub),
+  },
+  {
+    key: 'signOut',
+    label: 'Sign out',
+    icon: renderIcon(LogOutOutline),
   },
 ])
 

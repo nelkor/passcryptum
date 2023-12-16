@@ -1,20 +1,63 @@
 {
+  "id": "com.passcryptum",
   "name": "Passcryptum",
-  "short_name": "Passcryptum",
+  "short_name": "PSC",
+  "scope": "/",
   "start_url": "/",
+  "lang": "en",
+  "dir": "ltr",
   "display": "standalone",
-  "background_color": "teal",
+  "theme_color": "#008080",
+  "background_color": "#008080",
+  "prefer_related_applications": false,
   "description": "Cryptographic password manager",
+  "categories": ["utilities", "security", "passwords"],
+  "launch_handler": {
+    "route_to": "auto",
+    "client_mode": "auto"
+  },
+  "orientation": "portrait",
+  "display_override": ["window-controls-overlay", "minimal-ui"],
+  "window-controls-overlay": {
+    "display": "auto"
+  },
+  "file_handlers": [
+    {
+      "action": "/open-psc",
+      "accept": {
+        "application/octet-stream": [".psc"]
+      }
+    }
+  ],
   "icons": [
     {
-      "src": "icon-192x192.png",
+      "src": "icons/i192x192.png",
       "sizes": "192x192",
       "type": "image/png"
     },
     {
-      "src": "icon-512x512.png",
+      "src": "icons/i512x512.png",
       "sizes": "512x512",
       "type": "image/png"
     }
-  ]
+  ],
+  "screenshots": [
+    {
+      "src": "screenshots/login.png",
+      "sizes": "480x854",
+      "type": "image/png",
+      "label": "Login page"
+    },
+    {
+      "src": "screenshots/service.png",
+      "sizes": "480x854",
+      "type": "image/png",
+      "label": "Details of the service"
+    }
+  ],
+  "edge_side_panel": {
+    "default_icon": "icons/i192x192.png",
+    "default_title": "Passcryptum",
+    "default_panel_width": 300
+  }
 }

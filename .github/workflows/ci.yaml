@@ -76,7 +76,7 @@ jobs:
       - name: Build 🏗️
         run: npm run build
 
-      - name: Copy HTML file to root
+      - name: Copy HTML file to root ©️
         run: cp dist/index.html passcryptum.html
 
       - name: Calculate hash 🧮

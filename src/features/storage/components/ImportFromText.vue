@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import { saveData, readData } from '#/core'
+import { readData } from '#/core'
 import { BookOutline, ClipboardOutline } from '@vicons/ionicons5'
+import { parse, checkForEmptiness, ServicesConfig } from '#/services'
 import { NH4, NIcon, NInput, NSpace, useMessage, useLoadingBar } from 'naive-ui'
-import { parse, stringify, checkForEmptiness, ServicesConfig } from '#/services'
 
 import { FormSubmit } from '@/shared'
 import { importServices, isCalculationInProgress } from '@/entities/session'
@@ -12,14 +12,11 @@ const message = useMessage()
 const servicesString = ref('')
 const loadingBar = useLoadingBar()
 
-const setServices = (config: ServicesConfig) => {
-  importServices(config)
-  requestAnimationFrame(() => loadingBar.finish())
-
-  saveData(stringify(config)).then(() => {
+const setServices = (config: ServicesConfig) =>
+  importServices(config).then(() => {
+    requestAnimationFrame(() => loadingBar.finish())
     message.success('Services have been imported')
   })
-}
 
 const onSubmit = async () => {
   const { value } = servicesString
@@ -44,14 +41,12 @@ const onSubmit = async () => {
       return
     }
 
-    setServices(decryptedConfig)
+    await setServices(decryptedConfig)
+  } else {
+    await setServices(configAsIs)
 
-    return
+    isCalculationInProgress.value = false
   }
-
-  setServices(configAsIs)
-
-  isCalculationInProgress.value = false
 }
 </script>
 
