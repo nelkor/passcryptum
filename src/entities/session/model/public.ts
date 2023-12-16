@@ -38,6 +38,8 @@ export const importServices = (newServices: ServicesConfig) => {
     privateServices.value,
     newServices
   )
+
+  return saveServices()
 }
 
 export const areServicesEmpty = computed(() =>
