@@ -1,6 +1,14 @@
-const CACHE_VERSION = 'v2.1.2'
+const CACHE_VERSION = 'v2.1.3'
 const ROOT_PATH = 'https://passcryptum.com/'
-const files = ['manifest.json', 'icon-192x192.png', 'icon-512x512.png']
+
+const files = [
+  'manifest.json',
+  'icons/favicon.svg',
+  'icons/i192x192.png',
+  'icons/i512x512.png',
+  'screenshots/login.png',
+  'screenshots/service.png',
+]
 
 /** @type {string[]} */
 const urls = [ROOT_PATH, ...files.map(file => ROOT_PATH + file)]
