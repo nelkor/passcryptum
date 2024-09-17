@@ -19,7 +19,7 @@ const decompressLogins = (logins: CompressedLogins): LoginData[] =>
 
 const decompressServiceData = (
   name: string,
-  data: CompressedServiceData
+  data: CompressedServiceData,
 ): ServiceData => {
   const options = Array.isArray(data) ? data[0] : 5
   const logins = Array.isArray(data) ? data[1] : data
@@ -45,9 +45,11 @@ const decompressServiceData = (
 export const parse = (data: string | null): ServicesConfig => {
   try {
     return Object.entries(JSON.parse(data as string) as CompressedConfig).map(
-      ([name, data]) => decompressServiceData(name, data)
+      ([name, data]) => decompressServiceData(name, data),
     )
   } catch (e) {
+    void e
+
     return []
   }
 }

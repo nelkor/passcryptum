@@ -48,14 +48,14 @@ const startSession = async (buffer: ArrayBuffer): Promise<StarterKit> => {
 }
 
 export const enterWithOriginPassword = async (
-  password: string
+  password: string,
 ): Promise<StarterKit> =>
   startSession(
     await pbkdf2(
       getBufferOfText(password),
       ORIGIN_BUFFER_BYTE_LENGTH,
-      ORIGIN_BUFFER_ITERATIONS
-    )
+      ORIGIN_BUFFER_ITERATIONS,
+    ),
   )
 
 export const enterWithPin = async (pin: string): Promise<StarterKit> => {

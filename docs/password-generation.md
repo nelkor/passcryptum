@@ -50,8 +50,8 @@ Promise.all([
         iterations: 262144,
       },
       key,
-      1024
-    )
+      1024,
+    ),
   )
   .then(result => {
     window.keyBufferFromOriginPassword = result
@@ -111,8 +111,8 @@ Promise.all([
         iterations: 16,
       },
       key,
-      512
-    )
+      512,
+    ),
   )
   .then(result => {
     window.passwordEntropyBuffer = result

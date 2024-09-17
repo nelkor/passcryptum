@@ -16,14 +16,14 @@ export const createPassword = async (
   login: string,
   version: number,
   useSymbols: boolean,
-  length: number
+  length: number,
 ) => {
   const paramsString = [login, length, version, useSymbols, serviceName].join()
 
   const buffer = await pbkdf2(
     concatBuffers(entropy, getBufferOfText(paramsString)),
     PASSWORD_BUFFER_BYTE_LENGTH,
-    PASSWORD_BUFFER_ITERATIONS
+    PASSWORD_BUFFER_ITERATIONS,
   )
 
   return formatPassword(buffer, length, getCharset(useSymbols))

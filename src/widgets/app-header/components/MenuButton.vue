@@ -67,7 +67,7 @@ const options = computed(() => [
           target: '_blank',
           rel: 'noopener noreferrer',
         },
-        'GitHub'
+        'GitHub',
       ),
     icon: renderIcon(LogoGithub),
   },

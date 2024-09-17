@@ -17,11 +17,11 @@ describe('Merge configurations', () => {
 
   it('should merge configurations', () => {
     expect(
-      mergeConfigurations(firstOriginalConfig, firstImportedConfig)
+      mergeConfigurations(firstOriginalConfig, firstImportedConfig),
     ).toEqual(firstResultConfig)
 
     expect(
-      mergeConfigurations(secondOriginalConfig, secondImportedConfig)
+      mergeConfigurations(secondOriginalConfig, secondImportedConfig),
     ).toEqual(secondResultConfig)
   })
 })

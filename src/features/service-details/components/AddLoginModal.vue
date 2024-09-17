@@ -12,7 +12,7 @@ const loginName = ref('')
 const loadingBar = useLoadingBar()
 
 const loginAlreadyExists = computed(() =>
-  service.logins.some(({ name }) => loginName.value.trim() === name)
+  service.logins.some(({ name }) => loginName.value.trim() === name),
 )
 
 const clearForm = () => {

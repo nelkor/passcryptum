@@ -21,7 +21,7 @@ Starting the session, the Passcryptum core client receives the session ID
 
 ```typescript
 declare const enterWithOriginPassword: (
-  password: string
+  password: string,
 ) => Promise<{ id: string; data: string | null }>
 ```
 
@@ -33,7 +33,7 @@ Slow cryptography is used, calculation may take some time.
 
 ```typescript
 declare const enterWithPin: (
-  pin: string
+  pin: string,
 ) => Promise<{ id: string; data: string | null }>
 ```
 
@@ -141,7 +141,7 @@ declare const generatePassword: (
   login: string,
   version: number,
   useSymbols: boolean,
-  length: number
+  length: number,
 ) => Promise<string>
 ```
 

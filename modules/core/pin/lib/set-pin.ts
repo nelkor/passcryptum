@@ -9,6 +9,6 @@ export const setPin = async (pin: string) => {
 
   localStorage.setItem(
     LS_KEY_PIN,
-    stringifyBuffer(await encrypt(iv, key, originBuffer))
+    stringifyBuffer(await encrypt(iv, key, originBuffer)),
   )
 }

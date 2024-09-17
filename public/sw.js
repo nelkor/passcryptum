@@ -24,7 +24,7 @@ addEventListener('activate', event => {
       .keys()
       .then(keys => Promise.all(keys.map(key => caches.delete(key))))
       .then(() => caches.open(CACHE_VERSION))
-      .then(cache => cache.addAll(urls))
+      .then(cache => cache.addAll(urls)),
   )
 })
 
@@ -52,8 +52,8 @@ addEventListener('fetch', event => {
             new Response(null, {
               status: 503,
               statusText: 'Service Unavailable',
-            })
+            }),
         )
-    })
+    }),
   )
 })

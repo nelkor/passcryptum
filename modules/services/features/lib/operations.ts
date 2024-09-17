@@ -21,7 +21,7 @@ export const checkForEmptiness = (config: ServicesConfig) => !config.length
 export const add = (
   config: ServicesConfig,
   serviceName: string,
-  loginName = ''
+  loginName = '',
 ) => {
   if (!serviceName) {
     throw new Error('The name of a new service can not be empty')
@@ -51,7 +51,7 @@ export const updateVersionOfLogin = (
   config: ServicesConfig,
   serviceName: string,
   loginName: string,
-  version: number
+  version: number,
 ) => {
   const service = getExistingService(config, serviceName)
   const login = service.logins.find(({ name }) => name === loginName)
@@ -70,7 +70,7 @@ export const deleteService = (config: ServicesConfig, name: string) => {
 export const deleteLogin = (
   config: ServicesConfig,
   serviceName: string,
-  loginName: string
+  loginName: string,
 ) => {
   const service = getExistingService(config, serviceName)
   const index = service.logins.findIndex(({ name }) => name === loginName)
@@ -84,7 +84,7 @@ export const updateServicePreferences = (
   config: ServicesConfig,
   name: string,
   passwordLengthIndex: number,
-  useSpecialCharacters: boolean
+  useSpecialCharacters: boolean,
 ) => {
   if (!isValidPasswordLengthIndex(passwordLengthIndex)) {
     throw new Error('Invalid password length index')

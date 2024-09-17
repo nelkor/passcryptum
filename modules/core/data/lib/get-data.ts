@@ -6,6 +6,8 @@ const tryParseHex = (data: string) => {
   try {
     return parseHexToBuffer(data)
   } catch (e) {
+    void e
+
     return null
   }
 }

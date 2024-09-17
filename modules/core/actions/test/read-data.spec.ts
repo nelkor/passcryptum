@@ -19,8 +19,8 @@ describe('Read data', () => {
       await readDataByKey(
         'd0cdf4785ae54db0a07f291b89f54760',
         hash.slice(32),
-        await createAesKey(hash.slice(0, 32))
-      )
+        await createAesKey(hash.slice(0, 32)),
+      ),
     ).toBe('important data')
   })
 
@@ -34,8 +34,8 @@ describe('Read data', () => {
           56658, 56141, 40275, 43640, 63728, 17797,
         ]).buffer,
         hash.slice(32),
-        await createAesKey(hash.slice(0, 32))
-      )
+        await createAesKey(hash.slice(0, 32)),
+      ),
     ).toBe('significant data')
   })
 

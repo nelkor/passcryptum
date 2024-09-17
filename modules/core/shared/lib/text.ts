@@ -17,7 +17,7 @@ export const parseHexToBuffer = (hex: string) => {
       }
 
       return number
-    }
+    },
   )
 
   return new Uint8Array(numbers).buffer

@@ -6,6 +6,6 @@ export const saveData = async (data: string) => {
 
   localStorage.setItem(
     lsKey,
-    stringifyBuffer(await encrypt(iv, cryptoKey, getBufferOfText(data)))
+    stringifyBuffer(await encrypt(iv, cryptoKey, getBufferOfText(data))),
   )
 }

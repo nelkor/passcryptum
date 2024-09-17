@@ -15,7 +15,7 @@ export const useDeletePin = () => {
 
   return {
     isDeletePinDisabled: computed(
-      () => !isPinSet.value || isCalculationInProgress.value
+      () => !isPinSet.value || isCalculationInProgress.value,
     ),
     deletePin() {
       dialog.warning({

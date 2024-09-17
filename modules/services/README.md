@@ -55,7 +55,7 @@ List of the password length variants, read-only.
 ```typescript
 declare const mergeConfigurations: (
   basis: ServicesConfig,
-  added: ServicesConfig
+  added: ServicesConfig,
 ) => ServicesConfig
 ```
 
@@ -77,7 +77,7 @@ Procedures return nothing, changes are applied to the passed configuration.
 declare const add: (
   config: ServicesConfig,
   serviceName: string,
-  loginName = ''
+  loginName = '',
 ) => void
 ```
 
@@ -93,7 +93,7 @@ If `serviceName` already exists, `loginName` will be added to it.
 declare const deleteLogin: (
   config: ServicesConfig,
   serviceName: string,
-  loginName: string
+  loginName: string,
 ) => void
 ```
 
@@ -118,7 +118,7 @@ declare const updateVersionOfLogin: (
   config: ServicesConfig,
   serviceName: string,
   loginName: string,
-  version: number
+  version: number,
 ) => void
 ```
 
@@ -133,7 +133,7 @@ declare const updateServicePreferences: (
   config: ServicesConfig,
   name: string,
   passwordLengthIndex: number,
-  useSpecialCharacters: boolean
+  useSpecialCharacters: boolean,
 ) => void
 ```
 

@@ -5,7 +5,7 @@ import { writeToClipboard } from '@/shared'
 
 export const writePasswordToClipboard = (
   service: ServiceData,
-  login: LoginData
+  login: LoginData,
 ) => {
   writeToClipboard(
     generatePassword(
@@ -13,7 +13,7 @@ export const writePasswordToClipboard = (
       login.name,
       login.version,
       service.useSpecialCharacters,
-      passwordLengthVariants[service.passwordLengthIndex]
-    )
+      passwordLengthVariants[service.passwordLengthIndex],
+    ),
   )
 }
