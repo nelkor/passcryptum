@@ -21,6 +21,8 @@ export const enterByPin = async (pin: string) => {
 
     initSession(id, data)
   } catch (e) {
+    void e
+
     isCalculationInProgress.value = false
 
     throw new Error('Wrong PIN')

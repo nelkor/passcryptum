@@ -36,12 +36,12 @@ const mergeLogins = (basis: LoginData[], added: LoginData[]): LoginData[] => {
 
 export const mergeConfigurations = (
   basis: ServicesConfig,
-  added: ServicesConfig
+  added: ServicesConfig,
 ): ServicesConfig => {
   const newServices: ServicesConfig = []
 
   const basisServices = new Map(
-    basis.map(service => [service.name, copyService(service)])
+    basis.map(service => [service.name, copyService(service)]),
   )
 
   added.forEach(addedService => {

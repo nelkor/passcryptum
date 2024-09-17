@@ -8,14 +8,14 @@ export const servicesCount = computed(() => privateServices.value.length)
 export const selectedServiceName = ref<string | null>(null)
 
 export const isServiceSelected = computed(() =>
-  Boolean(selectedServiceName.value)
+  Boolean(selectedServiceName.value),
 )
 
 export const selectedService = computed(
   () =>
     privateServices.value.find(
-      ({ name }) => name === selectedServiceName.value
-    ) as ServiceData
+      ({ name }) => name === selectedServiceName.value,
+    ) as ServiceData,
 )
 
 export const clearSelectedService = () => (selectedServiceName.value = null)
@@ -27,7 +27,7 @@ export const servicesOptions = computed(() =>
     .map(name => ({
       label: name,
       value: name,
-    }))
+    })),
 )
 
 watch(
@@ -39,5 +39,5 @@ watch(
       selectedServiceName.value = null
     }
   },
-  { immediate: true }
+  { immediate: true },
 )

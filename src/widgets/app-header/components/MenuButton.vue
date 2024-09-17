@@ -67,15 +67,19 @@ const options = computed(() => [
           target: '_blank',
           rel: 'noopener noreferrer',
         },
-        'GitHub'
+        'GitHub',
       ),
     icon: renderIcon(LogoGithub),
   },
-  {
-    key: 'signOut',
-    label: 'Sign out',
-    icon: renderIcon(LogOutOutline),
-  },
+  ...(props.isEntered
+    ? [
+        {
+          key: 'signOut',
+          label: 'Sign out',
+          icon: renderIcon(LogOutOutline),
+        },
+      ]
+    : []),
 ])
 
 const handleSelect = (key: string) => {

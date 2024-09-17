@@ -34,5 +34,5 @@ export const stringify = (config: ServicesConfig) =>
       acc[cur.name] = compressServiceData(cur)
 
       return acc
-    }, {})
+    }, {}),
   )

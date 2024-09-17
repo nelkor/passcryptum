@@ -16,15 +16,15 @@ describe('Create password', () => {
     const entropy = await pbkdf2(getBufferOfText('passcryptum'), 72, 8)
 
     expect(
-      await createPassword(entropy, 'github.com', 'nelkor', 1, true, 20)
+      await createPassword(entropy, 'github.com', 'nelkor', 1, true, 20),
     ).toBe('|"$eAl9)"vxiOEm%$([.')
 
     expect(
-      await createPassword(entropy, 'figma.com', 'vladislav', 1, false, 8)
+      await createPassword(entropy, 'figma.com', 'vladislav', 1, false, 8),
     ).toBe('f3K9vH2W')
 
     expect(
-      await createPassword(entropy, 'vk.com', 'farina', 11, true, 32)
+      await createPassword(entropy, 'vk.com', 'farina', 11, true, 32),
     ).toBe('p`-mg[#z3Q%QU0|PxZi)&1FbbByQ58iq')
   })
 })

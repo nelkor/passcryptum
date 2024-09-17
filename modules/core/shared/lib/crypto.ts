@@ -1,7 +1,7 @@
 export const pbkdf2 = async (
   buffer: ArrayBuffer,
   bytesLength: number,
-  iterations: number
+  iterations: number,
 ) => {
   const [key, salt] = await Promise.all([
     crypto.subtle.importKey('raw', buffer, 'PBKDF2', false, ['deriveBits']),
@@ -16,7 +16,7 @@ export const pbkdf2 = async (
       iterations,
     },
     key,
-    bytesLength * 8
+    bytesLength * 8,
   )
 }
 

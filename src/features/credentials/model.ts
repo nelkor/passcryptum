@@ -11,7 +11,7 @@ export const isCredentialsModalShown = ref(false)
 
 export const showCredentialsModal = (
   service: ServiceData,
-  isPassword: boolean
+  isPassword: boolean,
 ) => {
   serviceToCopy = service
   isCopyPassword = isPassword

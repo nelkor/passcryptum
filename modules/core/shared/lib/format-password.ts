@@ -1,7 +1,7 @@
 export const formatPassword = (
   buffer: ArrayBuffer,
   length: number,
-  charset: string[]
+  charset: string[],
 ) => {
   if (length < charset.length) {
     throw new Error('Password length is less than charset length')

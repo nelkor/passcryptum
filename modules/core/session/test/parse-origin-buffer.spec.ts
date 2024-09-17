@@ -14,7 +14,7 @@ describe('Parse origin buffer', () => {
 
   it('should parse buffer', async () => {
     const { id, lsKey, iv, entropy } = parseOriginBuffer(
-      await pbkdf2(getBufferOfText('very good password'), 128, 16)
+      await pbkdf2(getBufferOfText('very good password'), 128, 16),
     )
 
     expect(id).toBe('WONT')
@@ -27,7 +27,7 @@ describe('Parse origin buffer', () => {
         '05853689a89824b8228c9a34ac84267ca35e',
         '31d8d3cfd57c7c56754e7704c68394ef06d8',
         'cec66e0443a0672ec6882f5afdc26fbd6533',
-      ].join('')
+      ].join(''),
     )
   })
 })

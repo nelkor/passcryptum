@@ -11,7 +11,7 @@ export const useChangeTheme = () => {
   const loadingBar = useLoadingBar()
 
   const themeName = computed(() =>
-    isDarkTheme.value ? themeVariants.light : themeVariants.dark
+    isDarkTheme.value ? themeVariants.light : themeVariants.dark,
   )
 
   const changeTheme = () => {

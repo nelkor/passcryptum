@@ -7,7 +7,7 @@ const lsTheme = localStorage.getItem(lsKey)
 const isLsDarkTheme = lsTheme === themeVariants.dark
 
 export const isDarkTheme = ref(
-  lsTheme ? isLsDarkTheme : useOsTheme().value === 'dark'
+  lsTheme ? isLsDarkTheme : useOsTheme().value === 'dark',
 )
 
 export const theme = computed(() => (isDarkTheme.value ? darkTheme : null))

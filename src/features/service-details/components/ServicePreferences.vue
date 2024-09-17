@@ -16,7 +16,7 @@ watch(
     const lengthIndex = passwordLengthVariants.indexOf(length)
 
     setServicePreferences(service.name, lengthIndex, useSpecialCharacters)
-  }
+  },
 )
 </script>
 

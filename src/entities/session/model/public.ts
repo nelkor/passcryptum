@@ -36,14 +36,14 @@ export const addServiceAndLogin = (serviceName: string, loginName: string) => {
 export const importServices = (newServices: ServicesConfig) => {
   privateServices.value = mergeConfigurations(
     privateServices.value,
-    newServices
+    newServices,
   )
 
   return saveServices()
 }
 
 export const areServicesEmpty = computed(() =>
-  checkForEmptiness(privateServices.value)
+  checkForEmptiness(privateServices.value),
 )
 
 export const clearServices = () => {
@@ -55,13 +55,13 @@ export const clearServices = () => {
 export const setServicePreferences = (
   name: string,
   passwordLengthIndex: number,
-  useSpecialCharacters: boolean
+  useSpecialCharacters: boolean,
 ) => {
   updateServicePreferences(
     privateServices.value,
     name,
     passwordLengthIndex,
-    useSpecialCharacters
+    useSpecialCharacters,
   )
 
   return saveServices()
@@ -82,7 +82,7 @@ export const rmLogin = (serviceName: string, loginName: string) => {
 export const setVersionOfLogin = (
   serviceName: string,
   loginName: string,
-  version: number
+  version: number,
 ) => {
   updateVersionOfLogin(privateServices.value, serviceName, loginName, version)
 

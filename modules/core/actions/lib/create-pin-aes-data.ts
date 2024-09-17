@@ -10,7 +10,7 @@ export const createPinAesData = async (pin: string) => {
   const buffer = await pbkdf2(
     getBufferOfText([pin, getFingerprint()].join()),
     PIN_BUFFER_BYTE_LENGTH,
-    PIN_BUFFER_ITERATIONS
+    PIN_BUFFER_ITERATIONS,
   )
 
   return {

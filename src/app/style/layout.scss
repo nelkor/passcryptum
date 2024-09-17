@@ -1,7 +1,7 @@
 @import '@/shared/breakpoints';
 
 .app-layout-content {
-  height: calc(var(--vh) * 100 - var(--header-height));
+  height: calc(var(--vh) * 100 - var(--header-height) - 1px);
 }
 
 .page-wrapper {

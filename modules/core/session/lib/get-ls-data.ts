@@ -3,7 +3,7 @@ import { readDataByKey } from '../../actions'
 export const getLsData = async (
   lsKey: string,
   iv: ArrayBuffer,
-  key: CryptoKey
+  key: CryptoKey,
 ) => {
   const lsData = localStorage.getItem(lsKey)
 

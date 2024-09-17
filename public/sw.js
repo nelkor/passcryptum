@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'v2.1.3'
+const CACHE_VERSION = 'v2.1.4'
 const ROOT_PATH = 'https://passcryptum.com/'
 
 const files = [
@@ -10,7 +10,6 @@ const files = [
   'screenshots/service.png',
 ]
 
-/** @type {string[]} */
 const urls = [ROOT_PATH, ...files.map(file => ROOT_PATH + file)]
 
 addEventListener('install', () => {
@@ -25,7 +24,7 @@ addEventListener('activate', event => {
       .keys()
       .then(keys => Promise.all(keys.map(key => caches.delete(key))))
       .then(() => caches.open(CACHE_VERSION))
-      .then(cache => cache.addAll(urls))
+      .then(cache => cache.addAll(urls)),
   )
 })
 
@@ -53,8 +52,8 @@ addEventListener('fetch', event => {
             new Response(null, {
               status: 503,
               statusText: 'Service Unavailable',
-            })
+            }),
         )
-    })
+    }),
   )
 })

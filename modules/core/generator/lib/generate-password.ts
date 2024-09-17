@@ -6,7 +6,7 @@ export const generatePassword = (
   login: string,
   version: number,
   useSymbols: boolean,
-  length: number
+  length: number,
 ) => {
   const { entropy } = getSession()
 
@@ -16,6 +16,6 @@ export const generatePassword = (
     login,
     version,
     useSymbols,
-    length
+    length,
   )
 }
