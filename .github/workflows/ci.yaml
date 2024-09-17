@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout 🛎
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Install 👨🏻‍💻
         run: npm i
@@ -36,7 +36,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout 🛎
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Install 👨🏻‍💻
         run: npm i
@@ -50,7 +50,7 @@ jobs:
     timeout-minutes: 5
     steps:
       - name: Checkout 🛎
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Install 👨🏻‍💻
         run: npm i
@@ -63,10 +63,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout 🛎
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Set up NodeJS 🚉
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v4
         with:
           node-version: 18
 
@@ -83,7 +83,7 @@ jobs:
         run: sha256sum passcryptum.html > sha256sum.txt
 
       - name: Publish artifacts 📢
-        uses: actions/upload-artifact@v2
+        uses: actions/upload-artifact@v4
         with:
           name: build-artifacts
           path: |
