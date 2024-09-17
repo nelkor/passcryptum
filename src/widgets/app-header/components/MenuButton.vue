@@ -71,11 +71,15 @@ const options = computed(() => [
       ),
     icon: renderIcon(LogoGithub),
   },
-  {
-    key: 'signOut',
-    label: 'Sign out',
-    icon: renderIcon(LogOutOutline),
-  },
+  ...(props.isEntered
+    ? [
+        {
+          key: 'signOut',
+          label: 'Sign out',
+          icon: renderIcon(LogOutOutline),
+        },
+      ]
+    : []),
 ])
 
 const handleSelect = (key: string) => {

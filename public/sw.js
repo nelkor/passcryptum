@@ -1,4 +1,4 @@
-const CACHE_VERSION = 'v2.1.3'
+const CACHE_VERSION = 'v2.1.4'
 const ROOT_PATH = 'https://passcryptum.com/'
 
 const files = [
@@ -10,7 +10,6 @@ const files = [
   'screenshots/service.png',
 ]
 
-/** @type {string[]} */
 const urls = [ROOT_PATH, ...files.map(file => ROOT_PATH + file)]
 
 addEventListener('install', () => {
