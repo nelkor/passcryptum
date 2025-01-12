@@ -8,6 +8,9 @@ import DownloadFile from './DownloadFile.vue'
 import DeleteServices from './DeleteServices.vue'
 import ImportFromText from './ImportFromText.vue'
 import CopyWithoutEncryption from './CopyWithoutEncryption.vue'
+import UploadServicesToServer from './UploadServicesToServer.vue'
+import DeleteServicesFromServer from './DeleteServicesFromServer.vue'
+import DownloadServicesFromServer from './DownloadServicesFromServer.vue'
 </script>
 
 <template>
@@ -18,6 +21,14 @@ import CopyWithoutEncryption from './CopyWithoutEncryption.vue'
       <FileImport />
       <NDivider />
       <ImportFromText />
+      <NDivider />
+      <NH4>API actions</NH4>
+
+      <NSpace vertical size="large">
+        <DeleteServicesFromServer />
+        <DownloadServicesFromServer />
+        <UploadServicesToServer />
+      </NSpace>
       <NDivider />
       <NH4>Export services</NH4>
 

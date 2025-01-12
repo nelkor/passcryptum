@@ -7,8 +7,25 @@ export {
   getDataDecrypted,
 } from './data'
 
+export {
+  decryptData,
+  encryptData,
+  createSignature,
+  getKeyPairFromSeed,
+  base64ToUint8Array,
+  uint8ArrayToBase64,
+  generateTimestampBytes,
+} from './shared'
+
+export { API_URL } from './constants'
+
 export { generatePassword } from './generator'
 
 export { setPin, deletePin, isTherePin } from './pin'
 
-export { exit, enterWithPin, enterWithOriginPassword } from './session'
+export {
+  exit,
+  getSession,
+  enterWithPin,
+  enterWithOriginPassword,
+} from './session'
