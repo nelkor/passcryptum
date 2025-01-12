@@ -4,7 +4,7 @@ export const PIN_BUFFER_BYTE_LENGTH = 48
 
 export const PIN_BUFFER_ITERATIONS = 2 ** 19
 
-export const ORIGIN_BUFFER_BYTE_LENGTH = 128
+export const ORIGIN_BUFFER_BYTE_LENGTH = 256
 
 export const ORIGIN_BUFFER_ITERATIONS = 2 ** 18
 

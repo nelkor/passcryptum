@@ -1,9 +1,12 @@
 export interface ActiveSession {
-  originBuffer: ArrayBuffer
+  iv: ArrayBuffer
   lsKey: string
   entropy: ArrayBuffer
-  iv: ArrayBuffer
   cryptoKey: CryptoKey
+  keyPairSeed: Uint8Array
+  secretBoxIv: Uint8Array
+  secretBoxKey: Uint8Array
+  originBuffer: ArrayBuffer
 }
 
 export interface StarterKit {

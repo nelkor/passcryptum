@@ -26,10 +26,25 @@ export const getSession = () => {
 
 const startSession = async (buffer: ArrayBuffer): Promise<StarterKit> => {
   if (buffer.byteLength !== ORIGIN_BUFFER_BYTE_LENGTH) {
-    throw new Error('The origin buffer must be 128 bytes long')
+    throw new Error('The origin buffer must be 256 bytes long')
   }
 
-  const { id, iv, lsKey, entropy, cryptoKeyBuffer } = parseOriginBuffer(buffer)
+  const {
+    id,
+    iv,
+    lsKey,
+    entropy,
+    keyPairSeedBuffer,
+    secretBoxIvBuffer,
+    secretBoxKeyBuffer,
+    cryptoKeyBuffer,
+  } = parseOriginBuffer(buffer)
+
+  const keyPairSeed = new Uint8Array(keyPairSeedBuffer)
+
+  const secretBoxIv = new Uint8Array(secretBoxIvBuffer)
+
+  const secretBoxKey = new Uint8Array(secretBoxKeyBuffer)
 
   const cryptoKey = await createAesKey(cryptoKeyBuffer)
 
@@ -38,6 +53,9 @@ const startSession = async (buffer: ArrayBuffer): Promise<StarterKit> => {
     lsKey,
     entropy,
     cryptoKey,
+    keyPairSeed,
+    secretBoxIv,
+    secretBoxKey,
     originBuffer: buffer,
   }
 

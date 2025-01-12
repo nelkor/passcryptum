@@ -1,7 +1,7 @@
 import { LS_KEY_PIN } from '../../constants'
 
 const validateEncryptedHash = (pin: string) =>
-  pin.length === 288 && /^[0123456789abcdef]+$/.test(pin)
+  pin.length === 544 && /^[0123456789abcdef]+$/.test(pin)
 
 export const getEncryptedHash = () => {
   const hash = localStorage.getItem(LS_KEY_PIN)
