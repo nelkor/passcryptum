@@ -42,7 +42,11 @@ const onClick = () => {
         const { secretKey, publicKey } = getKeyPairFromSeed(keyPairSeed)
 
         // Шифруем данные
-        const encryptedServices = encryptData(services, secretBoxIv, secretBoxKey)
+        const encryptedServices = encryptData(
+          services,
+          secretBoxIv,
+          secretBoxKey,
+        )
 
         // Генерируем метку времени
         const timestampBytes = generateTimestampBytes()
@@ -59,19 +63,25 @@ const onClick = () => {
         const signature = createSignature(combinedData, secretKey)
 
         // Формируем окончательный массив
-        const finalPayload = new Uint8Array(signature.length + combinedData.length)
+        const finalPayload = new Uint8Array(
+          signature.length + combinedData.length,
+        )
 
         finalPayload.set(signature)
         finalPayload.set(combinedData, signature.length)
 
         // Делаем POST-запрос
-        const response = await axios.post('http://127.0.0.1:8000/api/userservices/', uint8ArrayToBase64(finalPayload), {
-          headers: {
-            'Content-Type': 'application/json',
-            'Public-Key': uint8ArrayToBase64(publicKey),
+        const response = await axios.post(
+          'http://127.0.0.1:8000/api/userservices/',
+          uint8ArrayToBase64(finalPayload),
+          {
+            headers: {
+              'Content-Type': 'application/json',
+              'Public-Key': uint8ArrayToBase64(publicKey),
+            },
           },
-        })
-        
+        )
+
         // Проверяем успешность ответа
         if (response.status === 200) {
           message.success('Services have been uploaded to server successfully')
@@ -79,8 +89,14 @@ const onClick = () => {
           throw new Error('Unexpected response status')
         }
       } catch (error) {
-        if (error.message === 'Request failed with status code 403') {
-          message.error('Public key not found. Please contact the administrator to register your public key')
+        if (error instanceof Error) {
+          if (error.message === 'Request failed with status code 403') {
+            message.error(
+              'Public key not found. Please contact the administrator to register your public key',
+            )
+          }
+        } else {
+          console.error('An unknown error occurred:', error)
         }
       } finally {
         loadingBar.finish()

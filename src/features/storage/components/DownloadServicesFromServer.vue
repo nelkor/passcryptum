@@ -32,14 +32,17 @@ const onClick = async () => {
     const signature = createSignature(timestampBytes, secretKey)
 
     // Делаем GET-запрос
-    const response = await axios.get('http://127.0.0.1:8000/api/userservices/', {
-      headers: {
-        'Content-Type': 'application/json',
-        'Public-Key': uint8ArrayToBase64(publicKey),
-        'Timestamp': uint8ArrayToBase64(timestampBytes),
-        'Signature': uint8ArrayToBase64(signature),
+    const response = await axios.get(
+      'http://127.0.0.1:8000/api/userservices/',
+      {
+        headers: {
+          'Content-Type': 'application/json',
+          'Public-Key': uint8ArrayToBase64(publicKey),
+          'Timestamp': uint8ArrayToBase64(timestampBytes),
+          'Signature': uint8ArrayToBase64(signature),
+        },
       },
-    })
+    )
 
     // Проверяем успешность ответа
     if (response.status === 200) {
@@ -75,8 +78,14 @@ const onClick = async () => {
       throw new Error('Unexpected response status')
     }
   } catch (error) {
-    if (error.message === 'Request failed with status code 403') {
-      message.error('Public key not found. Please contact the administrator to register your public key')
+    if (error instanceof Error) {
+      if (error.message === 'Request failed with status code 403') {
+        message.error(
+          'Public key not found. Please contact the administrator to register your public key',
+        )
+      }
+    } else {
+      console.error('An unknown error occurred:', error)
     }
   } finally {
     loadingBar.finish()

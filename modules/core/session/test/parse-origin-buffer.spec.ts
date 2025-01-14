@@ -3,7 +3,8 @@ import { webcrypto } from 'crypto'
 import { describe, it, expect } from 'vitest'
 
 import { parseOriginBuffer } from '../lib/parse-origin-buffer'
-import { pbkdf2, getBufferOfText, stringifyBuffer } from '../../shared'
+// import { pbkdf2, getBufferOfText, stringifyBuffer } from '../../shared'
+import { pbkdf2, getBufferOfText } from '../../shared'
 
 Object.defineProperty(global, 'crypto', { value: webcrypto })
 
@@ -13,7 +14,8 @@ describe('Parse origin buffer', () => {
   })
 
   it('should parse buffer', async () => {
-    const { id, lsKey, iv, entropy } = parseOriginBuffer(
+    // const { id, lsKey, iv, entropy } = parseOriginBuffer(
+    const { id, lsKey } = parseOriginBuffer(
       await pbkdf2(getBufferOfText('very good password'), 128, 16),
     )
 

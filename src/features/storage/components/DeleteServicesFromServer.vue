@@ -33,26 +33,37 @@ const onClick = () => {
         const signature = createSignature(timestampBytes, secretKey)
 
         // Делаем DELETE-запрос
-        const response = await axios.delete('http://127.0.0.1:8000/api/userservices/', {
-          headers: {
-            'Content-Type': 'application/json',
-            'Public-Key': uint8ArrayToBase64(publicKey),
-            'Timestamp': uint8ArrayToBase64(timestampBytes),
-            'Signature': uint8ArrayToBase64(signature),
+        const response = await axios.delete(
+          'http://127.0.0.1:8000/api/userservices/',
+          {
+            headers: {
+              'Content-Type': 'application/json',
+              'Public-Key': uint8ArrayToBase64(publicKey),
+              'Timestamp': uint8ArrayToBase64(timestampBytes),
+              'Signature': uint8ArrayToBase64(signature),
+            },
           },
-        })
+        )
 
         // Проверяем успешность ответа
         if (response.status === 200) {
           message.success('All of your services have been deleted from server')
         } else if (response.status === 204) {
-          message.success('All of your services had already been deleted from server')
-        }else {
+          message.success(
+            'All of your services had already been deleted from server',
+          )
+        } else {
           throw new Error('Unexpected response status')
         }
       } catch (error) {
-        if (error.message === 'Request failed with status code 403') {
-          message.error('Public key not found. Please contact the administrator to register your public key')
+        if (error instanceof Error) {
+          if (error.message === 'Request failed with status code 403') {
+            message.error(
+              'Public key not found. Please contact the administrator to register your public key',
+            )
+          }
+        } else {
+          console.error('An unknown error occurred:', error)
         }
       } finally {
         loadingBar.finish()
