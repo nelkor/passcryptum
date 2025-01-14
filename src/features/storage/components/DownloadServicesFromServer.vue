@@ -78,12 +78,13 @@ const onClick = async () => {
       throw new Error('Unexpected response status')
     }
   } catch (error) {
-    if (error instanceof Error) {
-      if (error.message === 'Request failed with status code 403') {
-        message.error(
-          'Public key not found. Please contact the administrator to register your public key',
-        )
-      }
+    if (
+      error instanceof Error &&
+      error.message === 'Request failed with status code 403'
+    ) {
+      message.error(
+        'Public key not found. Please contact the administrator to register your public key',
+      )
     } else {
       console.error('An unknown error occurred:', error)
     }

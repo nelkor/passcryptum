@@ -50,18 +50,19 @@ const onClick = () => {
           message.success('All of your services have been deleted from server')
         } else if (response.status === 204) {
           message.success(
-            'All of your services had already been deleted from server',
+            'All of your services have already been deleted from server',
           )
         } else {
           throw new Error('Unexpected response status')
         }
       } catch (error) {
-        if (error instanceof Error) {
-          if (error.message === 'Request failed with status code 403') {
-            message.error(
-              'Public key not found. Please contact the administrator to register your public key',
-            )
-          }
+        if (
+          error instanceof Error &&
+          error.message === 'Request failed with status code 403'
+        ) {
+          message.error(
+            'Public key not found. Please contact the administrator to register your public key',
+          )
         } else {
           console.error('An unknown error occurred:', error)
         }
