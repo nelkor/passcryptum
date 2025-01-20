@@ -1,7 +1,8 @@
 const encoder = new TextEncoder()
 const decoder = new TextDecoder()
 
-export const getBufferOfText = (text: string) => encoder.encode(text).buffer
+export const getBufferOfText = (text: string) =>
+  encoder.encode(text).buffer as ArrayBuffer
 
 export const getTextFromBuffer = (buffer: ArrayBuffer) => decoder.decode(buffer)
 
