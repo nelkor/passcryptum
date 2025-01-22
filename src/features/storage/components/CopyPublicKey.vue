@@ -1,18 +1,26 @@
 <script setup lang="ts">
 import { getSession, getKeyPairFromSeed, uint8ArrayToBase64 } from '#/core'
 
-import AbstractCopyServices from './AbstractCopyServices.vue'
+import { CopyButton } from '@/shared'
+import { isCalculationInProgress } from '@/entities/session'
 
-const getPublicKey = async (): Promise<string | null> => {
-  const { keyPairSeed } = await getSession()
-  const { publicKey } = await getKeyPairFromSeed(keyPairSeed)
+const getPublicKey = () => {
+  const { keyPairSeed } = getSession()
+  const { publicKey } = getKeyPairFromSeed(keyPairSeed)
 
   return uint8ArrayToBase64(publicKey)
 }
 </script>
 
 <template>
-  <AbstractCopyServices type="primary" :get-data="getPublicKey">
+  <CopyButton
+    strong
+    tertiary
+    size="large"
+    type="primary"
+    :get-content="getPublicKey"
+    :disabled="isCalculationInProgress"
+  >
     Copy public key
-  </AbstractCopyServices>
+  </CopyButton>
 </template>

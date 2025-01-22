@@ -72,7 +72,8 @@ const onClick = () => {
 
         // Делаем POST-запрос
         const response = await axios.post(
-          'http://127.0.0.1:8000/api/userservices/',
+          'https://dev.passcryptum.com/api/userservices/',
+          // 'https://passcryptum.ddns.net/api/userservices/',
           uint8ArrayToBase64(finalPayload),
           {
             headers: {
