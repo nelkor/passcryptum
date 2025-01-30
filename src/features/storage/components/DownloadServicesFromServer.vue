@@ -33,8 +33,7 @@ const onClick = async () => {
 
     // Делаем GET-запрос
     const response = await axios.get(
-      'https://dev.passcryptum.com/api/userservices/',
-      // 'https://passcryptum.ddns.net/api/userservices/',
+      'https://passcryptum.ddns.net/api/profiles/',
       {
         headers: {
           'Content-Type': 'application/json',

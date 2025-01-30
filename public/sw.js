@@ -1,5 +1,6 @@
 const CACHE_VERSION = 'v2.1.4'
-const ROOT_PATH = 'https://passcryptum.com/'
+const ROOT_PATH = 'https://passcryptum.ddns.net/'
+const API_URL = `${ROOT_PATH}api/profiles/`
 
 const files = [
   'manifest.json',
@@ -30,6 +31,20 @@ addEventListener('activate', event => {
 
 addEventListener('fetch', event => {
   const { request } = event
+
+  if (request.url.startsWith(API_URL)) {
+    event.respondWith(
+      fetch(request).catch(
+        () =>
+          new Response(null, {
+            status: 503,
+            statusText: 'Service Unavailable',
+          }),
+      ),
+    )
+
+    return
+  }
 
   event.respondWith(
     caches.match(request).then(fromCache => {

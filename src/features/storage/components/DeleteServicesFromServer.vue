@@ -34,8 +34,7 @@ const onClick = () => {
 
         // Делаем DELETE-запрос
         const response = await axios.delete(
-          'https://dev.passcryptum.com/api/userservices/',
-          // 'https://passcryptum.ddns.net/api/userservices/',
+          'https://passcryptum.ddns.net/api/profiles/',
           {
             headers: {
               'Content-Type': 'application/json',
