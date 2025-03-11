@@ -10,16 +10,27 @@ export {
 export {
   decryptData,
   encryptData,
+  base64ToBuffer,
+  bufferToBase64,
   createSignature,
+  getHashOfString,
+  concatUint8Arrays,
+  generateTimestamp,
   getKeyPairFromSeed,
   base64ToUint8Array,
   uint8ArrayToBase64,
-  generateTimestampBytes,
 } from './shared'
 
 export { generatePassword } from './generator'
 
-export { setPin, deletePin, isTherePin } from './pin'
+export {
+  setOnlinePin,
+  setOfflinePin,
+  deleteOnlinePin,
+  deleteOfflinePin,
+  isThereOnlinePin,
+  isThereOfflinePin,
+} from './pin'
 
 export {
   exit,

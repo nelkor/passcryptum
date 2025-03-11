@@ -1,3 +1,5 @@
 import { ref } from 'vue'
 
-export const showSetPinModal = ref(false)
+export const showSetOnlinePinModal = ref(false)
+
+export const showSetOfflinePinModal = ref(false)

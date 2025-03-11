@@ -7,8 +7,10 @@ import {
   createSignature,
   getKeyPairFromSeed,
   uint8ArrayToBase64,
-  generateTimestampBytes,
+  generateTimestamp,
 } from '#/core'
+
+import { showStorageDrawer } from '../model'
 
 const dialog = useDialog()
 const message = useMessage()
@@ -24,28 +26,25 @@ const onClick = () => {
       loadingBar.start()
 
       try {
-        // Получаем данные сессии
         const { keyPairSeed } = getSession()
         const { secretKey, publicKey } = getKeyPairFromSeed(keyPairSeed)
 
-        // Генерируем timestamp и подпись
-        const timestampBytes = generateTimestampBytes()
-        const signature = createSignature(timestampBytes, secretKey)
+        const timestamp = generateTimestamp()
+        const signature = createSignature(timestamp, secretKey)
 
-        // Делаем DELETE-запрос
         const response = await axios.delete(
           'https://passcryptum.ddns.net/api/profiles/',
+          // 'http://127.0.0.1:8000/api/profiles/',
           {
             headers: {
               'Content-Type': 'application/json',
               'Public-Key': uint8ArrayToBase64(publicKey),
-              'Timestamp': uint8ArrayToBase64(timestampBytes),
+              'Timestamp': uint8ArrayToBase64(timestamp),
               'Signature': uint8ArrayToBase64(signature),
             },
           },
         )
 
-        // Проверяем успешность ответа
         if (response.status === 200) {
           message.success('All of your services have been deleted from server')
         } else if (response.status === 204) {
@@ -68,6 +67,8 @@ const onClick = () => {
         }
       } finally {
         loadingBar.finish()
+
+        showStorageDrawer.value = false
       }
     },
   })

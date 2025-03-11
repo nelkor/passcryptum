@@ -1,8 +1,8 @@
 const CACHE_VERSION = 'v2.1.4'
-const ROOT_PATH = 'https://passcryptum.ddns.net/'
-const API_URL = `${ROOT_PATH}api/profiles/`
-
-const files = [
+const BASE_URL = 'https://passcryptum.ddns.net/'
+const PROFILES_URL = `${BASE_URL}api/profiles/`
+const CREDENTIALS_URL = `${BASE_URL}api/credentials/`
+const FILES_TO_CACHE = [
   'manifest.json',
   'icons/favicon.svg',
   'icons/i192x192.png',
@@ -10,65 +10,88 @@ const files = [
   'screenshots/login.png',
   'screenshots/service.png',
 ]
+const URLS_TO_CACHE = [BASE_URL, ...FILES_TO_CACHE.map(file => `${BASE_URL}${file}`)]
 
-const urls = [ROOT_PATH, ...files.map(file => ROOT_PATH + file)]
+const STATUS_OK = 200
+const STATUS_FORBIDDEN = 403
+const STATUS_SERVICE_UNAVAILABLE = 503
 
-addEventListener('install', () => {
-  void skipWaiting()
+function createErrorResponse(status, statusText) {
+  return new Response(null, { status, statusText })
+}
+
+self.addEventListener('install', event => {
+  event.waitUntil(self.skipWaiting())
 })
 
-addEventListener('activate', event => {
-  void clients.claim()
-
-  event.waitUntil(
-    caches
-      .keys()
-      .then(keys => Promise.all(keys.map(key => caches.delete(key))))
-      .then(() => caches.open(CACHE_VERSION))
-      .then(cache => cache.addAll(urls)),
-  )
+self.addEventListener('activate', event => {
+  event.waitUntil(activateServiceWorker())
 })
 
-addEventListener('fetch', event => {
-  const { request } = event
+self.addEventListener('fetch', event => {
+  event.respondWith(handleFetch(event.request))
+})
 
-  if (request.url.startsWith(API_URL)) {
-    event.respondWith(
-      fetch(request).catch(
-        () =>
-          new Response(null, {
-            status: 503,
-            statusText: 'Service Unavailable',
-          }),
-      ),
-    )
+async function activateServiceWorker() {
+  try {
+    const cacheKeys = await caches.keys()
+    await Promise.all(cacheKeys.map(key => caches.delete(key)))
 
-    return
+    const cache = await caches.open(CACHE_VERSION)
+
+    console.log('Caching URLs:', URLS_TO_CACHE)
+    const cachePromises = URLS_TO_CACHE.map(async url => {
+      try {
+        const response = await fetch(url)
+        if (response.ok) {
+          await cache.put(url, response.clone())
+          console.log(`Cached: ${url}`)
+        } else {
+          console.warn(`Failed to cache ${url}: Status ${response.status}`)
+        }
+      } catch (error) {
+        console.warn(`Failed to fetch ${url}:`, error)
+      }
+    })
+
+    await Promise.all(cachePromises)
+    await self.clients.claim()
+  } catch (error) {
+    console.error('Activation failed:', error)
+    throw error
+  }
+}
+
+async function handleFetch(request) {
+  const url = request.url
+
+  if (url.startsWith(PROFILES_URL) || url.startsWith(CREDENTIALS_URL)) {
+    try {
+      return await fetch(request)
+    } catch (error) {
+      console.warn(`API fetch failed for ${url}:`, error)
+      return createErrorResponse(STATUS_SERVICE_UNAVAILABLE, 'Service Unavailable')
+    }
   }
 
-  event.respondWith(
-    caches.match(request).then(fromCache => {
-      if (fromCache) {
-        return fromCache
-      }
+  try {
+    const cachedResponse = await caches.match(request)
+    if (cachedResponse) {
+      return cachedResponse
+    }
 
-      if (!urls.includes(request.url)) {
-        return new Response(null, { status: 403, statusText: 'Forbidden' })
-      }
+    if (!URLS_TO_CACHE.includes(url)) {
+      return createErrorResponse(STATUS_FORBIDDEN, 'Forbidden')
+    }
 
-      return Promise.all([caches.open(CACHE_VERSION), fetch(request)])
-        .then(([cache, response]) => {
-          cache.put(request, response.clone())
-
-          return response
-        })
-        .catch(
-          () =>
-            new Response(null, {
-              status: 503,
-              statusText: 'Service Unavailable',
-            }),
-        )
-    }),
-  )
-})
+    const cache = await caches.open(CACHE_VERSION)
+    const response = await fetch(request)
+    if (response.status === STATUS_OK) {
+      await cache.put(request, response.clone())
+    }
+    return response
+  } catch (error) {
+    console.warn(`Fetch failed for ${url}:`, error)
+    return createErrorResponse(STATUS_SERVICE_UNAVAILABLE, 'Service Unavailable')
+  }
+}

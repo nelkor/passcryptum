@@ -1,6 +1,8 @@
 import { sign, secretbox } from 'tweetnacl'
 
-export const generateTimestampBytes = (): Uint8Array => {
+import { getBufferOfText } from './text'
+
+export const generateTimestamp = (): Uint8Array => {
   const timestamp = Math.floor(Date.now() / 1000)
   const buffer = new ArrayBuffer(4)
   const view = new DataView(buffer)
@@ -10,20 +12,14 @@ export const generateTimestampBytes = (): Uint8Array => {
   return new Uint8Array(buffer)
 }
 
-export const base64ToUint8Array = (base64: string): Uint8Array => {
-  const binaryString = atob(base64)
-  const { length } = binaryString
-  const uint8Array = new Uint8Array(length)
+export const concatUint8Arrays = (array1: Uint8Array, array2: Uint8Array) => {
+  const tmp = new Uint8Array(array1.length + array2.length)
 
-  for (let i = 0; i < length; i++) {
-    uint8Array[i] = binaryString.charCodeAt(i)
-  }
+  tmp.set(array1, 0)
+  tmp.set(array2, array1.length)
 
-  return uint8Array
+  return tmp
 }
-
-export const uint8ArrayToBase64 = (data: Uint8Array): string =>
-  btoa(String.fromCharCode(...data))
 
 export const createSignature = (
   data: Uint8Array,
@@ -49,3 +45,22 @@ export const getKeyPairFromSeed = (
 
   return { secretKey, publicKey }
 }
+
+export const getHashOfString = async (input: string): Promise<Uint8Array> => {
+  const buffer = getBufferOfText(input)
+  const hashBuffer = await crypto.subtle.digest('SHA-512', buffer)
+
+  return new Uint8Array(hashBuffer)
+}
+
+export const uint8ArrayToBase64 = (uint8Array: Uint8Array): string =>
+  btoa(String.fromCharCode(...uint8Array))
+
+export const base64ToUint8Array = (base64: string): Uint8Array =>
+  Uint8Array.from(atob(base64), c => c.charCodeAt(0))
+
+export const bufferToBase64 = (buffer: ArrayBuffer): string =>
+  uint8ArrayToBase64(new Uint8Array(buffer))
+
+export const base64ToBuffer = (base64: string): ArrayBuffer =>
+  new Uint8Array(base64ToUint8Array(base64)).buffer

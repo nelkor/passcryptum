@@ -1,15 +1,15 @@
-import {
-  decrypt,
-  pbkdf2,
-  createAesKey,
-  getBufferOfText,
-  parseHexToBuffer,
-} from '../../shared'
+import { base64ToBuffer, bufferToBase64 } from '#/core'
+
+import { decrypt, pbkdf2, createAesKey, getBufferOfText } from '../../shared'
 import {
   ORIGIN_BUFFER_ITERATIONS,
   ORIGIN_BUFFER_BYTE_LENGTH,
 } from '../../constants'
-import { getEncryptedHash, createPinAesData } from '../../actions'
+import {
+  getEncryptedHash,
+  getEncryptedOnlineHash,
+  createPinAesData,
+} from '../../actions'
 import { getLsData } from '../lib/get-ls-data'
 import { parseOriginBuffer } from '../lib/parse-origin-buffer'
 import { ActiveSession, StarterKit } from '../types'
@@ -41,11 +41,8 @@ const startSession = async (buffer: ArrayBuffer): Promise<StarterKit> => {
   } = parseOriginBuffer(buffer)
 
   const keyPairSeed = new Uint8Array(keyPairSeedBuffer)
-
   const secretBoxIv = new Uint8Array(secretBoxIvBuffer)
-
   const secretBoxKey = new Uint8Array(secretBoxKeyBuffer)
-
   const cryptoKey = await createAesKey(cryptoKeyBuffer)
 
   session = {
@@ -77,15 +74,21 @@ export const enterWithOriginPassword = async (
   )
 
 export const enterWithPin = async (pin: string): Promise<StarterKit> => {
-  const hash = getEncryptedHash()
+  let hash = getEncryptedHash()
 
   if (!hash) {
-    throw new Error('No PIN in localStorage')
+    const onlineHash = await getEncryptedOnlineHash(pin)
+
+    if (!onlineHash) {
+      throw new Error('No encrypted hash available locally or online')
+    }
+
+    hash = bufferToBase64(onlineHash)
   }
 
   const { iv, key } = await createPinAesData(pin)
 
-  return startSession(await decrypt(iv, key, parseHexToBuffer(hash)))
+  return startSession(await decrypt(iv, key, base64ToBuffer(hash)))
 }
 
 export const exit = () => {

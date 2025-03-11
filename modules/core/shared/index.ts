@@ -11,3 +11,5 @@ export * from './lib/fingerprint'
 export * from './lib/crypto-utils'
 
 export * from './lib/format-password'
+
+export * from './lib/generate-random-string'

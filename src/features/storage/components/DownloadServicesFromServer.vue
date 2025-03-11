@@ -10,11 +10,13 @@ import {
   getKeyPairFromSeed,
   base64ToUint8Array,
   uint8ArrayToBase64,
-  generateTimestampBytes,
+  generateTimestamp,
 } from '#/core'
 import { parse, checkForEmptiness } from '#/services'
 
 import { importServices, isCalculationInProgress } from '@/entities/session'
+
+import { showStorageDrawer } from '../model'
 
 const message = useMessage()
 const loadingBar = useLoadingBar()
@@ -23,30 +25,26 @@ const onClick = async () => {
   loadingBar.start()
 
   try {
-    // Получаем данные сессии
     const { keyPairSeed, secretBoxIv, secretBoxKey } = getSession()
     const { secretKey, publicKey } = getKeyPairFromSeed(keyPairSeed)
 
-    // Генерируем timestamp и подпись
-    const timestampBytes = generateTimestampBytes()
-    const signature = createSignature(timestampBytes, secretKey)
+    const timestamp = generateTimestamp()
+    const signature = createSignature(timestamp, secretKey)
 
-    // Делаем GET-запрос
     const response = await axios.get(
       'https://passcryptum.ddns.net/api/profiles/',
+      // 'http://127.0.0.1:8000/api/profiles/',
       {
         headers: {
           'Content-Type': 'application/json',
           'Public-Key': uint8ArrayToBase64(publicKey),
-          'Timestamp': uint8ArrayToBase64(timestampBytes),
+          'Timestamp': uint8ArrayToBase64(timestamp),
           'Signature': uint8ArrayToBase64(signature),
         },
       },
     )
 
-    // Проверяем успешность ответа
     if (response.status === 200) {
-      // Расшифровка ответа
       const encryptedData = base64ToUint8Array(response.data)
 
       const decryptedData = decryptData(
@@ -60,15 +58,12 @@ const onClick = async () => {
       }
 
       const decryptedServices = new Uint8Array(decryptedData)
-
-      // Парсинг сервисов
       const parsedServices = parse(await readData(decryptedServices.buffer))
 
       if (checkForEmptiness(parsedServices)) {
         throw new Error('Parsed services is empty')
       }
 
-      // Импортируем сервисы
       await importServices(parsedServices)
 
       message.success('Services have been downloaded from server successfully')
@@ -90,6 +85,8 @@ const onClick = async () => {
     }
   } finally {
     loadingBar.finish()
+
+    showStorageDrawer.value = false
   }
 }
 </script>

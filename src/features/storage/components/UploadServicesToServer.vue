@@ -7,12 +7,15 @@ import {
   encryptData,
   createSignature,
   getDataAsBuffer,
+  concatUint8Arrays,
   getKeyPairFromSeed,
   uint8ArrayToBase64,
-  generateTimestampBytes,
+  generateTimestamp,
 } from '#/core'
 
 import { areServicesEmpty } from '@/entities/session'
+
+import { showStorageDrawer } from '../model'
 
 const dialog = useDialog()
 const message = useMessage()
@@ -28,7 +31,6 @@ const onClick = () => {
       loadingBar.start()
 
       try {
-        // Получаем данные для шифрования
         const buffer = await getDataAsBuffer()
 
         if (!buffer) {
@@ -37,43 +39,24 @@ const onClick = () => {
 
         const services = new Uint8Array(buffer)
 
-        // Получаем данные сессии
         const { keyPairSeed, secretBoxIv, secretBoxKey } = getSession()
         const { secretKey, publicKey } = getKeyPairFromSeed(keyPairSeed)
 
-        // Шифруем данные
         const encryptedServices = encryptData(
           services,
           secretBoxIv,
           secretBoxKey,
         )
 
-        // Генерируем метку времени
-        const timestampBytes = generateTimestampBytes()
-
-        // Объединяем timestamp и зашифрованные данные
-        const combinedData = new Uint8Array(
-          timestampBytes.length + encryptedServices.length,
-        )
-
-        combinedData.set(timestampBytes)
-        combinedData.set(encryptedServices, timestampBytes.length)
-
-        // Создаем подпись
+        const timestamp = generateTimestamp()
+        const combinedData = concatUint8Arrays(timestamp, encryptedServices)
         const signature = createSignature(combinedData, secretKey)
+        const requestData = concatUint8Arrays(signature, combinedData)
 
-        // Формируем окончательный массив
-        const finalPayload = new Uint8Array(
-          signature.length + combinedData.length,
-        )
-
-        finalPayload.set(signature)
-        finalPayload.set(combinedData, signature.length)
-
-        // Делаем POST-запрос
         const response = await axios.post(
           'https://passcryptum.ddns.net/api/profiles/',
-          uint8ArrayToBase64(finalPayload),
+          // 'http://127.0.0.1:8000/api/profiles/',
+          uint8ArrayToBase64(requestData),
           {
             headers: {
               'Content-Type': 'application/json',
@@ -82,7 +65,6 @@ const onClick = () => {
           },
         )
 
-        // Проверяем успешность ответа
         if (response.status === 200) {
           message.success('Services have been uploaded to server successfully')
         } else {
@@ -101,6 +83,8 @@ const onClick = () => {
         }
       } finally {
         loadingBar.finish()
+
+        showStorageDrawer.value = false
       }
     },
   })

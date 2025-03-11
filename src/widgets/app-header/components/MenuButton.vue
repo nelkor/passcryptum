@@ -14,14 +14,22 @@ import { NDropdown, NButton, NIcon } from 'naive-ui'
 
 import { useChangeTheme } from '@/features/theme'
 import { StorageDrawer, openStorage } from '@/features/storage'
-import { setPin, useDeletePin, SetPinModal } from '@/features/pin'
+import {
+  useDeleteOnlinePin,
+  useDeleteOfflinePin,
+  setOnlinePin,
+  setOfflinePin,
+  SetOnlinePinModal,
+  SetOfflinePinModal,
+} from '@/features/pin'
 import { addService, AddServiceModal } from '@/features/add-service'
 import { useExit, isCalculationInProgress } from '@/entities/session'
 
 const { exit } = useExit()
 const props = defineProps<{ isEntered: boolean }>()
 const { themeName, changeTheme } = useChangeTheme()
-const { deletePin, isDeletePinDisabled } = useDeletePin()
+const { deleteOnlinePin, isDeleteOnlinePinDisabled } = useDeleteOnlinePin()
+const { deleteOfflinePin, isDeleteOfflinePinDisabled } = useDeleteOfflinePin()
 
 const renderIcon = (icon: Component) => () =>
   h(NIcon, null, { default: () => h(icon) })
@@ -40,16 +48,27 @@ const options = computed(() => [
           icon: renderIcon(AddCircleOutline),
         },
         {
-          key: 'setPin',
-          label: 'Set PIN',
+          key: 'setOfflinePin',
+          label: 'Set offline PIN',
+          icon: renderIcon(LockClosedOutline),
+        },
+        {
+          key: 'setOnlinePin',
+          label: 'Set online PIN',
           icon: renderIcon(LockClosedOutline),
         },
       ]
     : []),
   {
-    key: 'deletePin',
-    label: 'Delete PIN',
-    disabled: isDeletePinDisabled.value,
+    key: 'deleteOfflinePin',
+    label: 'Delete offline PIN',
+    disabled: isDeleteOfflinePinDisabled.value,
+    icon: renderIcon(LockOpenOutline),
+  },
+  {
+    key: 'deleteOnlinePin',
+    label: 'Delete online PIN',
+    disabled: isDeleteOnlinePinDisabled.value,
     icon: renderIcon(LockOpenOutline),
   },
   {
@@ -88,16 +107,24 @@ const handleSelect = (key: string) => {
       changeTheme()
 
       break
-    case 'deletePin':
-      deletePin()
+    case 'deleteOfflinePin':
+      deleteOfflinePin()
+
+      break
+    case 'deleteOnlinePin':
+      deleteOnlinePin()
 
       break
     case 'signOut':
       exit()
 
       break
-    case 'setPin':
-      setPin()
+    case 'setOfflinePin':
+      setOfflinePin()
+
+      break
+    case 'setOnlinePin':
+      setOnlinePin()
 
       break
     case 'addService':
@@ -126,7 +153,8 @@ const handleSelect = (key: string) => {
     </NButton>
   </NDropdown>
 
-  <SetPinModal />
+  <setOfflinePinModal />
+  <setOnlinePinModal />
   <StorageDrawer />
   <AddServiceModal />
 </template>

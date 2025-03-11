@@ -14,7 +14,8 @@ import {
 import { createElementRef } from '@/shared'
 import { AppInfo } from '@/widgets/app-info'
 import {
-  isPinSet,
+  isOnlinePinSet,
+  isOfflinePinSet,
   enterByPin,
   enterByPassword,
   isCalculationInProgress,
@@ -30,7 +31,8 @@ const tabs = {
 const message = useMessage()
 const loadingBar = useLoadingBar()
 const tabsInstRef = createElementRef<TabsInst>()
-const currentTab = ref(isPinSet.value ? tabs.PIN : tabs.PASSWORD)
+const hasPin = () => isOfflinePinSet.value || isOnlinePinSet.value
+const currentTab = ref(hasPin() ? tabs.PIN : tabs.PASSWORD)
 
 const onEnterPassword = (password: string) => {
   loadingBar.start()
@@ -39,7 +41,6 @@ const onEnterPassword = (password: string) => {
 
 const onEnterPin = (pin: string) => {
   loadingBar.start()
-
   enterByPin(pin)
     .then(() => loadingBar.finish())
     .catch(e => {
@@ -48,10 +49,11 @@ const onEnterPin = (pin: string) => {
     })
 }
 
-watch(isPinSet, () => {
-  currentTab.value = tabs.PASSWORD
-
-  nextTick(() => tabsInstRef.value.syncBarPosition())
+watch(hasPin, newValue => {
+  if (!newValue) {
+    currentTab.value = tabs.PASSWORD
+    nextTick(() => tabsInstRef.value?.syncBarPosition())
+  }
 })
 </script>
 
@@ -67,7 +69,9 @@ watch(isPinSet, () => {
         <NTabPane
           tab="PIN"
           :name="tabs.PIN"
-          :disabled="isCalculationInProgress || !isPinSet"
+          :disabled="
+            isCalculationInProgress || (!isOfflinePinSet && !isOnlinePinSet)
+          "
         >
           <LoginForm
             :disabled="isCalculationInProgress"
