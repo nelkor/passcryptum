@@ -12,4 +12,4 @@ export * from './lib/crypto-utils'
 
 export * from './lib/format-password'
 
-export * from './lib/generate-random-string'
+// export * from './lib/generate-random-string'
