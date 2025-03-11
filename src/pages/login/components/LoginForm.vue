@@ -35,7 +35,7 @@ onMounted(() => {
         type="password"
         :disabled="disabled"
         :placeholder="placeholder"
-        show-password-on="mousedown"
+        show-password-on="click"
         :input-props="{ name: placeholder }"
       >
         <template #prefix>

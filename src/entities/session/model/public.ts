@@ -13,14 +13,25 @@ import {
 import { ref, computed } from 'vue'
 import { saveData, deleteData } from '#/core'
 
-import { privateServices, privateIsPinSet, privateSessionId } from './private'
+import {
+  privateServices,
+  privateSessionId,
+  privateIsOnlinePinSet,
+  privateIsOfflinePinSet,
+} from './private'
 
 export const isCalculationInProgress = ref(false)
 
-export const isPinSet = computed(() => privateIsPinSet.value)
+export const isOnlinePinSet = computed(() => privateIsOnlinePinSet.value)
 
-export const setPinState = (value: boolean) => {
-  privateIsPinSet.value = value
+export const setOnlinePinState = (value: boolean) => {
+  privateIsOnlinePinSet.value = value
+}
+
+export const isOfflinePinSet = computed(() => privateIsOfflinePinSet.value)
+
+export const setOfflinePinState = (value: boolean) => {
+  privateIsOfflinePinSet.value = value
 }
 
 export const sessionId = computed(() => privateSessionId.value)

@@ -8,13 +8,13 @@ import {
   useLoadingBar,
 } from 'naive-ui'
 import { ref } from 'vue'
-import { setPin } from '#/core'
+import { setOfflinePin } from '#/core'
 import { KeyOutline, LockClosedOutline } from '@vicons/ionicons5'
 
 import { FormSubmit } from '@/shared'
-import { setPinState, isCalculationInProgress } from '@/entities/session'
+import { setOfflinePinState, isCalculationInProgress } from '@/entities/session'
 
-import { showSetPinModal } from '../model'
+import { showSetOfflinePinModal } from '../model'
 
 const pin = ref('')
 const message = useMessage()
@@ -27,13 +27,13 @@ const clearForm = () => {
 const onSubmit = () => {
   loadingBar.start()
 
-  setPin(pin.value).then(() => {
-    setPinState(true)
-    message.success('PIN has been set')
+  setOfflinePin(pin.value).then(() => {
+    setOfflinePinState(true)
+    message.success('Offline PIN has been set')
     loadingBar.finish()
 
     isCalculationInProgress.value = false
-    showSetPinModal.value = false
+    showSetOfflinePinModal.value = false
   })
 
   clearForm()
@@ -41,13 +41,13 @@ const onSubmit = () => {
   isCalculationInProgress.value = true
 }
 </script>
-
+§
 <template>
   <NModal
-    v-model:show="showSetPinModal"
+    v-model:show="showSetOfflinePinModal"
     preset="card"
     class="app-modal"
-    title="Setting PIN"
+    title="Setting offline PIN"
     @after-leave="clearForm"
   >
     <form @submit.prevent="onSubmit">
@@ -57,7 +57,7 @@ const onSubmit = () => {
           size="large"
           type="password"
           placeholder="Enter any PIN"
-          show-password-on="mousedown"
+          show-password-on="click"
           :input-props="{ name: 'PIN' }"
           :disabled="isCalculationInProgress"
         >

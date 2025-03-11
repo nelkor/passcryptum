@@ -1,33 +1,62 @@
 import { computed } from 'vue'
-import { deletePin } from '#/core'
+import { deleteOnlinePin, deleteOfflinePin } from '#/core'
 import { useMessage, useDialog, useLoadingBar } from 'naive-ui'
 
 import {
-  isPinSet,
-  setPinState,
+  isOnlinePinSet,
+  isOfflinePinSet,
+  setOnlinePinState,
+  setOfflinePinState,
   isCalculationInProgress,
 } from '@/entities/session'
 
-export const useDeletePin = () => {
+export const useDeleteOnlinePin = () => {
   const dialog = useDialog()
   const message = useMessage()
   const loadingBar = useLoadingBar()
 
   return {
-    isDeletePinDisabled: computed(
-      () => !isPinSet.value || isCalculationInProgress.value,
+    isDeleteOnlinePinDisabled: computed(
+      () => !isOnlinePinSet.value || isCalculationInProgress.value,
     ),
-    deletePin() {
+    deleteOnlinePin() {
       dialog.warning({
-        title: 'Your PIN will be deleted',
-        content: 'Are you sure you want to delete your PIN?',
-        positiveText: 'Yes, delete PIN',
+        title: 'Your online PIN will be deleted',
+        content: 'Are you sure you want to delete your online PIN?',
+        positiveText: 'Yes, delete online PIN',
         negativeText: 'Cancel',
         onPositiveClick() {
-          deletePin()
-          setPinState(false)
+          deleteOnlinePin()
+          setOnlinePinState(false)
           loadingBar.start()
-          message.info('Your PIN has been deleted')
+          message.info('Your online PIN has been deleted')
+          requestAnimationFrame(() => loadingBar.finish())
+        },
+      })
+    },
+  }
+}
+
+export const useDeleteOfflinePin = () => {
+  const dialog = useDialog()
+  const message = useMessage()
+  const loadingBar = useLoadingBar()
+
+  return {
+    isDeleteOfflinePinDisabled: computed(
+      () => !isOfflinePinSet.value || isCalculationInProgress.value,
+    ),
+    deleteOfflinePin() {
+      dialog.warning({
+        title: 'Your offline PIN will be deleted',
+        content: 'Are you sure you want to delete your offline PIN?',
+        positiveText: 'Yes, delete offline PIN',
+        negativeText: 'Cancel',
+        onPositiveClick() {
+          deleteOfflinePin()
+          setOfflinePinState(false)
+          loadingBar.start()
+          message.info('Your offline PIN has been deleted')
           requestAnimationFrame(() => loadingBar.finish())
         },
       })
