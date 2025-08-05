@@ -1,0 +1,1 @@
+export { default as MobileHeader } from './components/MobileHeader.vue'; 

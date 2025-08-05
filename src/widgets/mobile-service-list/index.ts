@@ -1,0 +1,1 @@
+export { default as MobileServiceList } from './components/MobileServiceList.vue'; 
