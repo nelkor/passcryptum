@@ -11,3 +11,7 @@ export const isDarkTheme = ref(
 )
 
 export const theme = computed(() => (isDarkTheme.value ? darkTheme : null))
+
+export const useTheme = () => {
+  return { theme, isDarkTheme }
+}
