@@ -1,4 +1,4 @@
-import { enterWithOriginPassword, enterWithPin } from '#/core'
+import { enterWithOriginPassword, enterWithPin, authenticateBiometric } from '#/core'
 
 import { initSession } from '../model/private'
 import { isCalculationInProgress } from '../model/public'
@@ -26,6 +26,24 @@ export const enterByPin = async (pin: string) => {
     isCalculationInProgress.value = false
 
     throw new Error('Wrong PIN')
+  }
+
+  isCalculationInProgress.value = false
+}
+
+export const enterByBiometric = async () => {
+  isCalculationInProgress.value = true
+
+  try {
+    const { id, data } = await authenticateBiometric()
+
+    initSession(id, data)
+  } catch (e) {
+    void e
+
+    isCalculationInProgress.value = false
+
+    throw new Error('Biometric authentication failed')
   }
 
   isCalculationInProgress.value = false
