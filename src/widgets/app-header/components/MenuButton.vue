@@ -26,6 +26,19 @@ const { deletePin, isDeletePinDisabled } = useDeletePin()
 const renderIcon = (icon: Component) => () =>
   h(NIcon, null, { default: () => h(icon) })
 
+const renderThemeLabel = () => themeName.value
+
+const renderGitHubLabel = () =>
+  h(
+    'a',
+    {
+      href: 'https://github.com/nelkor/passcryptum',
+      target: '_blank',
+      rel: 'noopener noreferrer',
+    },
+    'GitHub',
+  )
+
 const options = computed(() => [
   ...(props.isEntered
     ? [
@@ -54,21 +67,12 @@ const options = computed(() => [
   },
   {
     key: 'changeTheme',
-    label: () => themeName.value,
+    label: renderThemeLabel,
     icon: renderIcon(ColorFillOutline),
   },
   {
     key: 'github',
-    label: () =>
-      h(
-        'a',
-        {
-          href: 'https://github.com/nelkor/passcryptum',
-          target: '_blank',
-          rel: 'noopener noreferrer',
-        },
-        'GitHub',
-      ),
+    label: renderGitHubLabel,
     icon: renderIcon(LogoGithub),
   },
   ...(props.isEntered
