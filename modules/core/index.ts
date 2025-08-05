@@ -12,3 +12,11 @@ export { generatePassword } from './generator'
 export { setPin, deletePin, isTherePin } from './pin'
 
 export { exit, enterWithPin, enterWithOriginPassword } from './session'
+
+export {
+  checkBiometricAvailability,
+  setupBiometric,
+  authenticateBiometric,
+  removeBiometric,
+  isBiometricSetup,
+} from './biometric'
