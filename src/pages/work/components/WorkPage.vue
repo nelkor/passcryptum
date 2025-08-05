@@ -10,16 +10,11 @@ import {
 import { addService } from '@/features/add-service';
 import { ServiceView } from '@/widgets/service-view';
 import { ServiceStub } from '@/widgets/service-stub';
-import { MobileServiceList } from '@/widgets/mobile-service-list';
-import { MobileHeader } from '@/widgets/mobile-header';
 import { areServicesEmpty, isServiceSelected } from '@/entities/session';
 </script>
 
 <template>
   <div class="work-page">
-    <!-- Mobile Header -->
-    <MobileHeader />
-    
     <!-- Mobile Container -->
     <div class="mobile-container">
       <!-- Empty State -->
