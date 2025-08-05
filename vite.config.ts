@@ -13,4 +13,20 @@ export default defineConfig({
     },
   },
   plugins: [vue(), viteSingleFile()],
+  build: {
+    target: 'esnext',
+    minify: 'terser',
+    rollupOptions: {
+      output: {
+        manualChunks: undefined as any,
+      },
+    },
+  },
+  optimizeDeps: {
+    include: ['vue', 'naive-ui'],
+  },
+  server: {
+    port: 3000,
+    open: true,
+  },
 })

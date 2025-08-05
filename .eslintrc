@@ -1,22 +1,31 @@
 {
   "env": {
     "browser": true,
-    "serviceworker": true
+    "serviceworker": true,
+    "es2022": true
   },
-  "plugins": ["import"],
+  "plugins": ["import", "@typescript-eslint"],
   "extends": [
     "plugin:vue/vue3-essential",
     "eslint:recommended",
     "@vue/eslint-config-typescript",
     "@vue/eslint-config-prettier",
-    "plugin:import/errors"
+    "plugin:import/errors",
+    "plugin:import/typescript"
   ],
+  "parser": "vue-eslint-parser",
   "parserOptions": {
-    "ecmaVersion": "latest"
+    "parser": "@typescript-eslint/parser",
+    "ecmaVersion": "latest",
+    "sourceType": "module",
+    "project": "./tsconfig.json"
   },
   "settings": {
     "import/resolver": {
-      "typescript": {}
+      "typescript": {
+        "alwaysTryTypes": true,
+        "project": "./tsconfig.json"
+      }
     }
   },
   "rules": {
@@ -43,7 +52,11 @@
             "group": "sibling"
           }
         ],
-        "newlines-between": "always"
+        "newlines-between": "always",
+        "alphabetize": {
+          "order": "asc",
+          "caseInsensitive": true
+        }
       }
     ],
 
@@ -160,6 +173,26 @@
     "vue/order-in-components": 2,
     "vue/no-empty-component-block": 2,
     "vue/max-attributes-per-line": 0,
-    "vue/singleline-html-element-content-newline": 0
-  }
+    "vue/singleline-html-element-content-newline": 0,
+    "vue/component-name-in-template-casing": ["error", "PascalCase"],
+    "vue/component-definition-name-casing": ["error", "PascalCase"],
+    "vue/no-unused-components": "warn",
+    "vue/no-unused-vars": "warn",
+
+    "@typescript-eslint/no-unused-vars": ["error", { "argsIgnorePattern": "^_" }],
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "@typescript-eslint/explicit-module-boundary-types": "off",
+    "@typescript-eslint/no-explicit-any": "warn",
+    "@typescript-eslint/prefer-nullish-coalescing": "off",
+    "@typescript-eslint/prefer-optional-chain": "off"
+  },
+  "overrides": [
+    {
+      "files": ["*.ts", "*.tsx"],
+      "rules": {
+        "@typescript-eslint/prefer-nullish-coalescing": "error",
+        "@typescript-eslint/prefer-optional-chain": "error"
+      }
+    }
+  ]
 }
