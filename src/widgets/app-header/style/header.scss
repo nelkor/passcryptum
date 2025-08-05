@@ -26,10 +26,52 @@
 
 .app-version {
   padding-left: 8px;
+  font-size: 0.875rem;
+  color: var(--text-tertiary);
+  font-weight: 500;
 }
 
 .header-menu {
   margin-left: 8px;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  
+  &:hover {
+    background: var(--bg-tertiary);
+    transform: translateY(-1px);
+  }
+  
+  &:active {
+    transform: translateY(0);
+  }
+}
+
+// Стили для современного dropdown меню
+:deep(.n-dropdown-menu) {
+  border-radius: 12px;
+  box-shadow: var(--shadow-lg);
+  backdrop-filter: blur(10px);
+  border: 1px solid var(--border-primary);
+  
+  .n-dropdown-option {
+    border-radius: 8px;
+    margin: 0.25rem;
+    transition: all 0.2s ease;
+    
+    &:hover {
+      background: var(--bg-tertiary);
+    }
+    
+    &.n-dropdown-option--child-active {
+      background: var(--primary-500);
+      color: var(--text-inverse);
+    }
+  }
+  
+  .n-dropdown-divider {
+    margin: 0.5rem 0;
+    border-color: var(--border-primary);
+  }
 }
 
 @media (max-width: $breakpoint-400) {

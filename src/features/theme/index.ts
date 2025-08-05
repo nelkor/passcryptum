@@ -1,3 +1,3 @@
-export { theme } from './model'
+export { theme, useTheme } from './model'
 
 export * from './hooks/change-theme'
