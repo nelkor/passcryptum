@@ -12,18 +12,20 @@ import { FingerPrintOutline, CloseOutline } from '@vicons/ionicons5';
 
 import { 
   showSetupBiometricModal,
-  setupBiometricAuth,
   biometricLoading 
 } from '../model';
+import { useBiometricSetup } from '../hooks/use-biometric';
 
 const message = useMessage();
 const loadingBar = useLoadingBar();
+
+const { setup } = useBiometricSetup();
 
 const onSetup = async () => {
   loadingBar.start();
   
   try {
-    await setupBiometricAuth();
+    await setup();
     message.success('Biometric authentication has been set up successfully');
     showSetupBiometricModal.value = false;
   } catch (error) {
