@@ -75,6 +75,12 @@ const options = computed(() => [
     label: renderGitHubLabel,
     icon: renderIcon(LogoGithub),
   },
+  // Временная кнопка для тестирования
+  {
+    key: 'clearSession',
+    label: 'Clear Session (Test)',
+    icon: renderIcon(LogOutOutline),
+  },
   ...(props.isEntered
     ? [
         {
@@ -99,6 +105,11 @@ const handleSelect = (key: string) => {
     case 'signOut':
       exit()
 
+      break
+    case 'clearSession':
+      // Очищаем сессию для тестирования
+      localStorage.clear()
+      window.location.reload()
       break
     case 'setPin':
       setPin()
