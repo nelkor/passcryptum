@@ -6,7 +6,7 @@ import {
   PersonAddOutline,
   CloseOutline,
 } from '@vicons/ionicons5'
-import { NIcon, NModal, NSpace, NInput, NButton, NText, NDivider } from 'naive-ui'
+import { NIcon, NModal, NSpace, NInput, NButton, NText, NDivider, useLoadingBar } from 'naive-ui'
 
 import { addServiceAndLogin, isCalculationInProgress } from '@/entities/session'
 
