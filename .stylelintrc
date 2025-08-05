@@ -4,6 +4,17 @@
     "stylelint-config-prettier-scss"
   ],
   "rules": {
-    "media-feature-range-notation": "prefix"
+    "media-feature-range-notation": "prefix",
+    "scss/at-import-partial-extension": "always",
+    "scss/at-import-no-partial-leading-underscore": true,
+    "scss/dollar-variable-colon-space-after": "always",
+    "scss/dollar-variable-colon-space-before": "never",
+    "scss/selector-no-redundant-nesting-selector": true,
+    "scss/at-mixin-argumentless-call-parentheses": "always",
+    "scss/at-extend-no-missing-placeholder": true,
+    "scss/at-function-pattern": "^[a-z]+([a-z0-9-]+[a-z0-9]+)?$",
+    "scss/at-mixin-pattern": "^[a-z]+([a-z0-9-]+[a-z0-9]+)?$",
+    "scss/dollar-variable-pattern": "^[a-z]+([a-z0-9-]+[a-z0-9]+)?$",
+    "scss/percent-placeholder-pattern": "^[a-z]+([a-z0-9-]+[a-z0-9]+)?$"
   }
 }

@@ -31,11 +31,22 @@ Well done! You have transferred one of your accounts to Passcryptum.
 Every time you need to log in to this account, enter Passcryptum
 with your origin password and copy the login password.
 
-## Further use
+## Authentication Options
 
-Set the PIN! Read the
-[instruction](https://github.com/nelkor/passcryptum/blob/main/docs/pin.md),
-why it is important and how to use it.
+### Password Authentication
+The primary and most secure method. Use your origin password to access your account.
+
+### PIN Authentication
+For convenience, you can set up a PIN code. Read the
+[PIN instruction](https://github.com/nelkor/passcryptum/blob/main/docs/pin.md)
+to learn why it's important and how to use it.
+
+### Biometric Authentication (NEW!)
+Use Touch ID, Face ID, or fingerprint authentication for quick and secure access.
+Read the [biometric authentication guide](https://github.com/nelkor/passcryptum/blob/main/docs/biometric.md)
+for setup instructions and supported devices.
+
+## Further use
 
 Some services restrict our ability to use special characters in passwords.
 For such services, you can uncheck "Use special characters".

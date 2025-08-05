@@ -8,23 +8,31 @@ import {
   ColorFillOutline,
   AddCircleOutline,
   LockClosedOutline,
-} from '@vicons/ionicons5'
-import { computed, h, Component } from 'vue'
-import { NDropdown, NButton, NIcon } from 'naive-ui'
+  FingerPrintOutline,
+} from '@vicons/ionicons5';
+import { computed, h, Component } from 'vue';
+import { NDropdown, NButton, NIcon } from 'naive-ui';
 
-import { useChangeTheme } from '@/features/theme'
-import { StorageDrawer, openStorage } from '@/features/storage'
-import { setPin, useDeletePin, SetPinModal } from '@/features/pin'
-import { addService, AddServiceModal } from '@/features/add-service'
-import { useExit, isCalculationInProgress } from '@/entities/session'
+import { useChangeTheme } from '@/features/theme';
+import { StorageDrawer, openStorage } from '@/features/storage';
+import { setPin, useDeletePin, SetPinModal } from '@/features/pin';
+import { addService, AddServiceModal } from '@/features/add-service';
+import { useExit, isCalculationInProgress } from '@/entities/session';
+import {
+  canUseBiometric,
+  canSetupBiometric,
+  showSetupBiometricModal,
+  removeBiometricAuth,
+  SetupBiometricModal,
+} from '@/features/biometric';
 
-const { exit } = useExit()
-const props = defineProps<{ isEntered: boolean }>()
-const { themeName, changeTheme } = useChangeTheme()
-const { deletePin, isDeletePinDisabled } = useDeletePin()
+const { exit } = useExit();
+const props = defineProps<{ isEntered: boolean }>();
+const { themeName, changeTheme } = useChangeTheme();
+const { deletePin, isDeletePinDisabled } = useDeletePin();
 
 const renderIcon = (icon: Component) => () =>
-  h(NIcon, null, { default: () => h(icon) })
+  h(NIcon, null, { default: () => h(icon) });
 
 const options = computed(() => [
   ...(props.isEntered
@@ -44,6 +52,25 @@ const options = computed(() => [
           label: 'Set PIN',
           icon: renderIcon(LockClosedOutline),
         },
+        // Биометрические опции
+        ...(canSetupBiometric.value
+          ? [
+              {
+                key: 'setupBiometric',
+                label: 'Setup Touch ID / Face ID',
+                icon: renderIcon(FingerPrintOutline),
+              },
+            ]
+          : []),
+        ...(canUseBiometric.value
+          ? [
+              {
+                key: 'removeBiometric',
+                label: 'Remove Touch ID / Face ID',
+                icon: renderIcon(FingerPrintOutline),
+              },
+            ]
+          : []),
       ]
     : []),
   {
@@ -80,36 +107,36 @@ const options = computed(() => [
         },
       ]
     : []),
-])
+]);
 
 const handleSelect = (key: string) => {
   switch (key) {
     case 'changeTheme':
-      changeTheme()
-
-      break
+      changeTheme();
+      break;
     case 'deletePin':
-      deletePin()
-
-      break
+      deletePin();
+      break;
     case 'signOut':
-      exit()
-
-      break
+      exit();
+      break;
     case 'setPin':
-      setPin()
-
-      break
+      setPin();
+      break;
     case 'addService':
-      addService()
-
-      break
+      addService();
+      break;
     case 'storage':
-      openStorage()
-
-      break
+      openStorage();
+      break;
+    case 'setupBiometric':
+      showSetupBiometricModal.value = true;
+      break;
+    case 'removeBiometric':
+      removeBiometricAuth();
+      break;
   }
-}
+};
 </script>
 
 <template>
@@ -129,4 +156,5 @@ const handleSelect = (key: string) => {
   <SetPinModal />
   <StorageDrawer />
   <AddServiceModal />
+  <SetupBiometricModal />
 </template>
